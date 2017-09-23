@@ -13,6 +13,9 @@ endif()
 # This allows us to compile in RelWithDebInfo. It'll use the Release-version of OpenCV:
 set_target_properties(${OpenCV_LIBS} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 
+find_package(Ceres REQUIRED)
+include_directories(${CERES_INCLUDE_DIRS})
+
 if(MSVC)
   # The standard find_package for boost on Win finds the dynamic libs, so for dynamic linking to boost we need to #define:
   add_definitions(-DBOOST_ALL_NO_LIB) # Don't use the automatic library linking by boost with VS (#pragma ...). Instead, we specify everything here in cmake.
@@ -22,7 +25,7 @@ find_package(Boost 1.50.0 COMPONENTS system filesystem program_options REQUIRED)
 message(STATUS "Boost found at ${Boost_INCLUDE_DIRS}")
 
 pybind11_add_module(python-bindings generate-python-bindings.cpp pybind11_glm.hpp pybind11_opencv.hpp)
-target_link_libraries(python-bindings PRIVATE eos ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(python-bindings PRIVATE eos  ${CERES_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
 set_target_properties(python-bindings PROPERTIES OUTPUT_NAME eos)
 
 install(TARGETS python-bindings DESTINATION python)
