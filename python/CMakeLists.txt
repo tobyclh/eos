@@ -25,7 +25,7 @@ find_package(Boost 1.50.0 COMPONENTS system filesystem program_options REQUIRED)
 message(STATUS "Boost found at ${Boost_INCLUDE_DIRS}")
 
 pybind11_add_module(python-bindings generate-python-bindings.cpp pybind11_glm.hpp pybind11_opencv.hpp)
-target_link_libraries(python-bindings PRIVATE eos  ${CERES_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(python-bindings PRIVATE eos  ${CERES_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES} fitting_ceres.hpp)
 set_target_properties(python-bindings PROPERTIES OUTPUT_NAME eos)
 
 install(TARGETS python-bindings DESTINATION python)
