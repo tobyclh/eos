@@ -38,6 +38,8 @@
 #include "pybind11_glm.hpp"
 #include "pybind11_opencv.hpp"
 
+#include "fitting_ceres.hpp"
+
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -164,7 +166,7 @@ PYBIND11_MODULE(eos, eos_module) {
 
 	pca_module.def("pca", py::overload_cast<const Eigen::Ref<const Eigen::MatrixXf>, pca::Covariance>(&pca::pca), "Compute PCA on a mean-centred data matrix, and return the eigenvectors and respective eigenvalues.", py::arg("data"), py::arg("covariance_type") = pca::Covariance::AtA);
         pca_module.def("pca", py::overload_cast<const Eigen::Ref<const Eigen::MatrixXf>, int, pca::Covariance>(&pca::pca), "Performs PCA and returns num_eigenvectors_to_keep eigenvectors and eigenvalues.", py::arg("data"), py::arg("num_eigenvectors_to_keep"), py::arg("covariance_type") = pca::Covariance::AtA);
-        pca_module.def("pca", py::overload_cast<const Eigen::Ref<const Eigen::MatrixXf>, float, pca::Covariance>(&pca::pca), "Performs PCA and returns the number of eigenvectors and eigenvalues to retain \p variance_to_keep variance of the original data.", py::arg("data"), py::arg("variance_to_keep"), py::arg("covariance_type") = pca::Covariance::AtA);
+        pca_module.def("pca", py::overload_cast<const Eigen::Ref<const Eigen::MatrixXf>, float, pca::Covariance>(&pca::pca), "Performs PCA and returns the number of eigenvectors and eigenvalues to retain variance_to_keep variance of the original data.", py::arg("data"), py::arg("variance_to_keep"), py::arg("covariance_type") = pca::Covariance::AtA);
         pca_module.def("pca", py::overload_cast<const Eigen::Ref<const Eigen::MatrixXf>, std::vector<std::array<int, 3>>, pca::Covariance>(&pca::pca), "Performs PCA on the given data (including subtracting the mean) and returns the built PcaModel.", py::arg("data"), py::arg("triangle_list"), py::arg("covariance_type") = pca::Covariance::AtA);
 
 	/**
@@ -223,7 +225,28 @@ PYBIND11_MODULE(eos, eos_module) {
 			return std::make_tuple(result.first, result.second, pca_coeffs, blendshape_coeffs);
 		}, "Fit the pose (camera), shape model, and expression blendshapes to landmarks, in an iterative way. Returns a tuple (mesh, rendering_parameters, shape_coefficients, blendshape_coefficients).", py::arg("morphable_model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("edge_topology"), py::arg("contour_landmarks"), py::arg("model_contour"), py::arg("num_iterations") = 5, py::arg("num_shape_coefficients_to_fit") = -1, py::arg("lambda") = 30.0f)
 		;
-
+	
+	fitting_module.def("fit_shape_and_pose_ceres", [](const morphablemodel::MorphableModel& morphable_model, const std::vector<morphablemodel::Blendshape>& blendshapes, 
+		const std::vector<glm::vec2>& landmarks, const std::vector<std::string>& landmark_ids, const core::LandmarkMapper& landmark_mapper, cv::Mat img, 
+		const fitting::ContourLandmarks& contour_landmarks, const fitting::ModelContour& model_contour) {
+			assert(landmarks.size() == landmark_ids.size());
+			std::vector<double> pca_coeffs;
+			std::vector<double> blendshape_coeffs;
+			std::vector<cv::Vec2f> fitted_image_points;
+			// We can change this to std::optional as soon as we switch to VS2017 and pybind supports std::optional
+			core::LandmarkCollection<cv::Vec2f> landmark_collection;
+			for (int i = 0; i < landmarks.size(); ++i)
+			{
+				landmark_collection.push_back(core::Landmark<cv::Vec2f>{ landmark_ids[i], cv::Vec2f(landmarks[i].x, landmarks[i].y) });
+			}
+			eos::core::Mesh faceMesh;
+			glm::tmat4x4<double> modelMatrix, projMatrix;
+			std::tie(faceMesh, modelMatrix, projMatrix) = eos::fitting::fit_shape_and_pose_ceres(morphable_model, blendshapes, landmark_collection, landmark_mapper, img, contour_landmarks, model_contour, pca_coeffs, blendshape_coeffs);
+			return std::make_tuple(faceMesh, modelMatrix, projMatrix, pca_coeffs, blendshape_coeffs);
+		}, "Fit the pose (camera), shape model, and expression blendshapes to landmarks, in an iterative way. Returns a tuple (mesh, rendering_parameters, shape_coefficients, blendshape_coefficients).", py::arg("morphable_model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("img"), py::arg("contour_landmarks"), py::arg("model_contour"))
+		;
+	
+	
 	/**
 	 * Bindings for the eos::render namespace:
 	 *  - extract_texture()
@@ -233,6 +256,12 @@ PYBIND11_MODULE(eos, eos_module) {
 	render_module.def("extract_texture", [](const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, cv::Mat image, bool compute_view_angle, int isomap_resolution) {
 		cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image.cols, image.rows);
 		return render::extract_texture(mesh, affine_from_ortho, image, compute_view_angle, render::TextureInterpolation::NearestNeighbour, isomap_resolution);
+	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("rendering_params"), py::arg("image"), py::arg("compute_view_angle") = false, py::arg("isomap_resolution") = 512);
+
+	render_module.def("extract_texture_v2", [](const core::Mesh mesh,const  glm::mat4x4 view_model_matrix,const  glm::mat4x4 projection_matrix,const cv::Mat image,
+		int isomap_resolution) {
+		glm::vec4 v;
+		return render::v2::extract_texture(mesh, view_model_matrix, projection_matrix, v, image, false, isomap_resolution);
 	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("rendering_params"), py::arg("image"), py::arg("compute_view_angle") = false, py::arg("isomap_resolution") = 512);
 
 };
