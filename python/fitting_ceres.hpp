@@ -4,9 +4,6 @@
 #define NUM_COLOR_COEFF 199
 #define NUM_BLENDSHAPE_COEFF 29
 
-#ifndef FITTING_HPP_
-#define FITTING_HPP_
-
 #include "eos/core/Landmark.hpp"
 #include "eos/core/LandmarkMapper.hpp"
 #include "eos/core/Mesh.hpp"
