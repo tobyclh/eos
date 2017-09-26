@@ -28,6 +28,10 @@ target_link_libraries(scm-to-cereal eos ${OpenCV_LIBS} ${Boost_LIBRARIES})
 add_executable(bfm-binary-to-cereal bfm-binary-to-cereal.cpp)
 target_link_libraries(bfm-binary-to-cereal eos ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
+# Converts a file created with share/convert_bfm2009_to_raw_binary.m to a cereal binary file:
+add_executable(expression-binary-to-cereal expression-binary-to-cereal.cpp)
+target_link_libraries(expression-binary-to-cereal eos ${OpenCV_LIBS} ${Boost_LIBRARIES})
+
 
 # Reads an edgestruct CSV file created from Matlab, and converts it to json:
 add_executable(edgestruct-csv-to-json edgestruct-csv-to-json.cpp)
