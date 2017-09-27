@@ -119,6 +119,10 @@ public:
 		}
 	};
 
+	std::map<std::string, std::string> get_raw_mapping()
+	{
+		return landmark_mappings;
+	}
 	/**
 	 * @brief Returns the number of loaded landmark mappings.
 	 *

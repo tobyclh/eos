@@ -142,6 +142,9 @@ public:
 		return rotation;
 	};
 
+	auto get_translation() const {
+		return std::make_tuple(this->t_x, this->t_y);
+	}
 	void set_rotation(glm::quat rotation_quaternion) {
 		rotation = rotation_quaternion;
 	};
