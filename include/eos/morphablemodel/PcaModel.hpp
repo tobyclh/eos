@@ -100,6 +100,10 @@ public:
     int get_data_dimension() const
     {
         // Note: we could assert(rescaled_pca_basis.rows==orthonormal_pca_basis.rows)
+        if(rescaled_pca_basis.rows()!=orthonormal_pca_basis.rows())
+        {
+            std::cout << "something wrong with get_data_dimension";
+        }
         return rescaled_pca_basis.rows();
     };
 
@@ -215,12 +219,19 @@ public:
      * @param[in] vertex_id A vertex index. Make sure it is valid.
      * @return A 1x3? 3x1? matrix that points to the rows in the original basis.
      */
-    Eigen::MatrixXf get_rescaled_pca_basis_at_point(int vertex_id) const
+    const Eigen::Ref<const Eigen::MatrixXf> get_rescaled_pca_basis_at_point(int vertex_id) const
     {
         vertex_id *= 3;                           // the basis is stored in the format [x y z x y z ...]
+        // std::cout << "vertex " << vertex_id << "\n";
+        // std::cout << "get_data_dimension " << get_data_dimension() << "\n";
+        // std::cout << "vertex " << vertex_id << "\n";
         assert(vertex_id < get_data_dimension()); // Make sure the given vertex index isn't larger than the
                                                   // number of model vertices.
-        return rescaled_pca_basis.block(vertex_id, 0, 3, rescaled_pca_basis.cols());
+        // std::cout << "Getting block" << '\n';
+        Eigen::Ref<const Eigen::MatrixXf> block = rescaled_pca_basis.block(vertex_id, 0, 3, rescaled_pca_basis.cols());
+        // std::cout << "Got block, casted" << '\n';
+        
+        return block;
     };
 
     /**
@@ -245,7 +256,8 @@ public:
      * @param[in] vertex_id A vertex index. Make sure it is valid.
      * @return A matrix that points to the rows in the original basis.
      */
-    Eigen::MatrixXf get_orthonormal_pca_basis_at_point(int vertex_id) const
+
+    const Eigen::Ref<const Eigen::MatrixXf> get_orthonormal_pca_basis_at_point(int vertex_id) const
     {
         vertex_id *= 3;                           // the basis is stored in the format [x y z x y z ...]
         assert(vertex_id < get_data_dimension()); // Make sure the given vertex index isn't larger than the

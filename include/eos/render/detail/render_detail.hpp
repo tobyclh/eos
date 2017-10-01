@@ -469,7 +469,7 @@ inline boost::optional<TriangleToRasterize> process_prospective_tri(Vertex<float
 	return boost::optional<TriangleToRasterize>(t);
 };
 
-inline void raster_triangle(TriangleToRasterize triangle, cv::Mat colourbuffer, cv::Mat depthbuffer, boost::optional<Texture> texture, bool enable_far_clipping)
+inline void raster_triangle(TriangleToRasterize triangle, cv::Mat colourbuffer, cv::Mat depthbuffer, const Texture& texture, bool enable_far_clipping)
 {
 	using cv::Vec2f;
 	using cv::Vec3f;
@@ -523,7 +523,7 @@ inline void raster_triangle(TriangleToRasterize triangle, cv::Mat colourbuffer, 
 
 					glm::tvec3<float> pixel_color;
 					// Pixel Shader:
-					if (texture) { // We use texturing
+					if (true) { // We use texturing
 						// check if texture != NULL?
 						// partial derivatives (for mip-mapping)
 						const float u_over_z = -(triangle.alphaPlane.a*x + triangle.alphaPlane.b*y + triangle.alphaPlane.d) * triangle.one_over_alpha_c;
@@ -537,13 +537,13 @@ inline void raster_triangle(TriangleToRasterize triangle, cv::Mat colourbuffer, 
 						float dvdx = one_over_squared_one_over_z * (triangle.alpha_ffy * one_over_z - u_over_z * triangle.gamma_ffy);
 						float dvdy = one_over_squared_one_over_z * (triangle.beta_ffy * one_over_z - v_over_z * triangle.gamma_ffy);
 
-						dudx *= texture.get().mipmaps[0].cols;
-						dudy *= texture.get().mipmaps[0].cols;
-						dvdx *= texture.get().mipmaps[0].rows;
-						dvdy *= texture.get().mipmaps[0].rows;
+						dudx *= texture.mipmaps[0].cols;
+						dudy *= texture.mipmaps[0].cols;
+						dvdx *= texture.mipmaps[0].rows;
+						dvdy *= texture.mipmaps[0].rows;
 
 						// The Texture is in BGR, thus tex2D returns BGR
-						glm::tvec3<float> texture_color = detail::tex2d(texcoords_persp, texture.get(), dudx, dudy, dvdx, dvdy); // uses the current texture
+						glm::tvec3<float> texture_color = detail::tex2d(texcoords_persp, texture, dudx, dudy, dvdx, dvdy); // uses the current texture
 						pixel_color = glm::tvec3<float>(texture_color[2], texture_color[1], texture_color[0]);
 						// other: color.mul(tex2D(texture, texCoord));
 						// Old note: for texturing, we load the texture as BGRA, so the colors get the wrong way in the next few lines...

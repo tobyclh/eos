@@ -49,3 +49,8 @@ isomap_simple = eos.render.extract_texture(
     mesh, pose, image, compute_view_angle=False, isomap_resolution=4096)
 plt.imshow(isomap_simple[:, :, [2, 1, 0]])
 plt.show()
+
+mesh,  m1, m2, shape_coe, bsc, texture = eos.fitting.fit_shape_and_pose_ceres(model, blendshapes, landmarks, landmark_ids, landmark_mapper, image, contour_landmarks, model_contour)
+plt.imshow(texture[:, :, [2, 1, 0]])
+plt.show()
+eos.core.write_obj(mesh, 'mesh.obj')

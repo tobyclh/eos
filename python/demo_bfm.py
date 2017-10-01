@@ -32,8 +32,6 @@ for landmark in landmarks:
 plt.imshow(img)
 plt.show()
 # assert(False)
-landmarks = [[[part.y, part.x] for part in shape.parts()]
-            for shape in shapes][0]
 
 landmark_ids = list(map(str, range(1, 69)))
 image_height = img.shape[0]
@@ -53,7 +51,8 @@ model_contour = eos.fitting.ModelContour.load('../share/model_contours_bfm.json'
 (mesh, pose, shape_coeffs, blendshape_coeffs) = eos.fitting.fit_shape_and_pose(model, blendshapes,
                                                                                landmarks, landmark_ids, landmark_mapper,
                                                                                image_width, image_height, edge_topology, contour_landmarks, model_contour)
-eos.core.write_obj(mesh, 'obama.ply')
+eos.core.write_obj(mesh, 'obama.obj')
+
 
 image = cv2.imread('../share/obama.jpg')
 isomap = eos.render.extract_texture(mesh, pose,image, isomap_resolution=512)

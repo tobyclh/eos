@@ -15,14 +15,14 @@
 
 namespace eos {
 namespace cost {
-template <typename T>
-std::array<T, 3> get_shape_point(const morphablemodel::PcaModel& shape_model,
-                                 const std::vector<morphablemodel::Blendshape>& blendshapes, int vertex_id,
-                                 const T* const shape_coeffs, const T* const blendshape_coeffs);
+Eigen::Vector3f get_shape_point(const morphablemodel::PcaModel& shape_model,
+                                const std::vector<morphablemodel::Blendshape>& blendshapes, int vertex_id,
+                                const std::vector<float> shape_coeffs, const std::vector<float> blendshape_coeffs);
 
-template <typename T>
-std::array<T, 3> get_vertex_colour(const morphablemodel::PcaModel& colour_model, int vertex_id,
-                                   const T* const colour_coeffs);
+
+Eigen::Vector3f get_vertex_colour(const morphablemodel::PcaModel& colour_model, int vertex_id,
+                                    const std::vector<float> colour_coeffs);
+                                   
 
 struct LandmarkCost
 {
@@ -51,9 +51,11 @@ struct LandmarkCost
           aspect_ratio(static_cast<double>(image_width) / image_height), use_perspective(use_perspective){};
 
     template <typename T>
-    double calculate_cost(const T* const camera_rotation, const T* const camera_translation_and_intrinsics,
-                          const T* const shape_coeffs, const T* const blendshape_coeffs) const
+    double calculate_cost(const std::vector<T> camera_rotation, const std::vector<T> camera_translation_and_intrinsics,
+                          const std::vector<T> shape_coeffs, const std::vector<T> blendshape_coeffs) const
     {
+        std::cout << "Thursday night 9pm\n";
+        
         using namespace glm;
         assert(observed_landmarks.size() == vertex_id.size());
         // Generate shape instance (of only one vertex id!) using current parameters and 10 shape
@@ -62,8 +64,10 @@ struct LandmarkCost
         double total_cost = 0;
         for (int i = 0; i < observed_landmarks.size(); ++i)
         {
-            const auto point_arr =
-                get_shape_point<T>(shape_model, blendshapes, vertex_id[i], shape_coeffs, blendshape_coeffs);
+            
+            std::cout << "Wahaha\n";
+            const auto point_arr = get_shape_point(shape_model, blendshapes, vertex_id[i], shape_coeffs, blendshape_coeffs);
+            return total_cost;
 
             // Project the point to 2D:
             const tvec3<T> point_3d(point_arr[0], point_arr[1], point_arr[2]);
@@ -98,8 +102,8 @@ struct LandmarkCost
                     tvec3<T>(camera_translation_and_intrinsics[0], camera_translation_and_intrinsics[1],
                              0.0)); // we don't have t_z in ortho camera, it doesn't matter where it is
                 const auto ortho_mtx =
-                    glm::ortho(-1.0 * aspect_ratio * frustum_scale, 1.0 * aspect_ratio * frustum_scale,
-                               -1.0 * frustum_scale, 1.0 * frustum_scale);
+                    glm::ortho<T>(T(-1.0 * aspect_ratio * frustum_scale), T(1.0 * aspect_ratio * frustum_scale),
+                               T(-1.0 * frustum_scale), T(1.0 * frustum_scale));
                 projected_point = glm::project(point_3d, t_mtx * rot_mtx, ortho_mtx, viewport);
             }
             // Residual: Projected point minus the observed 2D landmark point
@@ -113,6 +117,7 @@ struct LandmarkCost
                 total_cost += offset_x * offset_x + offset_y * offset_y;
             }
         }
+        return total_cost;
     };
 
 private:
@@ -130,6 +135,7 @@ private:
 struct ImageCost {
         ImageCost(const morphablemodel::MorphableModel& morphable_model, const std::vector<morphablemodel::Blendshape>& blendshapes, cv::Mat image, std::vector<int> vertex_id, bool use_perspective) : morphable_model(morphable_model), blendshapes(blendshapes), image(image), aspect_ratio(static_cast<double>(image.cols) / image.rows), vertex_id(vertex_id), use_perspective(use_perspective)
         {
+            std::cout << "Making a image cost object" << "\n";            
             if (image.type() != CV_8UC3)
             {
                 throw std::runtime_error("The image given to ImageCost must be of type CV_8UC3.");
@@ -156,7 +162,7 @@ struct ImageCost {
          * @return Returns true. The ceres documentation is not clear about that I think.
          */
         template <typename T>
-        double calculate_cost(const T* const camera_rotation, const T* const camera_translation_and_intrinsics, const T* const shape_coeffs, const T* const blendshape_coeffs, const T* const color_coeffs) const
+        double calculate_cost(const std::vector<T> camera_rotation, const std::vector<T> camera_translation_and_intrinsics, const std::vector<T> shape_coeffs, const std::vector<T> blendshape_coeffs, const std::vector<T> color_coeffs) const
         {
             using namespace glm;
             double total_cost = 0;
@@ -164,7 +170,7 @@ struct ImageCost {
             {
                 // Note: The following is all duplicated code with LandmarkCost. Fix if possible performance-wise.
                 // Generate 3D shape point using the current parameters:
-                const auto point_arr = get_shape_point<T>(morphable_model.get_shape_model(), blendshapes, vertex_id[i], shape_coeffs, blendshape_coeffs);
+                const auto point_arr = get_shape_point(morphable_model.get_shape_model(), blendshapes, vertex_id[i], shape_coeffs, blendshape_coeffs);
         
                 // Project the point to 2D:
                 const tvec3<T> point_3d(point_arr[0], point_arr[1], point_arr[2]);
@@ -182,13 +188,13 @@ struct ImageCost {
                 {
                     const auto t_mtx = glm::translate(tvec3<T>(camera_translation_and_intrinsics[0], camera_translation_and_intrinsics[1], camera_translation_and_intrinsics[2]));
                     const T& focal = camera_translation_and_intrinsics[3];
-                    const auto persp_mtx = glm::perspective(focal, T(aspect_ratio), T(0.1), T(1000.0));
+                    const auto persp_mtx = glm::perspective<T>(focal, T(aspect_ratio), T(0.1), T(1000.0));
                     projected_point = glm::project(point_3d, t_mtx * rot_mtx, persp_mtx, viewport);
                 }
                 else {
                     const T& frustum_scale = camera_translation_and_intrinsics[2];
                     const auto t_mtx = glm::translate(tvec3<T>(camera_translation_and_intrinsics[0], camera_translation_and_intrinsics[1], 0.0)); // we don't have t_z in ortho camera, it doesn't matter where it is
-                    const auto ortho_mtx = glm::ortho(-1.0 * aspect_ratio * frustum_scale, 1.0 * aspect_ratio * frustum_scale, -1.0 * frustum_scale, 1.0 * frustum_scale);
+                    const auto ortho_mtx = glm::ortho<T>(-1.0 * aspect_ratio * frustum_scale, 1.0 * aspect_ratio * frustum_scale, -1.0 * frustum_scale, 1.0 * frustum_scale);
                     projected_point = glm::project(point_3d, t_mtx * rot_mtx, ortho_mtx, viewport);
                 }
         
@@ -204,8 +210,8 @@ struct ImageCost {
                     // The default template arguments for Grid2D are <T, kDataDim=1, kRowMajor=true, kInterleaved=true> and (except for the dimension), they're the right ones for us.
                     ceres::Grid2D<uchar, 3> grid(image.ptr(0), 0, image.rows, 0, image.cols);
                     ceres::BiCubicInterpolator<ceres::Grid2D<uchar, 3>> interpolator(grid);
-                    T observed_colour[3];
-                    interpolator.Evaluate(projected_point.y, projected_point.x, &observed_colour[0]);
+                    double observed_colour[3];
+                    interpolator.Evaluate(double(projected_point.y), double(projected_point.x), &observed_colour[0]);
         
                     // This probably needs to be modified if we add a light model.
                     auto model_colour = get_vertex_colour(morphable_model.get_color_model(), vertex_id[i], color_coeffs);
@@ -241,35 +247,53 @@ struct ImageCost {
      * @param[in] blendshape_coeffs A set of blendshape coefficients used to generate the point.
      * @return The 3D point.
      */
-    template <typename T>
-    std::array<T, 3> get_shape_point(const morphablemodel::PcaModel& shape_model, const std::vector<morphablemodel::Blendshape>& blendshapes, int vertex_id, const T* const shape_coeffs, const T* const blendshape_coeffs)
+
+        /**
+     * Returns the 3D position of a single point of the 3D shape generated by the parameters given.
+     *
+     * @param[in] shape_model A PCA 3D shape model.
+     * @param[in] blendshapes A set of 3D blendshapes.
+     * @param[in] vertex_id Vertex id of the 3D model that should be projected.
+     * @param[in] shape_coeffs A set of PCA shape coefficients used to generate the point.
+     * @param[in] blendshape_coeffs A set of blendshape coefficients used to generate the point.
+     * @return The 3D point.
+     */
+    
+    Eigen::Vector3f get_shape_point(const morphablemodel::PcaModel& shape_model, const std::vector<morphablemodel::Blendshape>& blendshapes, int vertex_id, const std::vector<float> shape_coeffs, const std::vector<float> blendshape_coeffs)
     {
-        int num_coeffs_fitting = 10; // Todo: Should be inferred or a function parameter!
+        int num_coeffs_fitting = shape_coeffs.size(); // Todo: Should be inferred or a function parameter!
+        // std::cout << "num_coeffs_fitting " << num_coeffs_fitting << '\n';
         auto mean = shape_model.get_mean_at_point(vertex_id);
-        auto basis = shape_model.get_rescaled_pca_basis_at_point(vertex_id);
+        // std::cout << "got mean " << '\n';
+        
+        std::cout << "point"  << '\n';
+        const Eigen::Ref<const Eigen::MatrixXf> basis = shape_model.get_rescaled_pca_basis_at_point(vertex_id);
+        
+        std::cout << "basis" << '\n';
+        std::cout << basis.rows() << " " <<basis.cols()<< '\n';
+        // std::cout <<  basis.col(0).data() << '\n';
         // Computing Shape = mean + basis * coeffs:
         // Note: Could use an Eigen matrix with type T to see if it gives a speedup.
-        std::array<T, 3> point{ T(mean[0]), T(mean[1]), T(mean[2]) };
+        Eigen::Vector3f point(mean[0], mean[1], mean[2]);
+        std::cout << "init point\n" ;
+        
         for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[0] += T(basis.row(0).col(i)(0)) * shape_coeffs[i]; // it seems to be ~15% faster when these are static_cast<double>() instead of T()?
+            std::cout << "BDM\n";
+            point += basis.col(i) * shape_coeffs[i]; // it seems to be ~15% faster when these are static_cast<double>() instead of T()?
         }
-        for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[1] += T(basis.row(1).col(i)(0)) * shape_coeffs[i];
-        }
-        for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[2] += T(basis.row(2).col(i)(0)) * shape_coeffs[i];
-        }
+        std::cout << "fitted shape" << '\n';
+        return point;
         // Adding the blendshape offsets: 
         // Shape = mean + basis * coeffs + blendshapes * bs_coeffs:
         auto num_blendshapes = blendshapes.size();
         for (int i = 0; i < num_blendshapes; ++i) {
-            point[0] += T(blendshapes[i].deformation(3 * vertex_id + 0)) * blendshape_coeffs[i];
+            point[0] += double(blendshapes[i].deformation(3 * vertex_id + 0)) * blendshape_coeffs[i];
         }
         for (int i = 0; i < num_blendshapes; ++i) {
-            point[1] += T(blendshapes[i].deformation(3 * vertex_id + 1)) * blendshape_coeffs[i];
+            point[1] += double(blendshapes[i].deformation(3 * vertex_id + 1)) * blendshape_coeffs[i];
         }
         for (int i = 0; i < num_blendshapes; ++i) {
-            point[2] += T(blendshapes[i].deformation(3 * vertex_id + 2)) * blendshape_coeffs[i];
+            point[2] += double(blendshapes[i].deformation(3 * vertex_id + 2)) * blendshape_coeffs[i];
         }
         return point;
     };
@@ -282,27 +306,22 @@ struct ImageCost {
      * @param[in] color_coeffs A set of PCA colour coefficients.
      * @return The colour. As RGB? In [0, 1]?
      */
-    template <typename T>
-    std::array<T, 3> get_vertex_colour(const morphablemodel::PcaModel& color_model, int vertex_id, const T* const color_coeffs)
+
+    Eigen::Vector3f get_vertex_colour(const morphablemodel::PcaModel& color_model, int vertex_id, const std::vector<float> color_coeffs)
     {
         int num_coeffs_fitting = 10; // Todo: Should be inferred or a function parameter!
         auto mean = color_model.get_mean_at_point(vertex_id);
-        auto basis = color_model.get_rescaled_pca_basis_at_point(vertex_id);
+        const Eigen::Ref<const Eigen::MatrixXf>  basis = color_model.get_rescaled_pca_basis_at_point(vertex_id);
         // Computing Colour = mean + basis * coeffs
         // Note: Could use an Eigen matrix with type T to see if it gives a speedup.
-        std::array<T, 3> point{ T(mean[0]), T(mean[1]), T(mean[2]) };
+        Eigen::Vector3f point(mean[0], mean[1], mean[2]);
         for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[0] += T(basis.row(0).col(i)(0)) * color_coeffs[i]; // it seems to be ~15% faster when these are static_cast<double>() instead of T()?
-        }
-        for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[1] += T(basis.row(1).col(i)(0)) * color_coeffs[i];
-        }
-        for (int i = 0; i < num_coeffs_fitting; ++i) {
-            point[2] += T(basis.row(2).col(i)(0)) * color_coeffs[i];
+            point += basis.col(i) * color_coeffs[i]; // it seems to be ~15% faster when these are static_cast<double>() instead of T()?
         }
         return point;
     };
     
+
 
 
 }

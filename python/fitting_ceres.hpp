@@ -48,10 +48,10 @@ fit_shape_and_pose_ceres(const morphablemodel::MorphableModel& morphable_model,
                          const core::LandmarkMapper& landmark_mapper, const cv::Mat& image,
                          const fitting::ContourLandmarks& ibug_contour,
                          const fitting::ModelContour& model_contour, std::vector<double>& shape_coefficients,
-                         std::vector<double>& blendshape_coefficients)
+                         std::vector<double>& blendshape_coefficients, std::vector<double>& colour_coefficients)
 {
     constexpr bool use_perspective = false;
-
+    std::cout << "Fitting shape and pose" << "\n";
     // These will be the 2D image points and their corresponding 3D vertex id's used for the fitting:
     std::vector<cv::Vec2f> image_points; // the 2D landmark points
     std::vector<int> vertex_indices;     // their corresponding vertex indices
@@ -258,7 +258,7 @@ fit_shape_and_pose_ceres(const morphablemodel::MorphableModel& morphable_model,
     fitting_costfunction.SetParameterization(&camera_rotation[0], full_fit_quaternion_parameterisation);
 
     // Colour model fitting:
-    std::vector<double> colour_coefficients;
+    // std::vector<double> colour_coefficients;
     colour_coefficients.resize(NUM_COLOR_COEFF);
     // Add a residual for each vertex:
     // for (int i = 0; i < morphable_model.get_shape_model().get_data_dimension() / 3; ++i)

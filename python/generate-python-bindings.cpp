@@ -29,7 +29,8 @@
 #include "eos/fitting/orthographic_camera_estimation_linear.hpp"
 #include "eos/fitting/RenderingParameters.hpp"
 #include "eos/render/texture_extraction.hpp"
-
+#include "eos/render/render.hpp"
+#include "eos/render/utils.hpp"
 #include "opencv2/core/core.hpp"
 
 #include "pybind11/pybind11.h"
@@ -237,6 +238,7 @@ PYBIND11_MODULE(eos, eos_module) {
 			assert(landmarks.size() == landmark_ids.size());
 			std::vector<double> pca_coeffs;
 			std::vector<double> blendshape_coeffs;
+			std::vector<double> colour_coeffs;
 			std::vector<cv::Vec2f> fitted_image_points;
 			// We can change this to std::optional as soon as we switch to VS2017 and pybind supports std::optional
 			core::LandmarkCollection<cv::Vec2f> landmark_collection;
@@ -246,14 +248,25 @@ PYBIND11_MODULE(eos, eos_module) {
 			}
 			eos::core::Mesh faceMesh;
 			glm::tmat4x4<double> modelMatrix, projMatrix;
-			std::tie(faceMesh, modelMatrix, projMatrix) = eos::fitting::fit_shape_and_pose_ceres(morphable_model, blendshapes, landmark_collection, landmark_mapper, img, contour_landmarks, model_contour, pca_coeffs, blendshape_coeffs);
+			std::tie(faceMesh, modelMatrix, projMatrix) = eos::fitting::fit_shape_and_pose_ceres(morphable_model, blendshapes, landmark_collection, landmark_mapper, img, contour_landmarks, model_contour, pca_coeffs, blendshape_coeffs, colour_coeffs);
 			glm::vec4 v;			
 			auto texture = render::v2::extract_texture(faceMesh, modelMatrix, projMatrix, v, img, false, 4096);
 			return std::make_tuple(faceMesh, modelMatrix, projMatrix, pca_coeffs, blendshape_coeffs, texture);
 		}, "Fit the pose (camera), shape model, and expression blendshapes to landmarks, in an iterative way. Returns a tuple (mesh, rendering_parameters, shape_coefficients, blendshape_coefficients).", py::arg("morphable_model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("img"), py::arg("contour_landmarks"), py::arg("model_contour"))
 		;
 	
-	
+	fitting_module.def("fit_pose_and_expression", [](const morphablemodel::MorphableModel& morphable_model, const std::vector<morphablemodel::Blendshape>& blendshapes, const std::vector<glm::vec2>& landmarks, const std::vector<std::string>& landmark_ids, const core::LandmarkMapper& landmark_mapper, int image_width, int image_height, std::vector<float>& pca_coeffs, std::vector<float>& blendshape_coeffs) {
+		assert(landmarks.size() == landmark_ids.size());
+		core::LandmarkCollection<cv::Vec2f> landmark_collection;
+		for (int i = 0; i < landmarks.size(); ++i)
+		{
+			landmark_collection.push_back(core::Landmark<cv::Vec2f>{ landmark_ids[i], cv::Vec2f(landmarks[i].x, landmarks[i].y) });
+		}
+		auto result = fitting::fit_pose_and_expression(morphable_model, blendshapes, landmark_collection, landmark_mapper, image_width, image_height, pca_coeffs, blendshape_coeffs);
+		return result;
+
+	},"fit expression to existing model", py::arg("model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"), py::arg("blendshape_coefficients") );
+
 	/**
 	 * Bindings for the eos::render namespace:
 	 *  - extract_texture()
@@ -265,26 +278,37 @@ PYBIND11_MODULE(eos, eos_module) {
 		return render::extract_texture(mesh, affine_from_ortho, image, compute_view_angle, render::TextureInterpolation::NearestNeighbour, isomap_resolution);
 	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("rendering_params"), py::arg("image"), py::arg("compute_view_angle") = false, py::arg("isomap_resolution") = 512);
 
-	render_module.def("extract_texture_v2", [](const core::Mesh mesh,const glm::mat4x4 view_model_matrix,const glm::mat4x4 projection_matrix, cv::Mat image,
+	render_module.def("extract_texture_v2", [](const core::Mesh& mesh,const glm::mat4x4 view_model_matrix,const glm::mat4x4 projection_matrix, cv::Mat image,
 		int isomap_resolution) {
 		glm::vec4 v;
 		return render::v2::extract_texture(mesh, view_model_matrix, projection_matrix, v, image, false, isomap_resolution);
 	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("view_model_matrix"),py::arg("projection_matrix"), py::arg("image"), py::arg("isomap_resolution") = 512);
 
+	render_module.def("render", [](const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, int viewport_width, int viewport_height, const render::Texture& texture, bool enable_backface_culling, bool enable_near_clipping, bool enable_far_clipping) 
+		{return render::render(mesh, rendering_params.get_modelview(), rendering_params.get_projection(), viewport_width, viewport_height, texture, enable_backface_culling, enable_near_clipping, enable_far_clipping);},
+		 "render model", py::arg("mesh"), py::arg("rendering_parameter"), py::arg("viewport_width"), py::arg("viewport_height"), py::arg("texture"), py::arg("enable_backface_culling")=false, py::arg("enable_near_clipping")=true, py::arg("enable_far_clipping")=true)
+		;
+
+	py::class_<render::Texture>(render_module, "Texture", "mipmapped texture object");
+	render_module.def("create_mipmapped_texture",[](cv::Mat image, unsigned int mipmapsNum)	
+			{ return render::create_mipmapped_texture(image, mipmapsNum);}, "create a texture object from image", py::arg("image"), py::arg("mipmapsNum"))
+		;
+
+	
 
 	py::module cost_module = fitting_module.def_submodule("cost", "a set of commonly used cost functions.");
 
 	py::class_<cost::LandmarkCost>(cost_module, "LandmarkCost", "the L2 norm of the detected landmark position and generated models landmark.")
-		.def(py::init<const morphablemodel::PcaModel& , const std::vector<morphablemodel::Blendshape>&, const std::vector<cv::Vec2f>, const std::vector<int>, int, int, bool, bool>(), "Constructs a new landmark cost object that stores the model, the detected landmark.",py::arg("shape_model"),py::arg("blendshapes"),py::arg("observed_landmarks"),py::arg("blendshape_coeffs"),py::arg("image_width"),py::arg("image_height"),py::arg("use_perspective"),py::arg("use_L1")=false)
-		.def("calculate_cost", [](const cost::LandmarkCost& cost, const double* camera_rotation,const double* camera_translation_and_intrinsics,const double* shape_coeffs,const double* blendshape_coeffs)
-			{return cost.calculate_cost<double>(camera_rotation, camera_translation_and_intrinsics, shape_coeffs, blendshape_coeffs);}, "get cost given estimation", py::arg("camera_rotation"),py::arg("camera_translation_and_intrinsics"),py::arg("shape_coeffs"),py::arg("blendshape_coeffs"))
+		.def(py::init<const morphablemodel::PcaModel& , const std::vector<morphablemodel::Blendshape>&, const std::vector<cv::Vec2f>, const std::vector<int>, int, int, bool, bool>(), "Constructs a new landmark cost object that stores the model, the detected landmark.",py::arg("shape_model"),py::arg("blendshapes"),py::arg("observed_landmarks"),py::arg("vertex_id"),py::arg("image_width"),py::arg("image_height"),py::arg("use_perspective"),py::arg("use_L1")=false)
+		.def("calculate_cost", [](const cost::LandmarkCost& cost, const std::vector<float> camera_rotation,const std::vector<float> camera_translation_and_intrinsics,const std::vector<float> shape_coeffs,const std::vector<float> blendshape_coeffs)
+			{return cost.calculate_cost<float>(camera_rotation, camera_translation_and_intrinsics, shape_coeffs, blendshape_coeffs);}, "get cost given estimation", py::arg("camera_rotation"),py::arg("camera_translation_and_intrinsics"),py::arg("shape_coeffs"),py::arg("blendshape_coeffs"))
 		;
 		
 		
 	py::class_<cost::ImageCost>(cost_module, "ImageCost", "")
 		.def(py::init<const morphablemodel::MorphableModel& ,const std::vector<morphablemodel::Blendshape>& ,const cv::Mat, const std::vector<int>, bool>(), "Constructs a new image cost object that stores the model and the image.", py::arg("model"),py::arg("blendshape"),py::arg("image"),py::arg("vertex_idx"),py::arg("use_perspective"))
-		.def("calculate_cost",[](const cost::ImageCost& cost, const double* camera_rotation,const double* camera_translation_and_intrinsics,const double* shape_coeffs,const double* blendshape_coeffs,const double* colour_coeffs)
-			{return cost.calculate_cost<double>(camera_rotation, camera_translation_and_intrinsics, shape_coeffs, blendshape_coeffs, colour_coeffs);}, "get cost given estimation", py::arg("camera_rotation"),py::arg("camera_translation_and_intrinsics"),py::arg("shape_coeffs"),py::arg("blendshape_coeffs"),py::arg("colour_coeffs"))
+		.def("calculate_cost",[](const cost::ImageCost& cost, const std::vector<float> camera_rotation,const std::vector<float> camera_translation_and_intrinsics,const std::vector<float> shape_coeffs,const std::vector<float> blendshape_coeffs,const std::vector<float> colour_coeffs)
+			{return cost.calculate_cost<float>(camera_rotation, camera_translation_and_intrinsics, shape_coeffs, blendshape_coeffs, colour_coeffs);}, "get cost given estimation", py::arg("camera_rotation"),py::arg("camera_translation_and_intrinsics"),py::arg("shape_coeffs"),py::arg("blendshape_coeffs"),py::arg("colour_coeffs"))
 		;
 
 };
