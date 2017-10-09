@@ -15,7 +15,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF) # This makes CMake use -std=c++11 instead of -std=gnu++11
 # This list is likely not complete, but it should be sufficient to error out on old compilers that we cannot build on:
 set(EOS_CXX_COMPILE_FEATURES cxx_defaulted_functions cxx_generalized_initializers cxx_generic_lambdas cxx_lambdas cxx_nonstatic_member_init cxx_range_for cxx_right_angle_brackets cxx_strong_enums)
-
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+find_package(glfw3 3 REQUIRED)  
 # All the options for building the library. Can be changed on the command-line or in initial_cache.cmake.
 message(STATUS "Options:")
 option(EOS_BUILD_EXAMPLES "Build the example applications." ON)
@@ -104,13 +106,17 @@ set(HEADERS
   ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/render/VertexShader.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/render/Rasterizer.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/render/FragmentShader.hpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/render/shader.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/render/detail/Vertex.hpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/eos/video/Keyframe.hpp
+
 )
 
 add_library(eos INTERFACE)
 target_compile_features(eos INTERFACE ${EOS_CXX_COMPILE_FEATURES})
 # Add header includes:
+
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 target_include_directories(eos INTERFACE "include")
 target_include_directories(eos INTERFACE ${CEREAL_INCLUDE_DIR})
 target_include_directories(eos INTERFACE ${Boost_INCLUDE_DIRS})
