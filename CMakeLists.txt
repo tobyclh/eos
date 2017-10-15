@@ -7,6 +7,9 @@ set(eos_VERSION ${eos_VERSION_MAJOR}.${eos_VERSION_MINOR}.${eos_VERSION_PATCH})
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 # This sets the C++ standard to c++14 and required for all the following targets that we define.
 # It has no effect on MSVC though - we thus define more specific requirements for each executable target respectively.
 # Also it will not apply to the eos library target, since it is an INTERFACE_LIBRARY, and these properties do not apply to interface libraries.
@@ -18,6 +21,7 @@ set(EOS_CXX_COMPILE_FEATURES cxx_defaulted_functions cxx_generalized_initializer
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(glfw3 3 REQUIRED)  
+find_package(GLEW REQUIRED)
 # All the options for building the library. Can be changed on the command-line or in initial_cache.cmake.
 message(STATUS "Options:")
 option(EOS_BUILD_EXAMPLES "Build the example applications." ON)
@@ -116,7 +120,7 @@ add_library(eos INTERFACE)
 target_compile_features(eos INTERFACE ${EOS_CXX_COMPILE_FEATURES})
 # Add header includes:
 
-include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS})
 target_include_directories(eos INTERFACE "include")
 target_include_directories(eos INTERFACE ${CEREAL_INCLUDE_DIR})
 target_include_directories(eos INTERFACE ${Boost_INCLUDE_DIRS})
