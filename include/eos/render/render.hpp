@@ -284,7 +284,7 @@ inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLe
 	// GL_BGR       for CV_CAP_OPENNI_BGR_IMAGE,
 	// GL_LUMINANCE for CV_CAP_OPENNI_DISPARITY_MAP,
 	// Work out other mappings as required ( there's a list in comments in main() )
-	GLenum inputColourFormat = GL_RGB;
+	GLenum inputColourFormat = GL_BGR;
 	if (mat.channels() == 1)
 	{
 		inputColourFormat = GL_LUMINANCE;
@@ -326,11 +326,15 @@ struct glmv4Comparasion
 
 inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, int viewport_width, int viewport_height, cv::Mat& isomap, bool enable_backface_culling = false,  bool enable_near_clipping = true, bool enable_far_clipping = true)
 {
+	if(isomap.type() == CV_8UC4)
+	{
+		cvtColor(isomap, isomap, CV_BGRA2BGR);
+	} 
 	assert(mesh.vertices.size() == mesh.colors.size() || mesh.colors.empty()); // The number of vertices has to be equal for both shape and colour, or, alternatively, it has to be a shape-only model.
 	assert(mesh.vertices.size() == mesh.texcoords.size() || mesh.texcoords.empty()); // same for the texcoords
 	// another assert: If cv::Mat texture != empty, then we need texcoords?
 	// assert(!mesh.colors.empty() || texture != boost::none);
-	std::cout << "isomap type " << isomap.type() << std::endl;
+	// std::cout << "isomap type " << isomap.type() << std::endl;
 	glm::tmat4x4<float> model_view_matrix = rendering_params.get_modelview();
 	glm::tmat4x4<float> projection_matrix = rendering_params.get_projection();
 	projection_matrix[2][2] = projection_matrix[2][2]/viewport_height/viewport_width;
@@ -380,6 +384,9 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS); 
 
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
 	// Create and compile our GLSL program from the shaders
 	GLuint programID = LoadShaders( "eos_vertex.vert", "eos_fragment.frag" );
 	// Get a handle for our "MVP" uniform
@@ -389,108 +396,72 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	glm::tmat4x4<float> MVP = projection_matrix * model_view_matrix;
 	// std::cout << "MVP : " << MVP[0][0] <<  std::endl;
 	// std::cout << "vertex[0] : " << MVP * mesh.vertices[0] << std::endl;
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
 	//bind the isomap with opengl 
 
-	GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);	
 	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
-	// glBindTexture(GL_TEXTURE_2D, tex);
+	GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);	
+	glBindTexture(GL_TEXTURE_2D, tex);
 	
-	std::vector<float> colours;
-	int iso_width = isomap.cols;
-	int iso_height = isomap.rows;
-	std::cout << "isomap width "  << iso_width << " height " <<  iso_height  << std::endl;
-	
-	for(int i = 0; i < mesh.texcoords.size(); i++)
-	{
-		if(mesh.texcoords.size() != mesh.vertices.size())
-		{
-			std::cout << "vertex texcoord doesn't match" << mesh.texcoords.size() << " <-> " <<  mesh.vertices.size() << std::endl;
-			break;
-		}
-		int y = mesh.texcoords.at(i)[1]*iso_height;
-		int x = mesh.texcoords.at(i)[0]*iso_width;
-		cv::Point point(x, y);
-		// std::cout << "point" << x << " " << y << std::endl;
-		
-		cv::Vec3b pixel = isomap.at<cv::Vec3b>(point);
-		// std::cout << "pixel" << int(pixel.val[0]) << " " << int(pixel.val[1]) << " " << int(pixel.val[2]) << std::endl;
-		// colours.push_back(float(pixel.val[0])/255);
-		// colours.push_back(float(pixel.val[1])/255);
-		// colours.push_back(float(pixel.val[2])/255);
-		// glm::vec3 v(float(pixel.val[0])/255, float(pixel.val[2])/255, float(pixel.val[2])/255);
-		// colours.push_back(0.0f);
-		// colours.push_back(1.0f);
-		// colours.push_back(0.0f);
-		glm::vec3 glpixel(float(pixel.val[2])/255, float(pixel.val[1])/255, float(pixel.val[0])/255);
-		// std::cout << "[" << i << "]glpixel" << glpixel[0] << " " << glpixel[1] << " " << glpixel[2] << std::endl;
-		// colours.push_back(glpixel);
-		colours.push_back(float(pixel.val[2])/255);
-		colours.push_back(float(pixel.val[1])/255);
-		colours.push_back(float(pixel.val[0])/255);
-	}
+	// std::vector<glm::tvec3<GLfloat>> colours;
+	// int iso_width = isomap.cols;
+	// int iso_height = isomap.rows;
+	// std::cout << "isomap width "  << iso_width << " height " <<  iso_height  << std::endl;
+	// for(int i = 0; i < mesh.texcoords.size(); i++)
+	// {
+	// 	if(mesh.texcoords.size() != mesh.vertices.size())
+	// 	{
+	// 		std::cout << "vertex texcoord doesn't match" << mesh.texcoords.size() << " <-> " <<  mesh.vertices.size() << std::endl;
+	// 		break;
+	// 	}
+	// 	int y = mesh.texcoords.at(i)[1]*iso_height;
+	// 	int x = mesh.texcoords.at(i)[0]*iso_width;
+	// 	cv::Point point(x, y);
+	// 	// std::cout << "point" << x << " " << y << std::endl;
+	// 	cv::Vec4b pixel = isomap.at<cv::Vec4b>(point);
+	// 	std::cout << "pixel" << int(pixel.val[0]) << " " << int(pixel.val[1]) << " " << int(pixel.val[2]) << " " << int(pixel.val[3])<< std::endl;
+	// 	// colours.push_back(float(pixel.val[0])/255);
+	// 	// colours.push_back(float(pixel.val[1])/255);
+	// 	// colours.push_back(float(pixel.val[2])/255);
+	// 	// glm::vec3 v(float(pixel.val[0])/255, float(pixel.val[2])/255, float(pixel.val[2])/255);
+	// 	// colours.push_back(0.0f);
+	// 	// colours.push_back(1.0f);
+	// 	// colours.push_back(0.0f);
+	// 	// glm::tvec3<GLfloat> glpixel(float(pixel.val[2])/255, float(pixel.val[1])/255, float(pixel.val[0])/255);
+	// 	glm::tvec3<GLfloat> glpixel(GLfloat(pixel.val[2])/255, GLfloat(pixel.val[1])/255, GLfloat(pixel.val[0])/255);
+	// 	std::cout << "[" << i << "]glpixel" << glpixel[0] << " " << glpixel[1] << " " << glpixel[2] << std::endl;
+	// 	colours.push_back(glpixel);
+	// 	// colours.push_back(float(pixel.val[2])/255);
+	// 	// colours.push_back(float(pixel.val[1])/255);
+	// 	// colours.push_back(float(pixel.val[0])/255);
+	// }
 
-	std::cout << "created vertex color " << std::endl;
-
-	assert(colours.size() == mesh.vertices.size());
-	std::cout << "asserted" << std::endl;
-	std::vector<glm::vec4> m_vertices;
-	std::vector<glm::vec3> m_colours;
-	for(int i = 0; i < mesh.tvi.size(); i++)
-	{
-		for(int j = 0; j < 3; j++)
-		{
-			unsigned int vertexIndex = (unsigned int)(mesh.tvi.at(i)[j]);
-			// std::cout << "[" << i << " " << j <<"]vertexIndex " << vertexIndex << std::endl;
-			glm::vec4 vertex = mesh.vertices[vertexIndex];
-			// glm::vec3 colour = colours[vertexIndex];
-			m_vertices.push_back(vertex);
-			// m_colours.push_back(colour);
-		}
-	}	
-	// std::cout << "banana " << std::endl;
-
-	std::vector<glm::vec4> out_vertices;
-	std::vector<glm::vec3> out_colours;
 	std::vector<unsigned int> indices;
-	std::map<glm::vec4,unsigned int, glmv4Comparasion> VertexToOutIndex;	
-	for ( unsigned int i=0; i<m_vertices.size(); i++ )
-	{
-		std::map<glm::vec4,unsigned int, glmv4Comparasion>::iterator it = VertexToOutIndex.find(m_vertices[i]);
-		if (it == VertexToOutIndex.end()){
-			out_vertices.push_back( m_vertices[i]);
-			out_colours.push_back(m_colours[i]);
-			unsigned int newindex = (unsigned int)out_vertices.size() - 1;
-			indices.push_back(newindex);
-			VertexToOutIndex[ m_vertices[i] ] = newindex;
-		}else{
-			indices.push_back( it->second );
-		}
-	}
-
-	std::cout << "vertice " << out_vertices.size() << " colour " << out_colours.size() << " index " << indices.size() << std::endl;
-
-	
-
+	for(int i = 0; i < mesh.tvi.size(); i++) 
+	{ 
+	  for(int j = 0; j < 3; j++) 
+	  { 
+		unsigned int vertexIndex = (unsigned int)(mesh.tvi.at(i)[j]); 
+		indices.push_back(vertexIndex); 
+	  } 
+	}   
 
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4)*out_vertices.size(), &out_vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4)*mesh.vertices.size(), &mesh.vertices[0], GL_STATIC_DRAW);
 	std::cout << "sizeof(glm::vec4<float>) : " << sizeof(glm::vec4)<< std::endl;
 	
-	GLuint colourbuffer;
-	glGenBuffers(1, &colourbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, colourbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3)*out_colours.size(), &out_colours[0], GL_STATIC_DRAW);
-	std::cout << "sizeof(glm::vec3<float>) : " << sizeof(glm::vec3)<< std::endl;
+	// GLuint colourbuffer;
+	// glGenBuffers(1, &colourbuffer);
+	// glBindBuffer(GL_ARRAY_BUFFER, colourbuffer);
+	// glBufferData(GL_ARRAY_BUFFER, sizeof(glm::tvec3<GLfloat>)*colours.size(), &colours[0], GL_STATIC_DRAW);
+	// std::cout << "sizeof(glm::tvec3<GLfloat>) : " << sizeof(glm::tvec3<GLfloat>) << std::endl;
+	// std::cout << "sizeof(GLfloat) : " << sizeof(GLfloat) << std::endl;
 
-	// GLuint uvbuffer;
-	// glGenBuffers(1, &uvbuffer);
-	// glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-	// glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2)*mesh.texcoords.size(), &mesh.texcoords[0], GL_STATIC_DRAW);
+	GLuint uvbuffer;
+	glGenBuffers(1, &uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2)*mesh.texcoords.size(), &mesh.texcoords[0], GL_STATIC_DRAW);
 
 	GLuint elementbuffer;
 	glGenBuffers(1, &elementbuffer);
@@ -513,10 +484,10 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 		// in the "MVP" uniform
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-		// glActiveTexture(GL_TEXTURE0);
-		// glBindTexture(GL_TEXTURE_2D, tex);
-		// // Set our "myTextureSampler" sampler to use Texture Unit 0
-		// glUniform1i(TextureID, 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, tex);
+		// Set our "myTextureSampler" sampler to use Texture Unit 0
+		glUniform1i(TextureID, 0);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -531,10 +502,10 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 		);
 
 		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, colourbuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 		glVertexAttribPointer(
 			1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-			3,                                // size
+			2,                                // size
 			GL_FLOAT,                         // type
 			GL_FALSE,                         // normalized?
 			0,                                // stride
@@ -565,10 +536,10 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 
 	// Cleanup VBO and shader
 	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteBuffers(1, &colourbuffer);
-	// glDeleteTextures(1, &tex);
+	glDeleteBuffers(1, &uvbuffer);
+	glDeleteTextures(1, &tex);
 	glDeleteProgram(programID);
-	// glDeleteVertexArrays(1, &VertexArrayID);
+	glDeleteVertexArrays(1, &VertexArrayID);
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
 	return 0;
