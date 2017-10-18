@@ -182,6 +182,55 @@ inline std::vector<float> fit_blendshapes_to_landmarks_nnls(const std::vector<eo
 	return std::vector<float>(coefficients.data(), coefficients.data() + coefficients.size());
 };
 
+inline std::vector<float> fit_blendshapes_to_landmarks_nnls_fast(const Eigen::MatrixXf& blendshapes_as_basis, const Eigen::VectorXf& face_instance, cv::Mat affine_camera_matrix, const std::vector<cv::Vec2f>& landmarks, const std::vector<int>& vertex_ids)
+{
+	assert(landmarks.size() == vertex_ids.size());
+	using Eigen::VectorXf;
+	using Eigen::MatrixXf;
+	const int num_blendshapes = blendshapes_as_basis.cols();
+	const int num_landmarks = static_cast<int>(landmarks.size());
+
+	// $\hat{V} \in R^{3N\times m-1}$, subselect the rows of the eigenvector matrix $V$ associated with the $N$ feature points
+	// And we insert a row of zeros after every third row, resulting in matrix $\hat{V}_h \in R^{4N\times m-1}$:
+	MatrixXf V_hat_h = MatrixXf::Zero(4 * num_landmarks, num_blendshapes);
+	int row_index = 0;
+	for (int i = 0; i < num_landmarks; ++i) {
+		V_hat_h.block(row_index, 0, 3, V_hat_h.cols()) = blendshapes_as_basis.block(vertex_ids[i] * 3, 0, 3, blendshapes_as_basis.cols());
+		row_index += 4; // replace 3 rows and skip the 4th one, it has all zeros
+	}
+	// Form a block diagonal matrix $P \in R^{3N\times 4N}$ in which the camera matrix C (P_Affine, affine_camera_matrix) is placed on the diagonal:
+	MatrixXf P = MatrixXf::Zero(3 * num_landmarks, 4 * num_landmarks);
+	for (int i = 0; i < num_landmarks; ++i) {
+		using RowMajorMatrixXf = Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
+		P.block(3 * i, 4 * i, 3, 4) = Eigen::Map<RowMajorMatrixXf>(affine_camera_matrix.ptr<float>(), affine_camera_matrix.rows, affine_camera_matrix.cols);
+	}
+	// The landmarks in matrix notation (in homogeneous coordinates), $3N\times 1$
+	VectorXf y = VectorXf::Ones(3 * num_landmarks);
+	for (int i = 0; i < num_landmarks; ++i) {
+		y(3 * i) = landmarks[i][0];
+		y((3 * i) + 1) = landmarks[i][1];
+		//y_((3 * i) + 2) = 1; // already 1, stays (homogeneous coordinate)
+	}
+	// The mean, with an added homogeneous coordinate (x_1, y_1, z_1, 1, x_2, ...)^t
+	VectorXf v_bar = VectorXf::Ones(4 * num_landmarks);
+	for (int i = 0; i < num_landmarks; ++i) {
+		v_bar(4 * i) = face_instance(vertex_ids[i] * 3);
+		v_bar((4 * i) + 1) = face_instance(vertex_ids[i] * 3 + 1);
+		v_bar((4 * i) + 2) = face_instance(vertex_ids[i] * 3 + 2);
+		//v_bar((4 * i) + 3) = 1; // already 1, stays (homogeneous coordinate)
+	}
+
+	// Bring into standard least squares form:
+	const MatrixXf A = P * V_hat_h; // camera matrix times the basis
+	const MatrixXf b = P * v_bar - y; // camera matrix times the mean, minus the landmarks
+	// Solve using NNLS:
+	VectorXf coefficients;
+	bool non_singular = Eigen::NNLS<MatrixXf>::solve(A, -b, coefficients);
+
+	return std::vector<float>(coefficients.data(), coefficients.data() + coefficients.size());
+};
+
+
 	} /* namespace fitting */
 } /* namespace eos */
 

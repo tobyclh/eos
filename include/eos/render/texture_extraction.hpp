@@ -78,7 +78,7 @@ namespace detail { cv::Mat interpolate_black_line(cv::Mat isomap); }
  * @param[in] mesh A mesh with texture coordinates.
  * @param[in] affine_camera_matrix An estimated 3x4 affine camera matrix.
  * @param[in] image The image to extract the texture from. Should be 8UC3, other types not supported yet.
- * @param[in] compute_view_angle A flag whether the view angle of each vertex should be computed and returned. If set to true, the angle will be encoded into the alpha channel (0 meaning occluded or facing away 90°, 127 meaning facing a 45° angle and 255 meaning front-facing, and all values in between). If set to false, the alpha channel will only contain 0 for occluded vertices and 255 for visible vertices.
+ * @param[in] compute_view_angle A flag whether the view angle of each vertex should be computed and returned. If set to true, the angle will be encoded into the alpha channel (0 meaning occluded or facing away 90ï¿½, 127 meaning facing a 45ï¿½ angle and 255 meaning front-facing, and all values in between). If set to false, the alpha channel will only contain 0 for occluded vertices and 255 for visible vertices.
  * @param[in] mapping_type The interpolation type to be used for the extraction.
  * @param[in] isomap_resolution The resolution of the generated isomap. Defaults to 512x512.
  * @return The extracted texture as isomap (texture map).
@@ -109,7 +109,7 @@ inline cv::Mat extract_texture(const core::Mesh& mesh, cv::Mat affine_camera_mat
  * @param[in] affine_camera_matrix An estimated 3x4 affine camera matrix.
  * @param[in] image The image to extract the texture from.
  * @param[in] depthbuffer A pre-calculated depthbuffer image.
- * @param[in] compute_view_angle A flag whether the view angle of each vertex should be computed and returned. If set to true, the angle will be encoded into the alpha channel (0 meaning occluded or facing away 90°, 127 meaning facing a 45° angle and 255 meaning front-facing, and all values in between). If set to false, the alpha channel will only contain 0 for occluded vertices and 255 for visible vertices.
+ * @param[in] compute_view_angle A flag whether the view angle of each vertex should be computed and returned. If set to true, the angle will be encoded into the alpha channel (0 meaning occluded or facing away 90ï¿½, 127 meaning facing a 45ï¿½ angle and 255 meaning front-facing, and all values in between). If set to false, the alpha channel will only contain 0 for occluded vertices and 255 for visible vertices.
  * @param[in] mapping_type The interpolation type to be used for the extraction.
  * @param[in] isomap_resolution The resolution of the generated isomap. Defaults to 512x512.
  * @return The extracted texture as isomap (texture map).
@@ -117,7 +117,7 @@ inline cv::Mat extract_texture(const core::Mesh& mesh, cv::Mat affine_camera_mat
 inline cv::Mat extract_texture(core::Mesh mesh, cv::Mat affine_camera_matrix, cv::Mat image, cv::Mat depthbuffer, bool compute_view_angle = false, TextureInterpolation mapping_type = TextureInterpolation::NearestNeighbour, int isomap_resolution = 512)
 {
 	assert(mesh.vertices.size() == mesh.texcoords.size());
-	assert(image.type() == CV_8UC3); // the other cases are not yet supported
+	assert(image.type() == CV_8UC3); // the other cases are not yet supportedz
 
 	using cv::Mat;
 	using cv::Vec2f;
@@ -184,11 +184,11 @@ inline cv::Mat extract_texture(core::Mesh mesh, cv::Mat affine_camera_matrix, cv
 				const float angle = -face_normal_transformed[2]; // flip sign, see above
 				assert(angle >= -1.f && angle <= 1.f);
 				// angle is [-1, 1].
-				//  * +1 means   0° (same direction)
-				//  *  0 means  90°
-				//  * -1 means 180° (facing opposite directions)
-				// It's a linear relation, so +0.5 is 45° etc.
-				// An angle larger than 90° means the vertex won't be rendered anyway (because it's back-facing) so we encode 0° to 90°.
+				//  * +1 means   0ï¿½ (same direction)
+				//  *  0 means  90ï¿½
+				//  * -1 means 180ï¿½ (facing opposite directions)
+				// It's a linear relation, so +0.5 is 45ï¿½ etc.
+				// An angle larger than 90ï¿½ means the vertex won't be rendered anyway (because it's back-facing) so we encode 0ï¿½ to 90ï¿½.
 				if (angle < 0.0f) {
 					alpha_value = 0.0f;
 				} else {

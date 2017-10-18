@@ -26,6 +26,8 @@
 
 #include "eos/render/detail/render_detail.hpp"
 #include "eos/render/utils.hpp"
+#include "eos/render/shader.hpp"
+#include "eos/fitting/RenderingParameters.hpp"
 
 #include "opencv2/core/core.hpp"
 
@@ -35,6 +37,11 @@
 #include <vector>
 #include <memory>
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 namespace eos {
 	namespace render {
 
@@ -124,7 +131,7 @@ namespace eos {
  * @param[in] enable_far_clipping Whether vertices should be clipped against the far plane.
  * @return A pair with the colourbuffer as its first element and the depthbuffer as the second element.
  */
-inline std::pair<cv::Mat, cv::Mat> render(core::Mesh mesh, glm::tmat4x4<float> model_view_matrix, glm::tmat4x4<float> projection_matrix, int viewport_width, int viewport_height, const Texture& texture, bool enable_backface_culling = false, bool enable_near_clipping = true, bool enable_far_clipping = true)
+inline std::pair<cv::Mat, cv::Mat> render(const core::Mesh& mesh, glm::tmat4x4<float> model_view_matrix, glm::tmat4x4<float> projection_matrix, int viewport_width, int viewport_height, const boost::optional<Texture>& texture, bool enable_backface_culling = false, bool enable_near_clipping = true, bool enable_far_clipping = true)
 {
 	// Some internal documentation / old todos or notes:
 	// maybe change and pass depthBuffer as an optional arg (&?), because usually we never need it outside the renderer. Or maybe even a getDepthBuffer().
@@ -236,6 +243,337 @@ inline std::pair<cv::Mat, cv::Mat> render(core::Mesh mesh, glm::tmat4x4<float> m
 	}
 	return std::make_pair(colourbuffer, depthbuffer);
 };
+
+// Function turn a cv::Mat into a texture, and return the texture ID as a GLuint for use
+inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLenum wrapFilter)
+{
+	if(!mat.isContinuous())
+	{
+		mat = mat.clone();
+		std::cout << "Cloning new image" << std::endl;
+	}
+	glPixelStorei(GL_UNPACK_ALIGNMENT,1);	
+	
+	// Generate a number for our textureID's unique handle
+	GLuint textureID;
+	glGenTextures(1, &textureID);
+ 
+	// Bind to our texture handle
+	glBindTexture(GL_TEXTURE_2D, textureID);
+ 
+	// Catch silly-mistake texture interpolation method for magnification
+	if (magFilter == GL_LINEAR_MIPMAP_LINEAR  ||
+	    magFilter == GL_LINEAR_MIPMAP_NEAREST ||
+	    magFilter == GL_NEAREST_MIPMAP_LINEAR ||
+	    magFilter == GL_NEAREST_MIPMAP_NEAREST)
+	{
+		cout << "You can't use MIPMAPs for magnification - setting filter to GL_LINEAR" << endl;
+		magFilter = GL_LINEAR;
+	}
+ 
+	// Set texture interpolation methods for minification and magnification
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
+ 
+	// Set texture clamping method
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapFilter);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapFilter);
+ 
+	
+	// Set incoming texture format to:
+	// GL_BGR       for CV_CAP_OPENNI_BGR_IMAGE,
+	// GL_LUMINANCE for CV_CAP_OPENNI_DISPARITY_MAP,
+	// Work out other mappings as required ( there's a list in comments in main() )
+	GLenum inputColourFormat = GL_RGB;
+	if (mat.channels() == 1)
+	{
+		inputColourFormat = GL_LUMINANCE;
+	}
+	assert(inputColourFormat != GL_LUMINANCE);
+ 
+	// Create the texture
+	glTexImage2D(GL_TEXTURE_2D,     // Type of texture
+	             0,                 // Pyramid level (for mip-mapping) - 0 is the top level
+	             GL_RGB,            // Internal colour format to convert to
+	             mat.cols,          // Image width  i.e. 640 for Kinect in standard mode
+	             mat.rows,          // Image height i.e. 480 for Kinect in standard mode
+	             0,                 // Border width in pixels (can either be 1 or 0)
+	             inputColourFormat, // Input image format (i.e. GL_RGB, GL_RGBA, GL_BGR etc.)
+	             GL_UNSIGNED_BYTE,  // Image data type
+	             mat.ptr());        // The actual image data itself
+ 
+	// If we're using mipmaps then generate them. Note: This requires OpenGL 3.0 or higher
+	if (minFilter == GL_LINEAR_MIPMAP_LINEAR  ||
+	    minFilter == GL_LINEAR_MIPMAP_NEAREST ||
+	    minFilter == GL_NEAREST_MIPMAP_LINEAR ||
+	    minFilter == GL_NEAREST_MIPMAP_NEAREST)
+	{
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+ 
+	return textureID;
+}
+
+struct glmv4Comparasion
+{
+   bool operator() (const glm::vec4& lhs, const glm::vec4& rhs) const
+   {
+	return 	lhs[0] < rhs[0] ||
+			lhs[0] == rhs[0] && (lhs[1] < rhs[1] || lhs[1] == rhs[1] && lhs[2] < rhs[2]);
+   }
+};
+
+
+inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, int viewport_width, int viewport_height, cv::Mat& isomap, bool enable_backface_culling = false,  bool enable_near_clipping = true, bool enable_far_clipping = true)
+{
+	assert(mesh.vertices.size() == mesh.colors.size() || mesh.colors.empty()); // The number of vertices has to be equal for both shape and colour, or, alternatively, it has to be a shape-only model.
+	assert(mesh.vertices.size() == mesh.texcoords.size() || mesh.texcoords.empty()); // same for the texcoords
+	// another assert: If cv::Mat texture != empty, then we need texcoords?
+	// assert(!mesh.colors.empty() || texture != boost::none);
+	std::cout << "isomap type " << isomap.type() << std::endl;
+	glm::tmat4x4<float> model_view_matrix = rendering_params.get_modelview();
+	glm::tmat4x4<float> projection_matrix = rendering_params.get_projection();
+	projection_matrix[2][2] = projection_matrix[2][2]/viewport_height/viewport_width;
+
+	// std::cout << "projection_matrix[2][2]" << projection_matrix[2][2]  << std::endl;
+	if( !glfwInit() )
+	{
+		fprintf( stderr, "Failed to initialize GLFW\n" );
+		getchar();
+		return -1;
+	}
+	
+	GLFWwindow* window;
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+	glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	window = glfwCreateWindow(viewport_width, viewport_height, "EOS Testing", NULL, NULL);
+	if( window == NULL ){
+		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
+		getchar();
+		glfwTerminate();
+		return -1;
+	}
+	glfwMakeContextCurrent(window);
+	glShadeModel(GL_SMOOTH);
+	// Initialize GLEW
+	glewExperimental = true; // Needed for core profile
+	if (glewInit() != GLEW_OK) {
+		fprintf(stderr, "Failed to initialize GLEW\n");
+		getchar();
+		glfwTerminate();
+		return -1;
+	}
+
+
+
+	// Ensure we can capture the escape key being pressed below
+	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	
+	// Dark blue background
+	glClearColor(0.0f, 0.0f, 0.2f, 0.0f);
+
+	// // Enable depth test
+	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS); 
+
+	// Create and compile our GLSL program from the shaders
+	GLuint programID = LoadShaders( "eos_vertex.vert", "eos_fragment.frag" );
+	// Get a handle for our "MVP" uniform
+
+	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+
+	glm::tmat4x4<float> MVP = projection_matrix * model_view_matrix;
+	// std::cout << "MVP : " << MVP[0][0] <<  std::endl;
+	// std::cout << "vertex[0] : " << MVP * mesh.vertices[0] << std::endl;
+	GLuint VertexArrayID;
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+	//bind the isomap with opengl 
+
+	GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);	
+	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
+	// glBindTexture(GL_TEXTURE_2D, tex);
+	
+	std::vector<float> colours;
+	int iso_width = isomap.cols;
+	int iso_height = isomap.rows;
+	std::cout << "isomap width "  << iso_width << " height " <<  iso_height  << std::endl;
+	
+	for(int i = 0; i < mesh.texcoords.size(); i++)
+	{
+		if(mesh.texcoords.size() != mesh.vertices.size())
+		{
+			std::cout << "vertex texcoord doesn't match" << mesh.texcoords.size() << " <-> " <<  mesh.vertices.size() << std::endl;
+			break;
+		}
+		int y = mesh.texcoords.at(i)[1]*iso_height;
+		int x = mesh.texcoords.at(i)[0]*iso_width;
+		cv::Point point(x, y);
+		// std::cout << "point" << x << " " << y << std::endl;
+		
+		cv::Vec3b pixel = isomap.at<cv::Vec3b>(point);
+		// std::cout << "pixel" << int(pixel.val[0]) << " " << int(pixel.val[1]) << " " << int(pixel.val[2]) << std::endl;
+		// colours.push_back(float(pixel.val[0])/255);
+		// colours.push_back(float(pixel.val[1])/255);
+		// colours.push_back(float(pixel.val[2])/255);
+		// glm::vec3 v(float(pixel.val[0])/255, float(pixel.val[2])/255, float(pixel.val[2])/255);
+		// colours.push_back(0.0f);
+		// colours.push_back(1.0f);
+		// colours.push_back(0.0f);
+		glm::vec3 glpixel(float(pixel.val[2])/255, float(pixel.val[1])/255, float(pixel.val[0])/255);
+		// std::cout << "[" << i << "]glpixel" << glpixel[0] << " " << glpixel[1] << " " << glpixel[2] << std::endl;
+		// colours.push_back(glpixel);
+		colours.push_back(float(pixel.val[2])/255);
+		colours.push_back(float(pixel.val[1])/255);
+		colours.push_back(float(pixel.val[0])/255);
+	}
+
+	std::cout << "created vertex color " << std::endl;
+
+	assert(colours.size() == mesh.vertices.size());
+	std::cout << "asserted" << std::endl;
+	std::vector<glm::vec4> m_vertices;
+	std::vector<glm::vec3> m_colours;
+	for(int i = 0; i < mesh.tvi.size(); i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			unsigned int vertexIndex = (unsigned int)(mesh.tvi.at(i)[j]);
+			// std::cout << "[" << i << " " << j <<"]vertexIndex " << vertexIndex << std::endl;
+			glm::vec4 vertex = mesh.vertices[vertexIndex];
+			// glm::vec3 colour = colours[vertexIndex];
+			m_vertices.push_back(vertex);
+			// m_colours.push_back(colour);
+		}
+	}	
+	// std::cout << "banana " << std::endl;
+
+	std::vector<glm::vec4> out_vertices;
+	std::vector<glm::vec3> out_colours;
+	std::vector<unsigned int> indices;
+	std::map<glm::vec4,unsigned int, glmv4Comparasion> VertexToOutIndex;	
+	for ( unsigned int i=0; i<m_vertices.size(); i++ )
+	{
+		std::map<glm::vec4,unsigned int, glmv4Comparasion>::iterator it = VertexToOutIndex.find(m_vertices[i]);
+		if (it == VertexToOutIndex.end()){
+			out_vertices.push_back( m_vertices[i]);
+			out_colours.push_back(m_colours[i]);
+			unsigned int newindex = (unsigned int)out_vertices.size() - 1;
+			indices.push_back(newindex);
+			VertexToOutIndex[ m_vertices[i] ] = newindex;
+		}else{
+			indices.push_back( it->second );
+		}
+	}
+
+	std::cout << "vertice " << out_vertices.size() << " colour " << out_colours.size() << " index " << indices.size() << std::endl;
+
+	
+
+
+	GLuint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4)*out_vertices.size(), &out_vertices[0], GL_STATIC_DRAW);
+	std::cout << "sizeof(glm::vec4<float>) : " << sizeof(glm::vec4)<< std::endl;
+	
+	GLuint colourbuffer;
+	glGenBuffers(1, &colourbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, colourbuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3)*out_colours.size(), &out_colours[0], GL_STATIC_DRAW);
+	std::cout << "sizeof(glm::vec3<float>) : " << sizeof(glm::vec3)<< std::endl;
+
+	// GLuint uvbuffer;
+	// glGenBuffers(1, &uvbuffer);
+	// glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	// glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2)*mesh.texcoords.size(), &mesh.texcoords[0], GL_STATIC_DRAW);
+
+	GLuint elementbuffer;
+	glGenBuffers(1, &elementbuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+	
+	// glEnable(GL_CULL_FACE); // cull face
+	// glCullFace(GL_BACK); // cull back face
+	// glFrontFace(GL_CW); // GL_CCW for counter clock-wise
+	do{
+
+		// Clear the screen
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// Use our shader
+		glUseProgram(programID);
+		// std::cout << "glUseProgram(programID);"<< std::endl;
+
+		// Send our transformation to the currently bound shader, 
+		// in the "MVP" uniform
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+		// glActiveTexture(GL_TEXTURE0);
+		// glBindTexture(GL_TEXTURE_2D, tex);
+		// // Set our "myTextureSampler" sampler to use Texture Unit 0
+		// glUniform1i(TextureID, 0);
+
+		// 1rst attribute buffer : vertices
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+		glVertexAttribPointer(
+			0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+			4,                  // size
+			GL_FLOAT,           // type
+			GL_FALSE,           // normalized?
+			0,                  // stride
+			(void*)0            // array buffer offset
+		);
+
+		glEnableVertexAttribArray(1);
+		glBindBuffer(GL_ARRAY_BUFFER, colourbuffer);
+		glVertexAttribPointer(
+			1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+			3,                                // size
+			GL_FLOAT,                         // type
+			GL_FALSE,                         // normalized?
+			0,                                // stride
+			(void*)0                          // array buffer offset
+		);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+		
+		// Draw the triangles !
+		glDrawElements(
+			GL_TRIANGLES,      // mode
+			indices.size(),    // count
+			GL_UNSIGNED_INT,   // type
+			(void*)0           // element array buffer offset
+		);
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		// std::cout << "glDisableVertexAttribArray(1);"<< std::endl;
+		
+		// Swap buffers
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+
+	} // Check if the ESC key was pressed or the window was closed
+	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+			glfwWindowShouldClose(window) == 0 );
+
+	// Cleanup VBO and shader
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &colourbuffer);
+	// glDeleteTextures(1, &tex);
+	glDeleteProgram(programID);
+	// glDeleteVertexArrays(1, &VertexArrayID);
+	// Close OpenGL window and terminate GLFW
+	glfwTerminate();
+	return 0;
+}
+
 
 	} /* namespace render */
 } /* namespace eos */

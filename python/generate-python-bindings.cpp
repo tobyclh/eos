@@ -38,9 +38,14 @@
 #include "pybind11/eigen.h"
 #include "pybind11_glm.hpp"
 #include "pybind11_opencv.hpp"
-
 #include "fitting_ceres.hpp"
 #include "cost_functions.hpp"
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+// Include GLEW
+#include <GL/glew.h>
+
 
 #include <iostream>
 #include <stdexcept>
@@ -255,26 +260,29 @@ PYBIND11_MODULE(eos, eos_module) {
 		}, "Fit the pose (camera), shape model, and expression blendshapes to landmarks, in an iterative way. Returns a tuple (mesh, rendering_parameters, shape_coefficients, blendshape_coefficients).", py::arg("morphable_model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("img"), py::arg("contour_landmarks"), py::arg("model_contour"))
 		;
 	
-	fitting_module.def("fit_pose_and_expression", [](const morphablemodel::MorphableModel& morphable_model, const std::vector<morphablemodel::Blendshape>& blendshapes, const std::vector<glm::vec2>& landmarks, const std::vector<std::string>& landmark_ids, const core::LandmarkMapper& landmark_mapper, int image_width, int image_height, std::vector<float>& pca_coeffs, std::vector<float>& blendshape_coeffs) {
-		assert(landmarks.size() == landmark_ids.size());
-		core::LandmarkCollection<cv::Vec2f> landmark_collection;
-		for (int i = 0; i < landmarks.size(); ++i)
-		{
-			landmark_collection.push_back(core::Landmark<cv::Vec2f>{ landmark_ids[i], cv::Vec2f(landmarks[i].x, landmarks[i].y) });
-		}
-		auto result = fitting::fit_pose_and_expression(morphable_model, blendshapes, landmark_collection, landmark_mapper, image_width, image_height, pca_coeffs, blendshape_coeffs);
-		return result;
+	// fitting_module.def("fit_pose_and_expression", [](const morphablemodel::MorphableModel& morphable_model, const std::vector<morphablemodel::Blendshape>& blendshapes, const std::vector<glm::vec2>& landmarks, const std::vector<std::string>& landmark_ids, const core::LandmarkMapper& landmark_mapper, int image_width, int image_height, std::vector<float>& pca_coeffs, std::vector<float>& blendshape_coeffs) {
+	// 	assert(landmarks.size() == landmark_ids.size());
+	// 	core::LandmarkCollection<cv::Vec2f> landmark_collection;
+	// 	for (int i = 0; i < landmarks.size(); ++i)
+	// 	{
+	// 		landmark_collection.push_back(core::Landmark<cv::Vec2f>{ landmark_ids[i], cv::Vec2f(landmarks[i].x, landmarks[i].y) });
+	// 	}
+	// 	auto result = fitting::fit_pose_and_expression(morphable_model, blendshapes, landmark_collection, landmark_mapper, image_width, image_height, pca_coeffs, blendshape_coeffs);
+	// 	return result;
 
-	},"fit expression to existing model", py::arg("model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"), py::arg("blendshape_coefficients") );
+	// },"fit expression to existing model", py::arg("model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"), py::arg("blendshape_coefficients") );
+
+	fitting_module.def("fit_pose_and_expression",  &fitting::fit_pose_and_expression ,"fit expression to existing model", py::arg("model"), py::arg("blendshapesMatrix"), py::arg("blendshape_coefficients"), py::arg("image_points"), py::arg("vertex_indices"), py::arg("model_points"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"));
+
 
 	/**
 	 * Bindings for the eos::render namespace:
 	 *  - extract_texture()
 	 */
 	py::module render_module = eos_module.def_submodule("render", "3D mesh and texture extraction functionality.");
-        
+
 	render_module.def("extract_texture", [](const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, cv::Mat image, bool compute_view_angle, int isomap_resolution) {
-		cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image.cols, image.rows);
+		cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image.rows, image.cols);
 		return render::extract_texture(mesh, affine_from_ortho, image, compute_view_angle, render::TextureInterpolation::NearestNeighbour, isomap_resolution);
 	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("rendering_params"), py::arg("image"), py::arg("compute_view_angle") = false, py::arg("isomap_resolution") = 512);
 
@@ -288,6 +296,9 @@ PYBIND11_MODULE(eos, eos_module) {
 		{return render::render(mesh, rendering_params.get_modelview(), rendering_params.get_projection(), viewport_width, viewport_height, texture, enable_backface_culling, enable_near_clipping, enable_far_clipping);},
 		 "render model", py::arg("mesh"), py::arg("rendering_parameter"), py::arg("viewport_width"), py::arg("viewport_height"), py::arg("texture"), py::arg("enable_backface_culling")=false, py::arg("enable_near_clipping")=true, py::arg("enable_far_clipping")=true)
 		;
+
+	render_module.def("render_gl", &render::render_gl,"render model", py::arg("mesh"), py::arg("pose"), py::arg("viewport_width"), py::arg("viewport_height"), py::arg("isomap"), py::arg("enable_backface_culling")=false, py::arg("enable_near_clipping")=true, py::arg("enable_far_clipping")=true);
+
 
 	py::class_<render::Texture>(render_module, "Texture", "mipmapped texture object");
 	render_module.def("create_mipmapped_texture",[](cv::Mat image, unsigned int mipmapsNum)	

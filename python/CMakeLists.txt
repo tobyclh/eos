@@ -16,6 +16,12 @@ set_target_properties(${OpenCV_LIBS} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBIN
 find_package(Ceres REQUIRED)
 include_directories(${CERES_INCLUDE_DIRS})
 
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(GLFW REQUIRED glfw3)
+
 if(MSVC)
   # The standard find_package for boost on Win finds the dynamic libs, so for dynamic linking to boost we need to #define:
   add_definitions(-DBOOST_ALL_NO_LIB) # Don't use the automatic library linking by boost with VS (#pragma ...). Instead, we specify everything here in cmake.
@@ -23,9 +29,13 @@ if(MSVC)
 endif()
 find_package(Boost 1.50.0 COMPONENTS system filesystem program_options REQUIRED)
 message(STATUS "Boost found at ${Boost_INCLUDE_DIRS}")
+message(STATUS "OpenGL found at ${Boost_INCLUDE_DIRS}")
+message(STATUS "GLUT found at ${Boost_INCLUDE_DIRS}")
+message(STATUS "glfw3 found at ${Boost_INCLUDE_DIRS}")
 
+include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} ${GLEW_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS})
 pybind11_add_module(python-bindings generate-python-bindings.cpp pybind11_glm.hpp pybind11_opencv.hpp fitting_ceres.hpp cost_functions.hpp)
-target_link_libraries(python-bindings PRIVATE eos  ${CERES_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(python-bindings PRIVATE eos  ${CERES_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${OPENGL_LIBRARIES}  ${GLUT_LIBRARY} ${GLEW_LIBRARY} ${GLFW_LIBRARIES})
 set_target_properties(python-bindings PROPERTIES OUTPUT_NAME eos)
 
 install(TARGETS python-bindings DESTINATION python)
