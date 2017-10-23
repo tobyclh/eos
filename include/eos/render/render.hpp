@@ -324,8 +324,9 @@ struct glmv4Comparasion
 };
 
 
-inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, int viewport_width, int viewport_height, cv::Mat& isomap, bool enable_backface_culling = false,  bool enable_near_clipping = true, bool enable_far_clipping = true)
+inline cv::Mat render_gl(const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, int viewport_width, int viewport_height, cv::Mat& isomap, bool enable_backface_culling = false,  bool enable_near_clipping = true, bool enable_far_clipping = true)
 {
+	cv::Mat img(viewport_height, viewport_width, CV_8UC3);
 	if(isomap.type() == CV_8UC4)
 	{
 		cvtColor(isomap, isomap, CV_BGRA2BGR);
@@ -344,13 +345,13 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	{
 		fprintf( stderr, "Failed to initialize GLFW\n" );
 		getchar();
-		return -1;
+		return img;
 	}
 	
 	GLFWwindow* window;
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	// glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	// glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	window = glfwCreateWindow(viewport_width, viewport_height, "EOS Testing", NULL, NULL);
@@ -358,7 +359,7 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
 		getchar();
 		glfwTerminate();
-		return -1;
+		return img;
 	}
 	glfwMakeContextCurrent(window);
 	glShadeModel(GL_SMOOTH);
@@ -368,7 +369,7 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 		fprintf(stderr, "Failed to initialize GLEW\n");
 		getchar();
 		glfwTerminate();
-		return -1;
+		return img;
 	}
 
 
@@ -402,39 +403,6 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);	
 	glBindTexture(GL_TEXTURE_2D, tex);
 	
-	// std::vector<glm::tvec3<GLfloat>> colours;
-	// int iso_width = isomap.cols;
-	// int iso_height = isomap.rows;
-	// std::cout << "isomap width "  << iso_width << " height " <<  iso_height  << std::endl;
-	// for(int i = 0; i < mesh.texcoords.size(); i++)
-	// {
-	// 	if(mesh.texcoords.size() != mesh.vertices.size())
-	// 	{
-	// 		std::cout << "vertex texcoord doesn't match" << mesh.texcoords.size() << " <-> " <<  mesh.vertices.size() << std::endl;
-	// 		break;
-	// 	}
-	// 	int y = mesh.texcoords.at(i)[1]*iso_height;
-	// 	int x = mesh.texcoords.at(i)[0]*iso_width;
-	// 	cv::Point point(x, y);
-	// 	// std::cout << "point" << x << " " << y << std::endl;
-	// 	cv::Vec4b pixel = isomap.at<cv::Vec4b>(point);
-	// 	std::cout << "pixel" << int(pixel.val[0]) << " " << int(pixel.val[1]) << " " << int(pixel.val[2]) << " " << int(pixel.val[3])<< std::endl;
-	// 	// colours.push_back(float(pixel.val[0])/255);
-	// 	// colours.push_back(float(pixel.val[1])/255);
-	// 	// colours.push_back(float(pixel.val[2])/255);
-	// 	// glm::vec3 v(float(pixel.val[0])/255, float(pixel.val[2])/255, float(pixel.val[2])/255);
-	// 	// colours.push_back(0.0f);
-	// 	// colours.push_back(1.0f);
-	// 	// colours.push_back(0.0f);
-	// 	// glm::tvec3<GLfloat> glpixel(float(pixel.val[2])/255, float(pixel.val[1])/255, float(pixel.val[0])/255);
-	// 	glm::tvec3<GLfloat> glpixel(GLfloat(pixel.val[2])/255, GLfloat(pixel.val[1])/255, GLfloat(pixel.val[0])/255);
-	// 	std::cout << "[" << i << "]glpixel" << glpixel[0] << " " << glpixel[1] << " " << glpixel[2] << std::endl;
-	// 	colours.push_back(glpixel);
-	// 	// colours.push_back(float(pixel.val[2])/255);
-	// 	// colours.push_back(float(pixel.val[1])/255);
-	// 	// colours.push_back(float(pixel.val[0])/255);
-	// }
-
 	std::vector<unsigned int> indices;
 	for(int i = 0; i < mesh.tvi.size(); i++) 
 	{ 
@@ -449,7 +417,7 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4)*mesh.vertices.size(), &mesh.vertices[0], GL_STATIC_DRAW);
-	std::cout << "sizeof(glm::vec4<float>) : " << sizeof(glm::vec4)<< std::endl;
+	// std::cout << "sizeof(glm::vec4<float>) : " << sizeof(glm::vec4)<< std::endl;
 	
 	// GLuint colourbuffer;
 	// glGenBuffers(1, &colourbuffer);
@@ -467,72 +435,110 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	glGenBuffers(1, &elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+
+	// //render target
+	GLuint FramebufferName = 0;
+	glGenFramebuffers(1, &FramebufferName);
+	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+	GLuint renderedTexture;
+	glGenTextures(1, &renderedTexture);
+
+	glBindTexture(GL_TEXTURE_2D, renderedTexture);
+
+	// // Give an empty image to OpenGL ( the last "0" )
+	glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, viewport_width, viewport_height, 0,GL_RGB, GL_UNSIGNED_BYTE, 0);
 	
-	// glEnable(GL_CULL_FACE); // cull face
-	// glCullFace(GL_BACK); // cull back face
-	// glFrontFace(GL_CW); // GL_CCW for counter clock-wise
-	do{
+	// // Poor filtering. Needed !
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-		// Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// // The depth buffer
+	GLuint depthrenderbuffer;
+	glGenRenderbuffers(1, &depthrenderbuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, viewport_width, viewport_height);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
 
-		// Use our shader
-		glUseProgram(programID);
-		// std::cout << "glUseProgram(programID);"<< std::endl;
+	// // Set "renderedTexture" as our colour attachement #0
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
 
-		// Send our transformation to the currently bound shader, 
-		// in the "MVP" uniform
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+	// // Set the list of draw buffers.
+	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+	glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
+	// // Always check that our framebuffer is ok
+	assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, tex);
-		// Set our "myTextureSampler" sampler to use Texture Unit 0
-		glUniform1i(TextureID, 0);
+	// Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// 1rst attribute buffer : vertices
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribPointer(
-			0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
-			4,                  // size
-			GL_FLOAT,           // type
-			GL_FALSE,           // normalized?
-			0,                  // stride
-			(void*)0            // array buffer offset
-		);
+	// Use our shader
+	glUseProgram(programID);
+	// std::cout << "glUseProgram(programID);"<< std::endl;
 
-		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-		glVertexAttribPointer(
-			1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
-			2,                                // size
-			GL_FLOAT,                         // type
-			GL_FALSE,                         // normalized?
-			0,                                // stride
-			(void*)0                          // array buffer offset
-		);
+	// Send our transformation to the currently bound shader, 
+	// in the "MVP" uniform
+	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-		
-		// Draw the triangles !
-		glDrawElements(
-			GL_TRIANGLES,      // mode
-			indices.size(),    // count
-			GL_UNSIGNED_INT,   // type
-			(void*)0           // element array buffer offset
-		);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, tex);
+	// Set our "myTextureSampler" sampler to use Texture Unit 0
+	glUniform1i(TextureID, 0);
 
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		// std::cout << "glDisableVertexAttribArray(1);"<< std::endl;
-		
-		// Swap buffers
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+	// 1rst attribute buffer : vertices
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glVertexAttribPointer(
+		0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+		4,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
 
-	} // Check if the ESC key was pressed or the window was closed
-	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-			glfwWindowShouldClose(window) == 0 );
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glVertexAttribPointer(
+		1,                                // attribute. No particular reason for 1, but must match the layout in the shader.
+		2,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+	
+	// Draw the triangles !
+	glDrawElements(
+		GL_TRIANGLES,      // mode
+		indices.size(),    // count
+		GL_UNSIGNED_INT,   // type
+		(void*)0           // element array buffer offset
+	);
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	// std::cout << "glDisableVertexAttribArray(1);"<< std::endl;
+			// Render to our framebuffer
+	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+	glViewport(0,0,viewport_width, viewport_height); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+	
+
+	// //use fast 4-byte alignment (default anyway) if possible
+	glPixelStorei(GL_PACK_ALIGNMENT, (img.step & 3) ? 1 : 4);
+	// //set length of one complete row in destination data (doesn't need to equal img.cols)
+	glPixelStorei(GL_PACK_ROW_LENGTH, img.step/img.elemSize());
+
+	glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
+	
+	cv::flip(img, img, 0);
+
+	// Swap buffers
+	glfwSwapBuffers(window);
+	glfwPollEvents();
+
 
 	// Cleanup VBO and shader
 	glDeleteBuffers(1, &vertexbuffer);
@@ -542,7 +548,7 @@ inline int render_gl(const core::Mesh& mesh, const fitting::RenderingParameters&
 	glDeleteVertexArrays(1, &VertexArrayID);
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
-	return 0;
+	return img;
 }
 
 

@@ -368,13 +368,18 @@ using cv::Vec2f;
 using cv::Vec4f;
 using Eigen::VectorXf;
 using Eigen::MatrixXf;
-inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_expression(const morphablemodel::MorphableModel& model, const MatrixXf& blendshapes_as_basis, std::vector<float>& blendshape_coefficients, const std::vector<Vec2f> image_points, const std::vector<int> vertex_indices, const std::vector<Vec4f> model_points, int image_width, int image_height, std::vector<float>& pca_shape_coefficients)
+inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_expression(const morphablemodel::MorphableModel& model, const MatrixXf& blendshapes_as_basis, std::vector<float>& blendshape_coefficients, const std::vector<Vec2f> image_points, const std::vector<int> vertex_indices, int image_width, int image_height, std::vector<float>& pca_shape_coefficients)
 {
 	VectorXf current_pca_shape = model.get_shape_model().draw_sample(pca_shape_coefficients);
 	// MatrixXf blendshapes_as_basis = morphablemodel::to_matrix(blendshapes);
 	VectorXf current_combined_shape = current_pca_shape + blendshapes_as_basis * Eigen::Map<const Eigen::VectorXf>(blendshape_coefficients.data(), blendshape_coefficients.size());
 	auto current_mesh = morphablemodel::sample_to_mesh(current_combined_shape, model.get_color_model().get_mean(), model.get_shape_model().get_triangle_list(), model.get_color_model().get_triangle_list(), model.get_texture_coordinates());
-	// std::vector<Vec4f> model_points; // the points in the 3D shape model
+	std::vector<Vec4f> model_points; // the points in the 3D shape model
+	for(const auto &idx : vertex_indices)
+	{
+		Vec4f vertex(current_mesh.vertices[idx].x, current_mesh.vertices[idx].y,current_mesh.vertices[idx].z, current_mesh.vertices[idx].w);
+		model_points.emplace_back(vertex);
+	}
 	// std::vector<Vec2f> image_points; // the corresponding 2D landmark points
 	// // Sub-select all the landmarks which we have a mapping for (i.e. that are defined in the 3DMM),
 	// // and get the corresponding model points (mean if given no initial coeffs, from the computed shape otherwise):
@@ -384,8 +389,6 @@ inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_
 	// 		continue;
 	// 	}
 	// 	int vertex_idx = std::stoi(converted_name.get());
-	// 	Vec4f vertex(current_mesh.vertices[vertex_idx].x, current_mesh.vertices[vertex_idx].y,current_mesh.vertices[vertex_idx].z, current_mesh.vertices[vertex_idx].w);
-	// 	model_points.emplace_back(vertex);
 	// 	vertex_indices.emplace_back(vertex_idx);
 	// 	image_points.emplace_back(landmarks[i].coordinates);
 	// }

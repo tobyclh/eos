@@ -31,6 +31,7 @@
 #include "eos/render/texture_extraction.hpp"
 #include "eos/render/render.hpp"
 #include "eos/render/utils.hpp"
+#include "eos/render/video_renderer.hpp"
 #include "opencv2/core/core.hpp"
 
 #include "pybind11/pybind11.h"
@@ -272,7 +273,7 @@ PYBIND11_MODULE(eos, eos_module) {
 
 	// },"fit expression to existing model", py::arg("model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"), py::arg("blendshape_coefficients") );
 
-	fitting_module.def("fit_pose_and_expression",  &fitting::fit_pose_and_expression ,"fit expression to existing model", py::arg("model"), py::arg("blendshapesMatrix"), py::arg("blendshape_coefficients"), py::arg("image_points"), py::arg("vertex_indices"), py::arg("model_points"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"));
+	fitting_module.def("fit_pose_and_expression",  &fitting::fit_pose_and_expression ,"fit expression to existing model", py::arg("model"), py::arg("blendshapesMatrix"), py::arg("blendshape_coefficients"), py::arg("image_points"), py::arg("vertex_indices"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"));
 
 
 	/**
@@ -298,6 +299,20 @@ PYBIND11_MODULE(eos, eos_module) {
 		;
 
 	render_module.def("render_gl", &render::render_gl,"render model", py::arg("mesh"), py::arg("pose"), py::arg("viewport_width"), py::arg("viewport_height"), py::arg("isomap"), py::arg("enable_backface_culling")=false, py::arg("enable_near_clipping")=true, py::arg("enable_far_clipping")=true);
+
+	py::class_<render::Viewer>(render_module, "Viewer", "Viewer class for continous retargeting.")
+	.def("__init__", [](render::Viewer& instance, std::vector<glm::vec4> vertices, std::vector<glm::vec2> texcoords, std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters p, cv::Mat view, cv::Mat isomap) { // wrap the fs::path c'tor with std::string
+			new (&instance) render::Viewer(vertices, texcoords, tvi, p, view, isomap);
+		}, "Constructs new viewer from mesh.", py::arg("vertices"), py::arg("texcoords"),py::arg("tvi"), py::arg("pose"), py::arg("frame"), py::arg("isomap"))
+	.def_readwrite("pose", &render::Viewer::pose, "pose of the head")
+	.def_readwrite("vertices", &render::Viewer::vertices, "vertice position")
+	.def_readwrite("frame", &render::Viewer::canvas, "background to render on")
+	.def_readwrite("isomap", &render::Viewer::isomap, "isomap extracted")
+	.def("render",  &render::Viewer::render, "render image")
+	.def("terminate", &render::Viewer::terminate, "terminate opengl resources")
+	;
+
+
 
 
 	py::class_<render::Texture>(render_module, "Texture", "mipmapped texture object");
