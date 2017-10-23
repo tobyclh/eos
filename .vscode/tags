@@ -1,0 +1,1523 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+A	../3rdparty/pybind11/tests/test_builtin_casters.py	/^    class A(object):$/;"	kind:class	line:290
+A	../3rdparty/pybind11/tests/test_pytypes.py	/^    class A(object):$/;"	kind:class	line:67
+ACTIVE_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^ACTIVE_TESTS = [$/;"	kind:variable	line:149
+ACTIVE_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^ACTIVE_TESTS = []$/;"	kind:variable	line:48
+ALL_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^ALL_TESTS = []$/;"	kind:variable	line:47
+ALSO_RUN_DISABED_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^ALSO_RUN_DISABED_TESTS_FLAG = 'gtest_also_run_disabled_tests'$/;"	kind:variable	line:97
+AR	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class AR(m.A_Repeat):$/;"	kind:class	line:246
+AT	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class AT(m.A_Tpl):$/;"	kind:class	line:250
+AccessSpecifier	../3rdparty/pybind11/tools/clang/cindex.py	/^class AccessSpecifier(BaseEnumeration):$/;"	kind:class	line:1788
+AdjustForParameterizedTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def AdjustForParameterizedTests(self, tests_to_run):$/;"	kind:member	line:248
+AlsoRunDisabledTestsFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def AlsoRunDisabledTestsFlag():$/;"	kind:function	line:58
+Append	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Append(self, s):$/;"	kind:member	line:652
+ArgumentsIterator	../3rdparty/pybind11/tools/clang/cindex.py	/^        class ArgumentsIterator(collections.Sequence):$/;"	kind:class	line:1915
+Arity	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def Arity(n):$/;"	kind:function	line:164
+Assert	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^def Assert(condition):$/;"	kind:function	line:42
+AssertEq	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^def AssertEq(expected, actual):$/;"	kind:function	line:48
+AssertEq	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^def AssertEq(expected, actual):$/;"	kind:function	line:47
+AssertEquivalentNodes	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^  def AssertEquivalentNodes(self, expected_node, actual_node):$/;"	kind:member	line:51
+AssertPartitionIsValid	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def AssertPartitionIsValid(self, set_var, list_of_sets):$/;"	kind:member	line:239
+AssertSetEqual	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def AssertSetEqual(self, lhs, rhs):$/;"	kind:member	line:230
+Availability	../3rdparty/pybind11/tools/clang/cindex.py	/^    class Availability:$/;"	kind:class	line:2275
+B	../3rdparty/pybind11/tests/test_builtin_casters.py	/^    class B(object):$/;"	kind:class	line:300
+B	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class B(m.A):$/;"	kind:class	line:82
+B1	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class B1(object):$/;"	kind:class	line:59
+B2	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class B2(B1):$/;"	kind:class	line:90
+B2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class B2(m.A2):$/;"	kind:class	line:118
+B3	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class B3(object):$/;"	kind:class	line:94
+B4	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class B4(B3, B2):$/;"	kind:class	line:98
+BINARY_OUTPUT	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  BINARY_OUTPUT = gtest_test_utils.Subprocess([EXE_PATH], env=environ).output$/;"	kind:variable	line:76
+BREAK_ON_FAILURE_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^BREAK_ON_FAILURE_ENV_VAR = 'GTEST_BREAK_ON_FAILURE'$/;"	kind:variable	line:53
+BREAK_ON_FAILURE_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^BREAK_ON_FAILURE_FLAG = 'gtest_break_on_failure'$/;"	kind:variable	line:56
+BT	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class BT(m.B_Tpl):$/;"	kind:class	line:357
+Base1	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class Base1:$/;"	kind:class	line:14
+Base2	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class Base2:$/;"	kind:class	line:34
+BaseEnumeration	../3rdparty/pybind11/tools/clang/cindex.py	/^class BaseEnumeration(object):$/;"	kind:class	line:516
+BeautifyCode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def BeautifyCode(string):$/;"	kind:function	line:814
+BrokenTF1	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class BrokenTF1(m.TestFactory1):$/;"	kind:class	line:427
+BrokenTF6	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class BrokenTF6(m.TestFactory6):$/;"	kind:class	line:437
+CAN_GENERATE_GOLDEN_FILE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^CAN_GENERATE_GOLDEN_FILE = (SUPPORTS_DEATH_TESTS and$/;"	kind:variable	line:253
+CAN_PASS_EMPTY_ENV	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^CAN_PASS_EMPTY_ENV = eval(child.output)$/;"	kind:variable	line:62
+CAN_TEST_EMPTY_FILTER	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^CAN_TEST_EMPTY_FILTER = (CAN_PASS_EMPTY_ENV and CAN_UNSET_ENV)$/;"	kind:variable	line:82
+CAN_UNSET_ENV	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^CAN_UNSET_ENV = eval(child.output)$/;"	kind:variable	line:75
+CATCH_EXCEPTIONS_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^CATCH_EXCEPTIONS_ENV_VAR = 'GTEST_CATCH_EXCEPTIONS'$/;"	kind:variable	line:62
+CATCH_EXCEPTIONS_ENV_VAR_NAME	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^CATCH_EXCEPTIONS_ENV_VAR_NAME = 'GTEST_CATCH_EXCEPTIONS'$/;"	kind:variable	line:51
+CCR	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class CCR(CR):$/;"	kind:class	line:295
+CCRStructure	../3rdparty/pybind11/tools/clang/cindex.py	/^class CCRStructure(Structure):$/;"	kind:class	line:2338
+CCT	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class CCT(CT):$/;"	kind:class	line:305
+CMakeBuild	../setup.py	/^class CMakeBuild(build_ext):$/;"	kind:class	line:18
+CMakeExtension	../setup.py	/^class CMakeExtension(Extension):$/;"	kind:class	line:12
+COLOR_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^COLOR_ENV_VAR = 'GTEST_COLOR'$/;"	kind:variable	line:42
+COLOR_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^COLOR_FLAG = 'gtest_color'$/;"	kind:variable	line:43
+COMMAND	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^COMMAND = gtest_test_utils.GetTestExecutablePath('gtest_color_test_')$/;"	kind:variable	line:44
+COMMAND	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^COMMAND = gtest_test_utils.GetTestExecutablePath('gtest_env_var_test_')$/;"	kind:variable	line:43
+COMMAND	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^COMMAND = gtest_test_utils.GetTestExecutablePath('gtest_filter_unittest_')$/;"	kind:variable	line:100
+COMMAND	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^COMMAND = gtest_test_utils.GetTestExecutablePath('gtest_shuffle_test_')$/;"	kind:variable	line:39
+COMMAND	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^COMMAND = gtest_test_utils.GetTestExecutablePath('gtest_uninitialized_test_')$/;"	kind:variable	line:39
+COMMAND_LIST_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^COMMAND_LIST_TESTS = ({}, [PROGRAM_PATH, '--gtest_list_tests'])$/;"	kind:variable	line:62
+COMMAND_WITH_COLOR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^COMMAND_WITH_COLOR = ({}, [PROGRAM_PATH, '--gtest_color=yes'])$/;"	kind:variable	line:63
+COMMAND_WITH_DISABLED	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^COMMAND_WITH_DISABLED = ($/;"	kind:variable	line:68
+COMMAND_WITH_SHARDING	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^COMMAND_WITH_SHARDING = ($/;"	kind:variable	line:73
+COMMAND_WITH_TIME	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^COMMAND_WITH_TIME = ({}, [PROGRAM_PATH,$/;"	kind:variable	line:64
+CPP_OPERATORS	../3rdparty/pybind11/tools/mkdoc.py	/^CPP_OPERATORS = OrderedDict($/;"	kind:variable	line:53
+CPP_OPERATORS	../3rdparty/pybind11/tools/mkdoc.py	/^CPP_OPERATORS = {$/;"	kind:variable	line:43
+CR	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class CR(m.C_Repeat):$/;"	kind:class	line:276
+CT	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class CT(m.C_Tpl):$/;"	kind:class	line:286
+CachedProperty	../3rdparty/pybind11/tools/clang/cindex.py	/^class CachedProperty(object):$/;"	kind:class	line:122
+CalculateTestLists	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def CalculateTestLists():$/;"	kind:function	line:130
+Capture	../3rdparty/pybind11/tests/conftest.py	/^class Capture(object):$/;"	kind:class	line:68
+CatchCxxExceptionsTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^class CatchCxxExceptionsTest(gtest_test_utils.TestCase):$/;"	kind:class	line:114
+CatchSehExceptionsTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  class CatchSehExceptionsTest(gtest_test_utils.TestCase):$/;"	kind:class	line:85
+ChildDiagnosticsIterator	../3rdparty/pybind11/tools/clang/cindex.py	/^        class ChildDiagnosticsIterator:$/;"	kind:class	line:364
+ClangObject	../3rdparty/pybind11/tools/clang/cindex.py	/^class ClangObject(object):$/;"	kind:class	line:2143
+Clone	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Clone(self):$/;"	kind:member	line:125
+Clone	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Clone(self):$/;"	kind:member	line:156
+Clone	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Clone(self):$/;"	kind:member	line:589
+CodeCompletionResult	../3rdparty/pybind11/tools/clang/cindex.py	/^class CodeCompletionResult(Structure):$/;"	kind:class	line:2324
+CodeCompletionResults	../3rdparty/pybind11/tools/clang/cindex.py	/^class CodeCompletionResults(ClangObject):$/;"	kind:class	line:2351
+CodeNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class CodeNode:$/;"	kind:class	line:390
+CompilationDatabase	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompilationDatabase(ClangObject):$/;"	kind:class	line:2931
+CompilationDatabaseError	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompilationDatabaseError(Exception):$/;"	kind:class	line:2850
+CompileCommand	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompileCommand(object):$/;"	kind:class	line:2875
+CompileCommands	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompileCommands(object):$/;"	kind:class	line:2905
+CompletionChunk	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompletionChunk:$/;"	kind:class	line:2187
+CompletionString	../3rdparty/pybind11/tools/clang/cindex.py	/^class CompletionString(ClangObject):$/;"	kind:class	line:2274
+Config	../3rdparty/pybind11/tools/clang/cindex.py	/^class Config:$/;"	kind:class	line:3764
+ConvertFromPumpSource	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ConvertFromPumpSource(src_text):$/;"	kind:function	line:823
+Cursor	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class Cursor:$/;"	kind:class	line:87
+Cursor	../3rdparty/pybind11/tools/clang/cindex.py	/^class Cursor(Structure):$/;"	kind:class	line:1286
+CursorKind	../3rdparty/pybind11/tools/clang/cindex.py	/^class CursorKind(BaseEnumeration):$/;"	kind:class	line:562
+DEATH_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  DEATH_TESTS = [$/;"	kind:variable	line:141
+DEATH_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  DEATH_TESTS = []$/;"	kind:variable	line:146
+DEATH_TEST_STYLE_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^DEATH_TEST_STYLE_FLAG = FLAG_PREFIX + 'death_test_style'$/;"	kind:variable	line:52
+DEFAULT_GTEST_ROOT_DIR	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^DEFAULT_GTEST_ROOT_DIR = os.path.join(os.path.dirname(__file__), '..')$/;"	kind:variable	line:68
+DISABLED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^DISABLED_TESTS = [$/;"	kind:variable	line:131
+DOT_DOT_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^DOT_DOT_REGEX = re.compile(r'\\.\\.')$/;"	kind:variable	line:258
+DR	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class DR(m.D_Repeat):$/;"	kind:class	line:315
+DT	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class DT(m.D_Tpl):$/;"	kind:class	line:334
+DT2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class DT2(DT):$/;"	kind:class	line:350
+DeleteFilesAndDir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def DeleteFilesAndDir(self):$/;"	kind:member	line:78
+Derived	../3rdparty/pybind11/tests/test_call_policies.py	/^    class Derived(m.Parent):$/;"	kind:class	line:91
+Derived	../3rdparty/pybind11/tests/test_call_policies.py	/^    class Derived(m.Parent, m.Child):$/;"	kind:class	line:110
+DerivedWidget	../3rdparty/pybind11/tests/test_embed/test_interpreter.py	/^class DerivedWidget(Widget):$/;"	kind:class	line:4
+DiagIterator	../3rdparty/pybind11/tools/clang/cindex.py	/^        class DiagIterator:$/;"	kind:class	line:2671
+Diagnostic	../3rdparty/pybind11/tools/clang/cindex.py	/^class Diagnostic(object):$/;"	kind:class	line:295
+DiagnosticsItr	../3rdparty/pybind11/tools/clang/cindex.py	/^        class DiagnosticsItr:$/;"	kind:class	line:2368
+EQ_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^EQ_REGEX = re.compile(r'=')$/;"	kind:variable	line:254
+ERROR_CANNOTLOADDATABASE	../3rdparty/pybind11/tools/clang/cindex.py	/^    ERROR_CANNOTLOADDATABASE = 1$/;"	kind:variable	line:2862
+ERROR_INVALID_TU	../3rdparty/pybind11/tools/clang/cindex.py	/^    ERROR_INVALID_TU = 3$/;"	kind:variable	line:107
+ERROR_TRANSLATION_ERRORS	../3rdparty/pybind11/tools/clang/cindex.py	/^    ERROR_TRANSLATION_ERRORS = 2$/;"	kind:variable	line:104
+ERROR_UNKNOWN	../3rdparty/pybind11/tools/clang/cindex.py	/^    ERROR_UNKNOWN = 0$/;"	kind:variable	line:2859
+ERROR_UNKNOWN	../3rdparty/pybind11/tools/clang/cindex.py	/^    ERROR_UNKNOWN = 1$/;"	kind:variable	line:100
+EXE_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^EXE_PATH = gtest_test_utils.GetTestExecutablePath($/;"	kind:variable	line:65
+EXE_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^EXE_PATH = gtest_test_utils.GetTestExecutablePath($/;"	kind:variable	line:57
+EXE_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^EXE_PATH = gtest_test_utils.GetTestExecutablePath('gtest_list_tests_unittest_')$/;"	kind:variable	line:52
+EXE_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^EXE_PATH = gtest_test_utils.GetTestExecutablePath($/;"	kind:variable	line:51
+EX_BINARY_OUTPUT	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^EX_BINARY_OUTPUT = gtest_test_utils.Subprocess($/;"	kind:variable	line:78
+EX_EXE_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^EX_EXE_PATH = gtest_test_utils.GetTestExecutablePath($/;"	kind:variable	line:52
+EigenMatrixPrinter	../3rdparty/eigen/debug/gdb/printers.py	/^class EigenMatrixPrinter:$/;"	kind:class	line:34
+EigenQuaternionPrinter	../3rdparty/eigen/debug/gdb/printers.py	/^class EigenQuaternionPrinter:$/;"	kind:class	line:132
+ElseNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class ElseNode:$/;"	kind:class	line:415
+Env	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class Env:$/;"	kind:class	line:584
+Eof	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def Eof():$/;"	kind:function	line:132
+Error	../3rdparty/pybind11/tools/clang/cindex.py	/^    Error   = 3$/;"	kind:variable	line:305
+EvalExp	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def EvalExp(self, exp):$/;"	kind:member	line:622
+ExpNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class ExpNode:$/;"	kind:class	line:437
+ExtendedExampleVirt	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class ExtendedExampleVirt(m.ExampleVirt):$/;"	kind:class	line:8
+ExtendedExampleVirt2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class ExtendedExampleVirt2(ExtendedExampleVirt):$/;"	kind:class	line:27
+ExtractionThread	../3rdparty/pybind11/tools/mkdoc.py	/^class ExtractionThread(Thread):$/;"	kind:class	line:209
+FILTERED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^FILTERED_TESTS = []$/;"	kind:variable	line:49
+FILTER_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^FILTER_ENV_VAR = 'GTEST_FILTER'$/;"	kind:variable	line:86
+FILTER_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^FILTER_FLAG = FLAG_PREFIX + 'filter'$/;"	kind:variable	line:48
+FILTER_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^FILTER_FLAG = 'gtest_filter'$/;"	kind:variable	line:94
+FLAG_PREFIX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^FLAG_PREFIX = '--gtest_'$/;"	kind:variable	line:45
+FLAG_PREFIX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^FLAG_PREFIX = '--gtest_'$/;"	kind:variable	line:51
+Fatal	../3rdparty/pybind11/tools/clang/cindex.py	/^    Fatal   = 4$/;"	kind:variable	line:306
+File	../3rdparty/pybind11/tools/clang/cindex.py	/^class File(ClangObject):$/;"	kind:class	line:2795
+FileInclusion	../3rdparty/pybind11/tools/clang/cindex.py	/^class FileInclusion(object):$/;"	kind:class	line:2830
+FilterFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def FilterFlag(test_filter):$/;"	kind:function	line:62
+FindFirst	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def FindFirst(lines, token_table, cursor):$/;"	kind:function	line:186
+FindFirstInLine	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def FindFirstInLine(line, token_table):$/;"	kind:function	line:169
+FixIt	../3rdparty/pybind11/tools/clang/cindex.py	/^class FixIt(object):$/;"	kind:class	line:409
+FixItIterator	../3rdparty/pybind11/tools/clang/cindex.py	/^        class FixItIterator:$/;"	kind:class	line:344
+ForNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class ForNode:$/;"	kind:class	line:408
+FuseGTest	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def FuseGTest(gtest_root, output_dir):$/;"	kind:function	line:226
+FuseGTestAllCc	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def FuseGTestAllCc(gtest_root, output_dir):$/;"	kind:function	line:218
+FuseGTestAllCcToFile	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def FuseGTestAllCcToFile(gtest_root, output_file):$/;"	kind:function	line:175
+FuseGTestH	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def FuseGTestH(gtest_root, output_dir):$/;"	kind:function	line:146
+GENGOLDEN_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^GENGOLDEN_FLAG = '--gengolden'$/;"	kind:variable	line:50
+GOLDEN_NAME	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^GOLDEN_NAME = 'gtest_output_test_golden_lin.txt'$/;"	kind:variable	line:56
+GOLDEN_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^GOLDEN_PATH = os.path.join(gtest_test_utils.GetSourceDir(), GOLDEN_NAME)$/;"	kind:variable	line:79
+GTEST_ALL_CC_OUTPUT	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^GTEST_ALL_CC_OUTPUT = 'gtest\/gtest-all.cc'$/;"	kind:variable	line:83
+GTEST_ALL_CC_SEED	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^GTEST_ALL_CC_SEED = 'src\/gtest-all.cc'$/;"	kind:variable	line:79
+GTEST_DEFAULT_OUTPUT_FILE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_DEFAULT_OUTPUT_FILE = "test_detail.xml"$/;"	kind:variable	line:50
+GTEST_DEFAULT_OUTPUT_FILE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^GTEST_DEFAULT_OUTPUT_FILE = 'test_detail.xml'$/;"	kind:variable	line:43
+GTEST_FILTER_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_FILTER_FLAG = '--gtest_filter'$/;"	kind:variable	line:47
+GTEST_H_OUTPUT	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^GTEST_H_OUTPUT = 'gtest\/gtest.h'$/;"	kind:variable	line:82
+GTEST_H_SEED	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^GTEST_H_SEED = 'include\/gtest\/gtest.h'$/;"	kind:variable	line:77
+GTEST_LIST_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_LIST_TESTS_FLAG = '--gtest_list_tests'$/;"	kind:variable	line:48
+GTEST_OUTPUT_1_TEST	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^GTEST_OUTPUT_1_TEST = "gtest_xml_outfile1_test_"$/;"	kind:variable	line:44
+GTEST_OUTPUT_2_TEST	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^GTEST_OUTPUT_2_TEST = "gtest_xml_outfile2_test_"$/;"	kind:variable	line:45
+GTEST_OUTPUT_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_OUTPUT_FLAG         = "--gtest_output"$/;"	kind:variable	line:49
+GTEST_OUTPUT_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^GTEST_OUTPUT_FLAG         = '--gtest_output'$/;"	kind:variable	line:42
+GTEST_OUTPUT_SUBDIR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^GTEST_OUTPUT_SUBDIR = "xml_outfiles"$/;"	kind:variable	line:43
+GTEST_OUTPUT_VAR_NAME	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^GTEST_OUTPUT_VAR_NAME = 'GTEST_OUTPUT'$/;"	kind:variable	line:54
+GTEST_PROGRAM_NAME	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_PROGRAM_NAME = "gtest_xml_output_unittest_"$/;"	kind:variable	line:51
+GTEST_PROGRAM_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^GTEST_PROGRAM_PATH = gtest_test_utils.GetTestExecutablePath(GTEST_PROGRAM_NAME)$/;"	kind:variable	line:146
+GTEST_SPI_H_SEED	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^GTEST_SPI_H_SEED = 'include\/gtest\/gtest-spi.h'$/;"	kind:variable	line:78
+GTestBreakOnFailureUnitTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^class GTestBreakOnFailureUnitTest(gtest_test_utils.TestCase):$/;"	kind:class	line:93
+GTestColorTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^class GTestColorTest(gtest_test_utils.TestCase):$/;"	kind:class	line:70
+GTestEnvVarTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^class GTestEnvVarTest(gtest_test_utils.TestCase):$/;"	kind:class	line:83
+GTestFilterUnitTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^class GTestFilterUnitTest(gtest_test_utils.TestCase):$/;"	kind:class	line:225
+GTestHelpTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^class GTestHelpTest(gtest_test_utils.TestCase):$/;"	kind:class	line:98
+GTestListTestsUnitTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^class GTestListTestsUnitTest(gtest_test_utils.TestCase):$/;"	kind:class	line:126
+GTestOutputTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^class GTestOutputTest(gtest_test_utils.TestCase):$/;"	kind:class	line:258
+GTestShuffleUnitTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^class GTestShuffleUnitTest(gtest_test_utils.TestCase):$/;"	kind:class	line:169
+GTestUninitializedTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^class GTestUninitializedTest(gtest_test_utils.TestCase):$/;"	kind:class	line:64
+GTestXMLOutFilesTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^class GTestXMLOutFilesTest(gtest_xml_test_utils.GTestXMLTestCase):$/;"	kind:class	line:64
+GTestXMLOutputUnitTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^class GTestXMLOutputUnitTest(gtest_xml_test_utils.GTestXMLTestCase):$/;"	kind:class	line:152
+GTestXMLTestCase	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^class GTestXMLTestCase(gtest_test_utils.TestCase):$/;"	kind:class	line:45
+GetBuildDir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetBuildDir():$/;"	kind:function	line:132
+GetCommandOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def GetCommandOutput(env_cmd):$/;"	kind:function	line:221
+GetExitStatus	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetExitStatus(exit_code):$/;"	kind:function	line:187
+GetFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^def GetFlag(flag):$/;"	kind:function	line:64
+GetFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetFlag(flag):$/;"	kind:function	line:115
+GetLastLine	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def GetLastLine(self):$/;"	kind:member	line:645
+GetOutputOfAllCommands	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def GetOutputOfAllCommands():$/;"	kind:function	line:238
+GetRange	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def GetRange(self, identifier):$/;"	kind:member	line:632
+GetShellCommandOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def GetShellCommandOutput(env_cmd):$/;"	kind:function	line:200
+GetSourceDir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetSourceDir():$/;"	kind:function	line:126
+GetTempDir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetTempDir():$/;"	kind:function	line:147
+GetTestCases	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def GetTestCases(tests):$/;"	kind:function	line:110
+GetTestExecutablePath	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def GetTestExecutablePath(executable_name, build_dir=None):$/;"	kind:function	line:156
+GetTestsForAllIterations	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def GetTestsForAllIterations(extra_env, args):$/;"	kind:function	line:87
+GetValue	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def GetValue(self, identifier):$/;"	kind:member	line:614
+HEADER	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^HEADER = os.path.join(SCRIPT_DIR, '..\/include\/gtest\/gtest_pred_impl.h')$/;"	kind:variable	line:59
+HELP_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^HELP_REGEX = re.compile($/;"	kind:variable	line:65
+HeaderPreamble	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def HeaderPreamble(n):$/;"	kind:function	line:65
+ID_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^ID_REGEX = re.compile(r'[_A-Za-z]\\w*')$/;"	kind:variable	line:253
+INCLUDE_GTEST_FILE_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^INCLUDE_GTEST_FILE_REGEX = re.compile(r'^\\s*#\\s*include\\s*"(gtest\/.+)"')$/;"	kind:variable	line:71
+INCLUDE_SRC_FILE_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^INCLUDE_SRC_FILE_REGEX = re.compile(r'^\\s*#\\s*include\\s*"(src\/.+)"')$/;"	kind:variable	line:74
+INCORRECT_FLAG_VARIANTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^INCORRECT_FLAG_VARIANTS = [re.sub('^--', '-', LIST_TESTS_FLAG),$/;"	kind:variable	line:56
+INTERNAL_FLAG_FOR_TESTING	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^INTERNAL_FLAG_FOR_TESTING = FLAG_PREFIX + 'internal_flag_for_testing'$/;"	kind:variable	line:59
+IfNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class IfNode:$/;"	kind:class	line:420
+Ignored	../3rdparty/pybind11/tools/clang/cindex.py	/^    Ignored = 0$/;"	kind:variable	line:302
+ImplementationForArity	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def ImplementationForArity(n):$/;"	kind:function	line:205
+Index	../3rdparty/pybind11/tools/clang/cindex.py	/^class Index(ClangObject):$/;"	kind:class	line:2382
+InvokeWithModifiedEnv	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^def InvokeWithModifiedEnv(extra_env, function, *args, **kwargs):$/;"	kind:function	line:204
+IsHeaderGuardIncludeOrOneLineIWYUPragma	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def IsHeaderGuardIncludeOrOneLineIWYUPragma(line):$/;"	kind:function	line:783
+IsInPreprocessorDirective	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def IsInPreprocessorDirective(prev_lines, cur_line):$/;"	kind:function	line:711
+IsMultiLineIWYUPragma	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def IsMultiLineIWYUPragma(line):$/;"	kind:function	line:779
+IsSingleLineComment	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def IsSingleLineComment(cur_line):$/;"	kind:function	line:707
+Iter	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def Iter(n, format, sep=''):$/;"	kind:function	line:189
+Kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    class Kind:$/;"	kind:class	line:2188
+LIST_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^LIST_TESTS_FLAG = FLAG_PREFIX + 'list_tests'$/;"	kind:variable	line:46
+LIST_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^LIST_TESTS_FLAG = '--gtest_list_tests'$/;"	kind:variable	line:113
+LIST_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^LIST_TESTS_FLAG = FLAG_PREFIX + 'list_tests'$/;"	kind:variable	line:55
+LIST_TESTS_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^LIST_TESTS_FLAG = 'gtest_list_tests'$/;"	kind:variable	line:49
+LibclangError	../3rdparty/pybind11/tools/clang/cindex.py	/^class LibclangError(Exception):$/;"	kind:class	line:3723
+LiteralDollarNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class LiteralDollarNode:$/;"	kind:class	line:432
+MI1	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI1(m.Base1, m.Base2):$/;"	kind:class	line:54
+MI2	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI2(B1, m.Base1, m.Base2):$/;"	kind:class	line:63
+MI3	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI3(MI2):$/;"	kind:class	line:69
+MI4	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI4(MI3, m.Base2):$/;"	kind:class	line:73
+MI5	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI5(m.Base2, B1, m.Base1):$/;"	kind:class	line:79
+MI6	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI6(m.Base2, B1):$/;"	kind:class	line:85
+MI7	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI7(B4, MI6):$/;"	kind:class	line:102
+MI8	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI8(MI6, B3):$/;"	kind:class	line:107
+MI8b	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MI8b(B3, MI6):$/;"	kind:class	line:112
+MIMany117	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MIMany117(MIMany14, MIMany58, MIMany916, m.BaseN17):$/;"	kind:class	line:192
+MIMany14	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MIMany14(m.BaseN1, m.BaseN2, m.BaseN3, m.BaseN4):$/;"	kind:class	line:160
+MIMany19	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MIMany19(MIMany14, MIMany58, m.BaseN9):$/;"	kind:class	line:186
+MIMany58	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MIMany58(m.BaseN5, m.BaseN6, m.BaseN7, m.BaseN8):$/;"	kind:class	line:167
+MIMany916	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^                    m.BaseN16):$/;"	kind:class	line:175
+MITest	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class MITest(m.TestFactory1, m.TestFactory2):$/;"	kind:class	line:313
+MITypePy	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MITypePy(Base1, m.Base2):$/;"	kind:class	line:21
+MITypePy	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MITypePy(m.Base1, Base2):$/;"	kind:class	line:41
+MITypePy	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^    class MITypePy(m.Base12a):$/;"	kind:class	line:222
+Main	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def Main():$/;"	kind:function	line:306
+MakeToken	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def MakeToken(lines, start, end, token_type):$/;"	kind:function	line:237
+MyClass	../3rdparty/pybind11/tests/test_callbacks.py	/^    class MyClass:$/;"	kind:class	line:31
+MyTest	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class MyTest(m.TestFactory6):$/;"	kind:class	line:172
+NCVirtExt	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class NCVirtExt(m.NCVirt):$/;"	kind:class	line:165
+NCVirtExt2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class NCVirtExt2(m.NCVirt):$/;"	kind:class	line:176
+NormalizeOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def NormalizeOutput(output):$/;"	kind:function	line:190
+NormalizeToCurrentPlatform	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def NormalizeToCurrentPlatform(test_output):$/;"	kind:function	line:139
+NormalizeXml	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^  def NormalizeXml(self, element):$/;"	kind:member	line:150
+NotPybindDerived	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class NotPybindDerived(object):$/;"	kind:class	line:423
+Note	../3rdparty/pybind11/tools/clang/cindex.py	/^    Note    = 1$/;"	kind:variable	line:303
+OPTIONAL_WHITE_SPACES_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^OPTIONAL_WHITE_SPACES_REGEX = re.compile(r'\\s*')$/;"	kind:variable	line:256
+OneTo	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def OneTo(n):$/;"	kind:function	line:183
+Output	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class Output:$/;"	kind:class	line:641
+Output	../3rdparty/pybind11/tests/conftest.py	/^class Output(object):$/;"	kind:class	line:36
+PARAM_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^PARAM_TESTS = [$/;"	kind:variable	line:120
+PARAM_TEST_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^PARAM_TEST_REGEX = re.compile(r'\/ParamTest')$/;"	kind:variable	line:103
+PARSE_CACHE_COMPLETION_RESULTS	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_CACHE_COMPLETION_RESULTS = 8$/;"	kind:variable	line:2448
+PARSE_DETAILED_PROCESSING_RECORD	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_DETAILED_PROCESSING_RECORD = 1$/;"	kind:variable	line:2434
+PARSE_INCLUDE_BRIEF_COMMENTS_IN_CODE_COMPLETION	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_INCLUDE_BRIEF_COMMENTS_IN_CODE_COMPLETION = 128$/;"	kind:variable	line:2458
+PARSE_INCOMPLETE	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_INCOMPLETE = 2$/;"	kind:variable	line:2438
+PARSE_NONE	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_NONE = 0$/;"	kind:variable	line:2430
+PARSE_PRECOMPILED_PREAMBLE	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_PRECOMPILED_PREAMBLE = 4$/;"	kind:variable	line:2444
+PARSE_SKIP_FUNCTION_BODIES	../3rdparty/pybind11/tools/clang/cindex.py	/^    PARSE_SKIP_FUNCTION_BODIES = 64$/;"	kind:variable	line:2454
+PREMATURE_EXIT_FILE_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^PREMATURE_EXIT_FILE_ENV_VAR = 'TEST_PREMATURE_EXIT_FILE'$/;"	kind:variable	line:60
+PRINT_LIST	../3rdparty/pybind11/tools/mkdoc.py	/^PRINT_LIST = [$/;"	kind:variable	line:29
+PROGRAM_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^PROGRAM_PATH = gtest_test_utils.GetTestExecutablePath('gtest_help_test_')$/;"	kind:variable	line:50
+PROGRAM_PATH	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^PROGRAM_PATH = gtest_test_utils.GetTestExecutablePath('gtest_output_test_')$/;"	kind:variable	line:58
+Parse	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Parse(pos):$/;"	kind:function	line:289
+ParseAtomicCodeNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseAtomicCodeNode(tokens):$/;"	kind:function	line:503
+ParseCodeNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseCodeNode(tokens):$/;"	kind:function	line:564
+ParseElseNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseElseNode(tokens):$/;"	kind:function	line:475
+ParseExpNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseExpNode(token):$/;"	kind:function	line:470
+ParseExpTokenInParens	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseExpTokenInParens(lines, pos):$/;"	kind:function	line:281
+ParseInParens	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def ParseInParens(pos):$/;"	kind:function	line:282
+ParseToAST	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseToAST(pump_src_text):$/;"	kind:function	line:577
+ParseToken	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def ParseToken(lines, pos, regex, token_type):$/;"	kind:function	line:243
+PeekToken	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def PeekToken(a_list):$/;"	kind:function	line:463
+Pop	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Pop(token_type=None):$/;"	kind:function	line:476
+Pop	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def Pop(token_type=None):$/;"	kind:function	line:504
+PopFront	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def PopFront(a_list):$/;"	kind:function	line:443
+PopRange	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def PopRange(self):$/;"	kind:member	line:611
+PopToken	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def PopToken(a_list, token_type=None):$/;"	kind:function	line:453
+PopVariable	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def PopVariable(self):$/;"	kind:member	line:605
+Predicate	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^class Predicate%(n)sTest : public testing::Test {$/;"	kind:class	line:511
+ProcessFile	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^  def ProcessFile(gtest_header_path):$/;"	kind:function	line:152
+ProcessFile	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^  def ProcessFile(gtest_source_file):$/;"	kind:function	line:180
+PushFront	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def PushFront(a_list, elem):$/;"	kind:function	line:449
+PushRange	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def PushRange(self, var, lower, upper):$/;"	kind:member	line:608
+PushVariable	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def PushVariable(self, var, value):$/;"	kind:member	line:595
+PyClass1	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class PyClass1(m.DispatchIssue):$/;"	kind:class	line:212
+PyClass2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^    class PyClass2(m.DispatchIssue):$/;"	kind:class	line:216
+PythFactory7	../3rdparty/pybind11/tests/test_factory_constructors.py	/^    class PythFactory7(TestFactory7):$/;"	kind:class	line:214
+PythonDerivedDynamicClass	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^    class PythonDerivedDynamicClass(m.DynamicClass):$/;"	kind:class	line:252
+RECURSE_LIST	../3rdparty/pybind11/tools/mkdoc.py	/^RECURSE_LIST = [$/;"	kind:variable	line:20
+REST_OF_LINE_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^REST_OF_LINE_REGEX = re.compile(r'.*?(?=$|\\$\\$)')$/;"	kind:variable	line:255
+RStripNewLineFromToken	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def RStripNewLineFromToken(token):$/;"	kind:function	line:303
+RandomSeedFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def RandomSeedFlag(n):$/;"	kind:function	line:74
+RangeIterator	../3rdparty/pybind11/tools/clang/cindex.py	/^        class RangeIterator:$/;"	kind:class	line:328
+RangeNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class RangeNode:$/;"	kind:class	line:401
+RawCodeNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class RawCodeNode:$/;"	kind:class	line:427
+RefQualifierKind	../3rdparty/pybind11/tools/clang/cindex.py	/^class RefQualifierKind(BaseEnumeration):$/;"	kind:class	line:1881
+RemoveLocations	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveLocations(test_output):$/;"	kind:function	line:88
+RemoveMatchingTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveMatchingTests(test_output, pattern):$/;"	kind:function	line:167
+RemoveStackTraceDetails	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveStackTraceDetails(output):$/;"	kind:function	line:104
+RemoveStackTraces	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveStackTraces(output):$/;"	kind:function	line:112
+RemoveTestCounts	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveTestCounts(output):$/;"	kind:function	line:153
+RemoveTime	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveTime(output):$/;"	kind:function	line:119
+RemoveTypeInfoDetails	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def RemoveTypeInfoDetails(test_output):$/;"	kind:function	line:125
+RemoveUnsupportedTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^  def RemoveUnsupportedTests(self, test_output):$/;"	kind:member	line:259
+RepeatFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def RepeatFlag(n):$/;"	kind:function	line:66
+Run	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^def Run(command):$/;"	kind:function	line:80
+Run	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^def Run(args):$/;"	kind:function	line:117
+Run	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^def Run(command):$/;"	kind:function	line:70
+RunAndExtractTestList	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^def RunAndExtractTestList(args = None):$/;"	kind:function	line:185
+RunAndReturnOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^def RunAndReturnOutput(args = None):$/;"	kind:function	line:178
+RunAndReturnOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def RunAndReturnOutput(extra_env, args):$/;"	kind:function	line:78
+RunAndVerify	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def RunAndVerify(self, env_var_value, flag_value, expect_seg_fault):$/;"	kind:member	line:99
+RunAndVerify	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def RunAndVerify(self, gtest_filter, tests_to_run):$/;"	kind:member	line:257
+RunAndVerify	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^  def RunAndVerify(self, flag_value, expected_output_re, other_flag):$/;"	kind:member	line:129
+RunAndVerify	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^  def RunAndVerify(self, env_var_value, flag_value, should_fail):$/;"	kind:member	line:83
+RunAndVerifyAllowingDisabled	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def RunAndVerifyAllowingDisabled(self, gtest_filter, tests_to_run):$/;"	kind:member	line:325
+RunAndVerifyWithSharding	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def RunAndVerifyWithSharding(self, gtest_filter, total_shards, tests_to_run,$/;"	kind:member	line:287
+RunAtomicCode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def RunAtomicCode(env, node, output):$/;"	kind:function	line:656
+RunCode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def RunCode(env, code_node, output):$/;"	kind:function	line:702
+RunWithFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^def RunWithFlag(flag):$/;"	kind:function	line:81
+RunWithSharding	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^def RunWithSharding(total_shards, shard_index, command):$/;"	kind:function	line:215
+SCRIPT_DIR	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^SCRIPT_DIR = os.path.dirname(sys.argv[0])$/;"	kind:variable	line:56
+SHARDED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHARDED_TESTS = []$/;"	kind:variable	line:50
+SHARD_INDEX_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^SHARD_INDEX_ENV_VAR = 'GTEST_SHARD_INDEX'$/;"	kind:variable	line:90
+SHARD_INDEX_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHARD_INDEX_ENV_VAR = 'GTEST_SHARD_INDEX'$/;"	kind:variable	line:43
+SHARD_STATUS_FILE_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^SHARD_STATUS_FILE_ENV_VAR = 'GTEST_SHARD_STATUS_FILE'$/;"	kind:variable	line:91
+SHUFFLED_ACTIVE_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHUFFLED_ACTIVE_TESTS = []$/;"	kind:variable	line:53
+SHUFFLED_ALL_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHUFFLED_ALL_TESTS = []$/;"	kind:variable	line:52
+SHUFFLED_FILTERED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHUFFLED_FILTERED_TESTS = []$/;"	kind:variable	line:54
+SHUFFLED_SHARDED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^SHUFFLED_SHARDED_TESTS = []$/;"	kind:variable	line:55
+STACK_TRACE_TEMPLATE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  STACK_TRACE_TEMPLATE = ''$/;"	kind:variable	line:58
+STACK_TRACE_TEMPLATE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  STACK_TRACE_TEMPLATE = '\\nStack trace:\\n*'$/;"	kind:variable	line:56
+STREAM_RESULT_TO_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^STREAM_RESULT_TO_FLAG = FLAG_PREFIX + 'stream_result_to'$/;"	kind:variable	line:53
+SUPPORTS_DEATH_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^SUPPORTS_DEATH_TESTS = 'HasDeathTest' in gtest_test_utils.Subprocess($/;"	kind:variable	line:116
+SUPPORTS_DEATH_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^SUPPORTS_DEATH_TESTS = "DeathTest" in gtest_test_utils.Subprocess($/;"	kind:variable	line:61
+SUPPORTS_DEATH_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^SUPPORTS_DEATH_TESTS = 'DeathTest' in test_list$/;"	kind:variable	line:248
+SUPPORTS_SEH_EXCEPTIONS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^SUPPORTS_SEH_EXCEPTIONS = 'ThrowsSehException' in TEST_LIST$/;"	kind:variable	line:73
+SUPPORTS_STACK_TRACES	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^SUPPORTS_STACK_TRACES = False$/;"	kind:variable	line:251
+SUPPORTS_STACK_TRACES	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^SUPPORTS_STACK_TRACES = False$/;"	kind:variable	line:53
+SUPPORTS_THREADS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^SUPPORTS_THREADS = 'ExpectFailureWithThreadsTest' in test_list$/;"	kind:variable	line:250
+SUPPORTS_TYPED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^SUPPORTS_TYPED_TESTS = 'TypedTest' in test_list$/;"	kind:variable	line:249
+SUPPORTS_TYPED_TESTS	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^SUPPORTS_TYPED_TESTS = 'TypedTest' in gtest_test_utils.Subprocess($/;"	kind:variable	line:148
+SanitizedString	../3rdparty/pybind11/tests/conftest.py	/^class SanitizedString(object):$/;"	kind:class	line:111
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^SetEnvVar = gtest_test_utils.SetEnvVar$/;"	kind:variable	line:70
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^SetEnvVar = gtest_test_utils.SetEnvVar$/;"	kind:variable	line:61
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^def SetEnvVar(env_var, value):$/;"	kind:function	line:47
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^def SetEnvVar(env_var, value):$/;"	kind:function	line:55
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^def SetEnvVar(env_var, value):$/;"	kind:function	line:169
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def SetEnvVar(env_var, value):$/;"	kind:function	line:65
+SetEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^def SetEnvVar(env_var, value):$/;"	kind:function	line:58
+ShuffleFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^def ShuffleFlag():$/;"	kind:function	line:70
+Skip	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def Skip(lines, pos, regex):$/;"	kind:function	line:261
+SkipUntil	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def SkipUntil(lines, pos, regex, token_type):$/;"	kind:function	line:270
+SourceLocation	../3rdparty/pybind11/tools/clang/cindex.py	/^class SourceLocation(Structure):$/;"	kind:class	line:160
+SourceRange	../3rdparty/pybind11/tools/clang/cindex.py	/^class SourceRange(Structure):$/;"	kind:class	line:231
+SpellingCache	../3rdparty/pybind11/tools/clang/cindex.py	/^SpellingCache = {$/;"	kind:variable	line:2163
+StartsWith	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def StartsWith(lines, pos, string):$/;"	kind:function	line:163
+StorageClass	../3rdparty/pybind11/tools/clang/cindex.py	/^class StorageClass(object):$/;"	kind:class	line:1736
+StripMetaComments	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def StripMetaComments(str):$/;"	kind:function	line:226
+SubAliased	../3rdparty/pybind11/tests/test_class.py	/^    class SubAliased(m.AliasedHasOpNewDelSize):$/;"	kind:class	line:135
+SubString	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def SubString(lines, start, end):$/;"	kind:function	line:208
+SubTestObject	../3rdparty/pybind11/tests/test_pytypes.py	/^    class SubTestObject:$/;"	kind:class	line:122
+Subprocess	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^class Subprocess:$/;"	kind:class	line:207
+TEST_CASE_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^TEST_CASE_REGEX = re.compile(r'^\\[\\-+\\] \\d+ tests? from (\\w+(\/\\w+)?)')$/;"	kind:variable	line:106
+TEST_FILTER	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^TEST_FILTER = 'A*.A:A*.B:C*'$/;"	kind:variable	line:45
+TEST_LIST	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^TEST_LIST = gtest_test_utils.Subprocess($/;"	kind:variable	line:70
+TEST_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^TEST_REGEX = re.compile(r'^\\[\\s*RUN\\s*\\].*\\.(\\w+(\/\\w+)?)')$/;"	kind:variable	line:109
+THROW_ON_FAILURE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^THROW_ON_FAILURE = 'gtest_throw_on_failure'$/;"	kind:variable	line:47
+THROW_ON_FAILURE_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^THROW_ON_FAILURE_ENV_VAR = 'GTEST_THROW_ON_FAILURE'$/;"	kind:variable	line:59
+TOKEN_TABLE	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^TOKEN_TABLE = [$/;"	kind:variable	line:72
+TOTAL_SHARDS_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^TOTAL_SHARDS_ENV_VAR = 'GTEST_TOTAL_SHARDS'$/;"	kind:variable	line:89
+TOTAL_SHARDS_ENV_VAR	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^TOTAL_SHARDS_ENV_VAR = 'GTEST_TOTAL_SHARDS'$/;"	kind:variable	line:42
+TemplateArgumentKind	../3rdparty/pybind11/tools/clang/cindex.py	/^class TemplateArgumentKind(BaseEnumeration):$/;"	kind:class	line:1268
+TestCase	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^TestCase = _test_module.TestCase  # pylint: disable-msg=C6409$/;"	kind:variable	line:77
+TestExitCodeAndOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^def TestExitCodeAndOutput(command):$/;"	kind:function	line:54
+TestFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^def TestFlag(flag, test_val, default_val):$/;"	kind:function	line:73
+TestHelpFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def TestHelpFlag(self, flag):$/;"	kind:member	line:101
+TestNonHelpFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def TestNonHelpFlag(self, flag):$/;"	kind:member	line:125
+TestObject	../3rdparty/pybind11/tests/test_pytypes.py	/^    class TestObject:$/;"	kind:class	line:126
+TestSehExceptions	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^    def TestSehExceptions(self, test_output):$/;"	kind:member	line:89
+ThrowOnFailureTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^class ThrowOnFailureTest(gtest_test_utils.TestCase):$/;"	kind:class	line:80
+Title	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^def Title(word):$/;"	kind:function	line:175
+ToUnixLineEnding	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^def ToUnixLineEnding(s):$/;"	kind:function	line:82
+Token	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class Token:$/;"	kind:class	line:137
+Token	../3rdparty/pybind11/tools/clang/cindex.py	/^class Token(Structure):$/;"	kind:class	line:2977
+TokenGroup	../3rdparty/pybind11/tools/clang/cindex.py	/^class TokenGroup(object):$/;"	kind:class	line:423
+TokenKind	../3rdparty/pybind11/tools/clang/cindex.py	/^class TokenKind(object):$/;"	kind:class	line:478
+TokenKinds	../3rdparty/pybind11/tools/clang/enumerations.py	/^TokenKinds = [$/;"	kind:variable	line:26
+Tokenize	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def Tokenize(s):$/;"	kind:function	line:382
+TokenizeLines	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def TokenizeLines(lines, pos):$/;"	kind:function	line:310
+TranslationUnit	../3rdparty/pybind11/tools/clang/cindex.py	/^class TranslationUnit(ClangObject):$/;"	kind:class	line:2421
+TranslationUnitLoadError	../3rdparty/pybind11/tools/clang/cindex.py	/^class TranslationUnitLoadError(Exception):$/;"	kind:class	line:80
+TranslationUnitSaveError	../3rdparty/pybind11/tools/clang/cindex.py	/^class TranslationUnitSaveError(Exception):$/;"	kind:class	line:90
+Type	../3rdparty/pybind11/tools/clang/cindex.py	/^class Type(Structure):$/;"	kind:class	line:1898
+TypeKind	../3rdparty/pybind11/tools/clang/cindex.py	/^class TypeKind(BaseEnumeration):$/;"	kind:class	line:1811
+UNIT_TEST	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^UNIT_TEST = os.path.join(SCRIPT_DIR, '..\/test\/gtest_pred_impl_unittest.cc')$/;"	kind:variable	line:62
+UNKNOWN_FLAG	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^UNKNOWN_FLAG = FLAG_PREFIX + 'unknown_flag_for_testing'$/;"	kind:variable	line:54
+Unordered	../3rdparty/pybind11/tests/conftest.py	/^class Unordered(Output):$/;"	kind:class	line:56
+UsesColor	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^def UsesColor(term, color_env_var, color_flag):$/;"	kind:function	line:56
+ValidateGTestRootDir	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def ValidateGTestRootDir(gtest_root):$/;"	kind:function	line:100
+ValidateOutputDir	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def ValidateOutputDir(output_dir):$/;"	kind:function	line:136
+VarNode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^class VarNode:$/;"	kind:class	line:395
+VerifyFileExists	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def VerifyFileExists(directory, relative_path):$/;"	kind:function	line:86
+VerifyOutputFile	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def VerifyOutputFile(output_dir, relative_path):$/;"	kind:function	line:110
+WHITE_SPACE_REGEX	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^WHITE_SPACE_REGEX = re.compile(r'\\s')$/;"	kind:variable	line:257
+Warning	../3rdparty/pybind11/tools/clang/cindex.py	/^    Warning = 2$/;"	kind:variable	line:304
+WrapCode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def WrapCode(line, line_concat, output):$/;"	kind:function	line:741
+WrapComment	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def WrapComment(line, output):$/;"	kind:function	line:717
+WrapLongLine	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def WrapLongLine(line, output):$/;"	kind:function	line:790
+WrapPlainCode	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def WrapPlainCode(line, output):$/;"	kind:function	line:775
+WrapPreprocessorDirective	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def WrapPreprocessorDirective(line, output):$/;"	kind:function	line:771
+_CXString	../3rdparty/pybind11/tools/clang/cindex.py	/^class _CXString(Structure):$/;"	kind:class	line:147
+_CXUnsavedFile	../3rdparty/pybind11/tools/clang/cindex.py	/^class _CXUnsavedFile(Structure):$/;"	kind:class	line:2156
+_GetChildren	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^  def _GetChildren(self, element):$/;"	kind:member	line:117
+_GetXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def _GetXmlOutput(self, gtest_prog_name, extra_args, expected_exit_code):$/;"	kind:member	line:262
+_ParseAndStripGTestFlags	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def _ParseAndStripGTestFlags(argv):$/;"	kind:function	line:86
+_RemoveTempDir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^def _RemoveTempDir():$/;"	kind:function	line:140
+_ReplaceEnvDict	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^      def _ReplaceEnvDict(dest, src):$/;"	kind:function	line:255
+_SUBPROCESS_MODULE_AVAILABLE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^  _SUBPROCESS_MODULE_AVAILABLE = False$/;"	kind:variable	line:51
+_SUBPROCESS_MODULE_AVAILABLE	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^  _SUBPROCESS_MODULE_AVAILABLE = True$/;"	kind:variable	line:48
+_TestOutFile	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def _TestOutFile(self, test_name, expected_xml):$/;"	kind:member	line:98
+_TestXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def _TestXmlOutput(self, gtest_prog_name, expected_xml,$/;"	kind:member	line:286
+_VerifyTestCasesDoNotInterleave	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def _VerifyTestCasesDoNotInterleave(self, tests):$/;"	kind:member	line:245
+__add__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __add__(self, offset):$/;"	kind:member	line:119
+__all__	../3rdparty/pybind11/tools/clang/__init__.py	/^__all__ = ['cindex']$/;"	kind:variable	line:23
+__all__	../3rdparty/pybind11/tools/clang/cindex.py	/^__all__ = [$/;"	kind:variable	line:3864
+__all__	../3rdparty/pybind11/tools/clang/enumerations.py	/^__all__ = ['TokenKinds']$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:59
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:49
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:65
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:41
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^__author__ = 'vladl@google.com (Vlad Losev)'$/;"	kind:variable	line:38
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:43
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:40
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^__author__ = 'phanna@google.com (Patrick Hanna)'$/;"	kind:variable	line:40
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:41
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:33
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:38
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^__author__ = 'wan@google.com (Zhanyong Wan)'$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^__author__ = "keith.ray@gmail.com (Keith Ray)"$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^__author__ = 'eefacm@gmail.com (Sean Mcafee)'$/;"	kind:variable	line:34
+__author__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^__author__ = 'eefacm@gmail.com (Sean Mcafee)'$/;"	kind:variable	line:34
+__bool__	../3rdparty/pybind11/tests/test_builtin_casters.py	/^        def __bool__(self):$/;"	kind:member	line:297
+__bytes__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __bytes__(self):$/;"	kind:member	line:2816
+__call__	../3rdparty/pybind11/tests/conftest.py	/^    def __call__(self, thing):$/;"	kind:member	line:117
+__contains__	../3rdparty/pybind11/tests/conftest.py	/^    def __contains__(self, item):$/;"	kind:member	line:93
+__contains__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __contains__(self, other):$/;"	kind:member	line:269
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:152
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:2359
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:2398
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:2572
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:2913
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:2939
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:311
+__del__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __del__(self):$/;"	kind:member	line:442
+__enter__	../3rdparty/pybind11/tests/conftest.py	/^    def __enter__(self):$/;"	kind:member	line:74
+__eq__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __eq__(self, rhs):$/;"	kind:member	line:94
+__eq__	../3rdparty/pybind11/tests/conftest.py	/^    def __eq__(self, other):$/;"	kind:member	line:121
+__eq__	../3rdparty/pybind11/tests/conftest.py	/^    def __eq__(self, other):$/;"	kind:member	line:45
+__eq__	../3rdparty/pybind11/tests/conftest.py	/^    def __eq__(self, other):$/;"	kind:member	line:58
+__eq__	../3rdparty/pybind11/tests/conftest.py	/^    def __eq__(self, other):$/;"	kind:member	line:81
+__eq__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __eq__(self, other):$/;"	kind:member	line:1302
+__eq__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __eq__(self, other):$/;"	kind:member	line:2128
+__eq__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __eq__(self, other):$/;"	kind:member	line:217
+__eq__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __eq__(self, other):$/;"	kind:member	line:263
+__exit__	../3rdparty/pybind11/tests/conftest.py	/^    def __exit__(self, *_):$/;"	kind:member	line:78
+__ge__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __ge__(self, rhs):$/;"	kind:member	line:110
+__get__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __get__(self, instance, instance_type=None):$/;"	kind:member	line:137
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:1926
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:2376
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:2678
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:335
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:351
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __getitem__(self, key):$/;"	kind:member	line:371
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __getitem__(self, i):$/;"	kind:member	line:2919
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __getitem__(self, key):$/;"	kind:member	line:2292
+__getitem__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __getitem__(self, key):$/;"	kind:member	line:2345
+__gt__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __gt__(self, rhs):$/;"	kind:member	line:107
+__init__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __init__ (self, dataPtr):$/;"	kind:member	line:150
+__init__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __init__ (self, rows, cols, dataPtr, rowMajor):$/;"	kind:member	line:81
+__init__	../3rdparty/eigen/debug/gdb/printers.py	/^	def __init__(self, val):$/;"	kind:member	line:135
+__init__	../3rdparty/eigen/debug/gdb/printers.py	/^	def __init__(self, variety, val):$/;"	kind:member	line:37
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self):$/;"	kind:member	line:585
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self):$/;"	kind:member	line:642
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, atomic_code_list=None):$/;"	kind:member	line:391
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, else_branch=None):$/;"	kind:member	line:416
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, exp=None, then_branch=None, else_branch=None):$/;"	kind:member	line:421
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, identifier=None, atomic_code=None):$/;"	kind:member	line:396
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, identifier=None, exp1=None, exp2=None):$/;"	kind:member	line:402
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, identifier=None, sep=None, code=None):$/;"	kind:member	line:409
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, line=-1, column=-1):$/;"	kind:member	line:90
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, start=None, end=None, value=None, token_type=None):$/;"	kind:member	line:140
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, token):$/;"	kind:member	line:433
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, token, python_exp):$/;"	kind:member	line:438
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __init__(self, token=None):$/;"	kind:member	line:428
+__init__	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^  def __init__(self, command, working_dir=None, capture_stderr=True, env=None):$/;"	kind:member	line:208
+__init__	../3rdparty/pybind11/tests/conftest.py	/^    def __init__(self, capfd):$/;"	kind:member	line:69
+__init__	../3rdparty/pybind11/tests/conftest.py	/^    def __init__(self, sanitizer):$/;"	kind:member	line:112
+__init__	../3rdparty/pybind11/tests/conftest.py	/^    def __init__(self, string):$/;"	kind:member	line:38
+__init__	../3rdparty/pybind11/tests/test_builtin_casters.py	/^        def __init__(self, x):$/;"	kind:member	line:291
+__init__	../3rdparty/pybind11/tests/test_call_policies.py	/^        def __init__(self):$/;"	kind:member	line:111
+__init__	../3rdparty/pybind11/tests/test_embed/test_interpreter.py	/^    def __init__(self, message):$/;"	kind:member	line:5
+__init__	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def __init__(self):$/;"	kind:member	line:314
+__init__	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def __init__(self, *args):$/;"	kind:member	line:173
+__init__	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def __init__(self, bad):$/;"	kind:member	line:428
+__init__	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def __init__(self, bad):$/;"	kind:member	line:438
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self):$/;"	kind:member	line:161
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self):$/;"	kind:member	line:168
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self):$/;"	kind:member	line:176
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self):$/;"	kind:member	line:187
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self):$/;"	kind:member	line:193
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:103
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:108
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:113
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:15
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:35
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i):$/;"	kind:member	line:86
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:22
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:223
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:42
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:55
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:64
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:70
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:74
+__init__	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def __init__(self, i, j):$/;"	kind:member	line:80
+__init__	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def __init__(self):$/;"	kind:member	line:119
+__init__	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def __init__(self):$/;"	kind:member	line:83
+__init__	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def __init__(self, state):$/;"	kind:member	line:28
+__init__	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def __init__(self, state):$/;"	kind:member	line:9
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, ccr):$/;"	kind:member	line:2369
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, diag):$/;"	kind:member	line:329
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, diag):$/;"	kind:member	line:345
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, diag):$/;"	kind:member	line:365
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, parent):$/;"	kind:member	line:1916
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __init__(self, tu):$/;"	kind:member	line:2672
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __init__(self, name):$/;"	kind:member	line:2189
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __init__(self, name):$/;"	kind:member	line:2276
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, ccmds):$/;"	kind:member	line:2910
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, cmd, ccmds):$/;"	kind:member	line:2877
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, completionString, key):$/;"	kind:member	line:2198
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, enumeration, message):$/;"	kind:member	line:109
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, enumeration, message):$/;"	kind:member	line:2864
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, message):$/;"	kind:member	line:3724
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, obj):$/;"	kind:member	line:2148
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, ptr):$/;"	kind:member	line:2352
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, ptr):$/;"	kind:member	line:308
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, ptr, index):$/;"	kind:member	line:2562
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, range, value):$/;"	kind:member	line:416
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, src, tgt, loc, depth):$/;"	kind:member	line:2839
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, tu, memory, count):$/;"	kind:member	line:437
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, value):$/;"	kind:member	line:1745
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, value):$/;"	kind:member	line:528
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, value, name):$/;"	kind:member	line:483
+__init__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __init__(self, wrapped):$/;"	kind:member	line:130
+__init__	../3rdparty/pybind11/tools/mkdoc.py	/^    def __init__(self, filename, parameters):$/;"	kind:member	line:210
+__init__	../setup.py	/^    def __init__(self, name, sourcedir=''):$/;"	kind:member	line:13
+__init__.py	../3rdparty/eigen/debug/gdb/__init__.py	1;"	kind:file	line:1
+__init__.py	../3rdparty/pybind11/pybind11/__init__.py	1;"	kind:file	line:1
+__init__.py	../3rdparty/pybind11/tools/clang/__init__.py	1;"	kind:file	line:1
+__iter__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __iter__ (self):$/;"	kind:member	line:155
+__iter__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __iter__ (self):$/;"	kind:member	line:89
+__kindNumber	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __kindNumber(self):$/;"	kind:member	line:2216
+__le__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __le__(self, rhs):$/;"	kind:member	line:104
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:1920
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:2372
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:2675
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:332
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:348
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^            def __len__(self):$/;"	kind:member	line:368
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __len__(self):$/;"	kind:member	line:2285
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __len__(self):$/;"	kind:member	line:2342
+__len__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __len__(self):$/;"	kind:member	line:2916
+__lt__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __lt__(self, rhs):$/;"	kind:member	line:100
+__main__.py	../3rdparty/pybind11/pybind11/__main__.py	1;"	kind:file	line:1
+__ne__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __ne__(self, rhs):$/;"	kind:member	line:97
+__ne__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __ne__(self, other):$/;"	kind:member	line:1305
+__ne__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __ne__(self, other):$/;"	kind:member	line:2134
+__ne__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __ne__(self, other):$/;"	kind:member	line:220
+__ne__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __ne__(self, other):$/;"	kind:member	line:266
+__next__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __next__(self):$/;"	kind:member	line:161
+__next__	../3rdparty/eigen/debug/gdb/printers.py	/^		def __next__(self):$/;"	kind:member	line:95
+__nonzero__	../3rdparty/pybind11/tests/test_builtin_casters.py	/^        def __nonzero__(self):$/;"	kind:member	line:294
+__repr__	../3rdparty/pybind11/tests/test_pytypes.py	/^        def __repr__(self):$/;"	kind:member	line:71
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __repr__(self):$/;"	kind:member	line:2195
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __repr__(self):$/;"	kind:member	line:2282
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:1773
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:1800
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:1825
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:1891
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:2203
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:223
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:2312
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:2327
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:2819
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:292
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:402
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:420
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:488
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:558
+__repr__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __repr__(self):$/;"	kind:member	line:612
+__str__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __str__(self):$/;"	kind:member	line:113
+__str__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __str__(self):$/;"	kind:member	line:152
+__str__	../3rdparty/pybind11/tests/conftest.py	/^    def __str__(self):$/;"	kind:member	line:42
+__str__	../3rdparty/pybind11/tests/conftest.py	/^    def __str__(self):$/;"	kind:member	line:90
+__str__	../3rdparty/pybind11/tests/test_pytypes.py	/^        def __str__(self):$/;"	kind:member	line:68
+__str__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __str__(self):$/;"	kind:member	line:2192
+__str__	../3rdparty/pybind11/tools/clang/cindex.py	/^        def __str__(self):$/;"	kind:member	line:2279
+__str__	../3rdparty/pybind11/tools/clang/cindex.py	/^    def __str__(self):$/;"	kind:member	line:3727
+__sub__	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^  def __sub__(self, offset):$/;"	kind:member	line:122
+__version__	../3rdparty/pybind11/pybind11/_version.py	/^__version__ = '.'.join(map(str, version_info))$/;"	kind:variable	line:2
+_data	../3rdparty/pybind11/tools/clang/cindex.py	/^    _data = None$/;"	kind:variable	line:165
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [$/;"	kind:variable	line:236
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [$/;"	kind:variable	line:2986
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [("_kind_id", c_int), ("data", c_void_p * 2)]$/;"	kind:variable	line:1902
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [("_kind_id", c_int), ("xdata", c_int), ("data", c_void_p * 3)]$/;"	kind:variable	line:1291
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [("name", c_char_p), ("contents", c_char_p), ('length', c_ulong)]$/;"	kind:variable	line:2158
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [("ptr_data", c_void_p * 2), ("int_data", c_uint)]$/;"	kind:variable	line:164
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [("spelling", c_char_p), ("free", c_int)]$/;"	kind:variable	line:150
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [('cursorKind', c_int), ('completionString', c_object_p)]$/;"	kind:variable	line:2325
+_fields_	../3rdparty/pybind11/tools/clang/cindex.py	/^    _fields_ = [('results', POINTER(CodeCompletionResult)),$/;"	kind:variable	line:2339
+_flag_map	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^_flag_map = {'source_dir': os.path.dirname(sys.argv[0]),$/;"	kind:variable	line:81
+_get_instantiation	../3rdparty/pybind11/tools/clang/cindex.py	/^    def _get_instantiation(self):$/;"	kind:member	line:167
+_gtest_flags_are_parsed	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^_gtest_flags_are_parsed = False$/;"	kind:variable	line:83
+_hexadecimal	../3rdparty/pybind11/tests/conftest.py	/^_hexadecimal = re.compile(r'0x[0-9a-fA-F]+')$/;"	kind:variable	line:18
+_iterator	../3rdparty/eigen/debug/gdb/printers.py	/^	class _iterator:$/;"	kind:class	line:149
+_iterator	../3rdparty/eigen/debug/gdb/printers.py	/^	class _iterator:$/;"	kind:class	line:80
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:1275
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:1742
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:1794
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:1817
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:1885
+_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    _kinds = []$/;"	kind:variable	line:568
+_long_marker	../3rdparty/pybind11/tests/conftest.py	/^_long_marker = re.compile(r'([0-9])L')$/;"	kind:variable	line:17
+_make_explanation	../3rdparty/pybind11/tests/conftest.py	/^def _make_explanation(a, b):$/;"	kind:function	line:31
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:1276
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:1743
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:1795
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:1818
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:1886
+_name_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _name_map = None$/;"	kind:variable	line:569
+_sanitize_docstring	../3rdparty/pybind11/tests/conftest.py	/^def _sanitize_docstring(thing):$/;"	kind:function	line:140
+_sanitize_general	../3rdparty/pybind11/tests/conftest.py	/^def _sanitize_general(s):$/;"	kind:function	line:131
+_sanitize_message	../3rdparty/pybind11/tests/conftest.py	/^def _sanitize_message(thing):$/;"	kind:function	line:152
+_split_and_sort	../3rdparty/pybind11/tests/conftest.py	/^def _split_and_sort(s):$/;"	kind:function	line:26
+_strip_and_dedent	../3rdparty/pybind11/tests/conftest.py	/^def _strip_and_dedent(s):$/;"	kind:function	line:21
+_temp_dir	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^_temp_dir = None$/;"	kind:variable	line:138
+_test_import_pybind11	../3rdparty/pybind11/tests/conftest.py	/^def _test_import_pybind11():$/;"	kind:function	line:220
+_test_module	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^_test_module = unittest$/;"	kind:variable	line:42
+_unicode_marker	../3rdparty/pybind11/tests/conftest.py	/^_unicode_marker = re.compile(r'u(\\'[^\\']*\\')')$/;"	kind:variable	line:16
+_value_map	../3rdparty/pybind11/tools/clang/cindex.py	/^    _value_map = {} # int -> TokenKind$/;"	kind:variable	line:481
+_version.py	../3rdparty/pybind11/pybind11/_version.py	1;"	kind:file	line:1
+a	../3rdparty/pybind11/tests/test_class.py	/^        a = m.HasOpNewDel()$/;"	kind:variable	line:139
+a	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        a = m.A()$/;"	kind:variable	line:91
+a2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        a2 = m.A2()$/;"	kind:variable	line:127
+a3	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        a3 = m.A2(1)$/;"	kind:variable	line:131
+access_specifier	../3rdparty/pybind11/tools/clang/cindex.py	/^    def access_specifier(self):$/;"	kind:member	line:1461
+allclose	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def allclose(a_list, b_list, rel_tol=1e-05, abs_tol=0.0):$/;"	kind:function	line:11
+argument_types	../3rdparty/pybind11/tools/clang/cindex.py	/^    def argument_types(self):$/;"	kind:member	line:1909
+arguments	../3rdparty/pybind11/tools/clang/cindex.py	/^    def arguments(self):$/;"	kind:member	line:2894
+arr	../3rdparty/pybind11/tests/test_numpy_array.py	/^def arr():$/;"	kind:function	line:11
+array_copy_but_one	../3rdparty/pybind11/tests/test_eigen.py	/^def array_copy_but_one(a, r, c, v):$/;"	kind:function	line:220
+assert_equal	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def assert_equal(actual, expected_data, expected_dtype):$/;"	kind:function	line:64
+assert_equal_ref	../3rdparty/pybind11/tests/test_eigen.py	/^def assert_equal_ref(mat):$/;"	kind:function	line:17
+assert_keeps_alive	../3rdparty/pybind11/tests/test_eigen.py	/^def assert_keeps_alive(cl, method, *args):$/;"	kind:function	line:339
+assert_references	../3rdparty/pybind11/tests/test_numpy_array.py	/^    def assert_references(a, b, base=None):$/;"	kind:function	line:139
+assert_sparse_equal_ref	../3rdparty/pybind11/tests/test_eigen.py	/^def assert_sparse_equal_ref(sparse_mat):$/;"	kind:function	line:21
+assign_both	../3rdparty/pybind11/tests/test_eigen.py	/^def assign_both(a1, a2, r, c, v):$/;"	kind:function	line:215
+attr_char	../3rdparty/pybind11/tests/test_pytypes.py	/^        attr_char = 2$/;"	kind:variable	line:124
+attr_obj	../3rdparty/pybind11/tests/test_pytypes.py	/^        attr_obj = 1$/;"	kind:variable	line:123
+author	../3rdparty/pybind11/docs/conf.py	/^author = 'Wenzel Jakob'$/;"	kind:variable	line:57
+author	../3rdparty/pybind11/setup.py	/^    author='Wenzel Jakob',$/;"	kind:variable	line:42
+author	../setup.py	/^    author='Patrik Huber',$/;"	kind:variable	line:92
+author_email	../3rdparty/pybind11/setup.py	/^    author_email='wenzel.jakob@epfl.ch',$/;"	kind:variable	line:43
+author_email	../setup.py	/^    author_email='patrikhuber@gmail.com',$/;"	kind:variable	line:93
+availability	../3rdparty/pybind11/tools/clang/cindex.py	/^    def availability(self):$/;"	kind:member	line:2302
+availabilityKinds	../3rdparty/pybind11/tools/clang/cindex.py	/^availabilityKinds = {$/;"	kind:variable	line:2318
+b	../3rdparty/pybind11/tests/test_class.py	/^        b = m.HasOpNewDelSize()$/;"	kind:variable	line:140
+b	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        b = B()$/;"	kind:variable	line:99
+b2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        b2 = B2()$/;"	kind:variable	line:148
+bad_next_call	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^    def bad_next_call():$/;"	kind:function	line:127
+bar	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def bar(self):$/;"	kind:member	line:38
+basic_attr	../3rdparty/pybind11/tests/test_pytypes.py	/^        basic_attr = 1$/;"	kind:variable	line:127
+begin_end	../3rdparty/pybind11/tests/test_pytypes.py	/^        begin_end = [1, 2, 3]$/;"	kind:variable	line:128
+benchmark.py	../3rdparty/pybind11/docs/benchmark.py	1;"	kind:file	line:1
+blendshapes	../python/demo.py	/^blendshapes = eos.morphablemodel.load_blendshapes($/;"	kind:variable	line:33
+blendshapes	../python/demo_bfm.py	/^blendshapes = eos.morphablemodel.load_blendshapes($/;"	kind:variable	line:41
+boxes	../python/demo_bfm.py	/^boxes = detector(img, 1)$/;"	kind:variable	line:17
+breathe_default_project	../3rdparty/pybind11/docs/conf.py	/^breathe_default_project = 'pybind11'$/;"	kind:variable	line:37
+breathe_domain_by_extension	../3rdparty/pybind11/docs/conf.py	/^breathe_domain_by_extension = {'h': 'cpp'}$/;"	kind:variable	line:38
+breathe_projects	../3rdparty/pybind11/docs/conf.py	/^breathe_projects = {'pybind11': '.build\/doxygenxml\/'}$/;"	kind:variable	line:36
+briefComment	../3rdparty/pybind11/tools/clang/cindex.py	/^    def briefComment(self):$/;"	kind:member	line:2307
+brief_comment	../3rdparty/pybind11/tools/clang/cindex.py	/^    def brief_comment(self):$/;"	kind:member	line:1607
+buffer_size	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^buffer_size = 1024$/;"	kind:variable	line:65
+build_eigen_dictionary	../3rdparty/eigen/debug/gdb/printers.py	/^def build_eigen_dictionary ():$/;"	kind:function	line:180
+build_extension	../setup.py	/^    def build_extension(self, ext):$/;"	kind:member	line:56
+c	../3rdparty/pybind11/tests/test_class.py	/^        c = m.AliasedHasOpNewDelSize()$/;"	kind:variable	line:150
+c2	../3rdparty/pybind11/tests/test_class.py	/^        c2 = SubAliased()$/;"	kind:variable	line:151
+c_object_p	../3rdparty/pybind11/tools/clang/cindex.py	/^c_object_p = POINTER(c_void_p)$/;"	kind:variable	line:74
+callbacks	../3rdparty/pybind11/tools/clang/cindex.py	/^callbacks = {}$/;"	kind:variable	line:76
+canonical	../3rdparty/pybind11/tools/clang/cindex.py	/^    def canonical(self):$/;"	kind:member	line:1482
+cant_convert	../3rdparty/pybind11/tests/test_builtin_casters.py	/^    def cant_convert(v):$/;"	kind:function	line:277
+capture	../3rdparty/pybind11/tests/conftest.py	/^def capture(capsys):$/;"	kind:function	line:106
+category_name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def category_name(self):$/;"	kind:member	line:385
+category_number	../3rdparty/pybind11/tools/clang/cindex.py	/^    def category_number(self):$/;"	kind:member	line:380
+change	../3rdparty/pybind11/tools/libsize.py	/^        change = libsize - oldsize$/;"	kind:variable	line:28
+check_self	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^    def check_self(self):$/;"	kind:function	line:142
+child	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^child = gtest_test_utils.Subprocess($/;"	kind:variable	line:60
+child	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^child = gtest_test_utils.Subprocess($/;"	kind:variable	line:73
+children	../3rdparty/eigen/debug/gdb/printers.py	/^	def children(self):$/;"	kind:member	line:125
+children	../3rdparty/eigen/debug/gdb/printers.py	/^	def children(self):$/;"	kind:member	line:173
+children	../3rdparty/pybind11/tools/clang/cindex.py	/^    def children(self):$/;"	kind:member	line:363
+cindex.py	../3rdparty/pybind11/tools/clang/cindex.py	1;"	kind:file	line:1
+classifiers	../3rdparty/pybind11/setup.py	/^    classifiers=[$/;"	kind:variable	line:49
+cmdclass	../setup.py	/^    cmdclass=dict(build_ext=CMakeBuild),$/;"	kind:variable	line:99
+codeComplete	../3rdparty/pybind11/tools/clang/cindex.py	/^    def codeComplete(self, path, line, column, unsaved_files=None,$/;"	kind:member	line:2737
+column	../3rdparty/pybind11/tools/clang/cindex.py	/^    def column(self):$/;"	kind:member	line:208
+compatibility_check	../3rdparty/pybind11/tools/clang/cindex.py	/^    compatibility_check = False$/;"	kind:variable	line:3767
+completionChunkKindMap	../3rdparty/pybind11/tools/clang/cindex.py	/^completionChunkKindMap = {$/;"	kind:variable	line:2251
+conf	../3rdparty/pybind11/tools/clang/cindex.py	/^conf = Config()$/;"	kind:variable	line:3861
+conf.py	../3rdparty/pybind11/docs/conf.py	1;"	kind:file	line:1
+config_file	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^config_file = open("%s\/configure.ac" % input_dir, 'r')$/;"	kind:variable	line:64
+conftest.py	../3rdparty/pybind11/tests/conftest.py	1;"	kind:file	line:1
+contour_landmarks	../python/demo.py	/^contour_landmarks = eos.fitting.ContourLandmarks.load($/;"	kind:variable	line:38
+contour_landmarks	../python/demo_bfm.py	/^contour_landmarks = eos.fitting.ContourLandmarks.load($/;"	kind:variable	line:46
+copyright	../3rdparty/pybind11/docs/conf.py	/^copyright = '2017, Wenzel Jakob'$/;"	kind:variable	line:56
+create	../3rdparty/pybind11/tools/clang/cindex.py	/^    def create(excludeDecls=False):$/;"	kind:member	line:2390
+create_and_destroy	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def create_and_destroy(*args):$/;"	kind:function	line:323
+cursor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def cursor(self):$/;"	kind:member	line:2576
+cursor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def cursor(self):$/;"	kind:member	line:3015
+d	../3rdparty/pybind11/tests/test_class.py	/^        d = m.HasOpNewDelBoth()$/;"	kind:variable	line:141
+d	../3rdparty/pybind11/tests/test_pytypes.py	/^        d = {"operator[object]": 1, "operator[char *]": 2}$/;"	kind:variable	line:129
+d	../3rdparty/pybind11/tools/mkdoc.py	/^def d(s):$/;"	kind:function	line:61
+default_role	../3rdparty/pybind11/docs/conf.py	/^default_role = 'any'$/;"	kind:variable	line:87
+demo.py	../python/demo.py	1;"	kind:file	line:1
+demo_bfm.py	../python/demo_bfm.py	1;"	kind:file	line:1
+derived	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^        derived = cls()$/;"	kind:variable	line:256
+description	../3rdparty/pybind11/setup.py	/^    description='Seamless operability between C++11 and Python',$/;"	kind:variable	line:41
+description	../setup.py	/^    description='Python bindings for eos - A lightweight 3D Morphable Face Model fitting library in modern C++11\/14',$/;"	kind:variable	line:94
+detector	../python/demo_bfm.py	/^detector = dlib.get_frontal_face_detector()$/;"	kind:variable	line:15
+diagnostics	../3rdparty/pybind11/tools/clang/cindex.py	/^    def diagnostics(self):$/;"	kind:member	line:2367
+diagnostics	../3rdparty/pybind11/tools/clang/cindex.py	/^    def diagnostics(self):$/;"	kind:member	line:2667
+directory	../3rdparty/pybind11/tools/clang/cindex.py	/^    def directory(self):$/;"	kind:member	line:2884
+disable_option	../3rdparty/pybind11/tools/clang/cindex.py	/^    def disable_option(self):$/;"	kind:member	line:395
+dispatch	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def dispatch(self):$/;"	kind:member	line:213
+dispatch	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def dispatch(self):$/;"	kind:member	line:217
+displayname	../3rdparty/pybind11/tools/clang/cindex.py	/^    def displayname(self):$/;"	kind:member	line:1406
+doc	../3rdparty/pybind11/tests/conftest.py	/^def doc():$/;"	kind:function	line:147
+double	../3rdparty/pybind11/tests/test_callbacks.py	/^        def double(self, val):$/;"	kind:member	line:32
+download_url	../3rdparty/pybind11/setup.py	/^    download_url='https:\/\/github.com\/wjakob\/pybind11\/tarball\/v' + __version__,$/;"	kind:variable	line:45
+dt_fmt	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def dt_fmt():$/;"	kind:function	line:24
+edge_topology	../python/demo.py	/^edge_topology = eos.morphablemodel.load_edge_topology($/;"	kind:variable	line:36
+edge_topology	../python/demo_bfm.py	/^edge_topology = eos.morphablemodel.load_edge_topology($/;"	kind:variable	line:44
+elapsed	../3rdparty/pybind11/docs/benchmark.py	/^        elapsed = (n2 - n1).total_seconds()$/;"	kind:variable	line:85
+element_count	../3rdparty/pybind11/tools/clang/cindex.py	/^    def element_count(self):$/;"	kind:member	line:1961
+element_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def element_type(self):$/;"	kind:member	line:1948
+end	../3rdparty/pybind11/tools/clang/cindex.py	/^    def end(self):$/;"	kind:member	line:256
+enum_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def enum_type(self):$/;"	kind:member	line:1518
+enum_value	../3rdparty/pybind11/tools/clang/cindex.py	/^    def enum_value(self):$/;"	kind:member	line:1531
+enumerations.py	../3rdparty/pybind11/tools/clang/enumerations.py	1;"	kind:file	line:1
+environ	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^environ = gtest_test_utils.environ$/;"	kind:variable	line:69
+environ	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^environ = gtest_test_utils.environ$/;"	kind:variable	line:60
+environ	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^environ = os.environ.copy()$/;"	kind:variable	line:45
+environ	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^environ = os.environ.copy()$/;"	kind:variable	line:166
+environ	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	/^environ = os.environ.copy()$/;"	kind:variable	line:62
+eos_python_dir	../python/demo_bfm.py	/^eos_python_dir = '\/home\/toby\/Documents\/toby-eos\/python'$/;"	kind:variable	line:10
+exclude_patterns	../3rdparty/pybind11/docs/conf.py	/^exclude_patterns = ['.build', 'release.rst']$/;"	kind:variable	line:83
+exclusions	../3rdparty/eigen/scripts/relicense.py	/^exclusions = set(['relicense.py'])$/;"	kind:variable	line:44
+expected_to_finish_	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^    expected_to_finish_ = true;$/;"	kind:variable	line:514
+expected_to_finish_	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	/^  expected_to_finish_ = false;$/;"	kind:variable	line:669
+ext_modules	../setup.py	/^    ext_modules=[CMakeExtension('eos')],$/;"	kind:variable	line:98
+extensions	../3rdparty/pybind11/docs/conf.py	/^extensions = ['breathe']$/;"	kind:variable	line:34
+extent	../3rdparty/pybind11/tools/clang/cindex.py	/^    def extent(self):$/;"	kind:member	line:1439
+extent	../3rdparty/pybind11/tools/clang/cindex.py	/^    def extent(self):$/;"	kind:member	line:3010
+extract	../3rdparty/pybind11/tools/mkdoc.py	/^def extract(filename, node, prefix):$/;"	kind:function	line:185
+f	../3rdparty/pybind11/tests/test_callbacks.py	/^    def f(*args, **kwargs):$/;"	kind:function	line:44
+f	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def f(self):$/;"	kind:member	line:122
+f	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def f(self):$/;"	kind:member	line:86
+file	../3rdparty/pybind11/tools/clang/cindex.py	/^    def file(self):$/;"	kind:member	line:198
+filename	../3rdparty/pybind11/tools/clang/cindex.py	/^    def filename(self):$/;"	kind:member	line:2889
+filenames	../3rdparty/pybind11/tools/mkdoc.py	/^    filenames = []$/;"	kind:variable	line:228
+fix_version	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^fix_version = version_values.group(3)$/;"	kind:variable	line:80
+fixits	../3rdparty/pybind11/tools/clang/cindex.py	/^    def fixits(self):$/;"	kind:member	line:343
+foo	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def foo(self):$/;"	kind:member	line:18
+fromDirectory	../3rdparty/pybind11/tools/clang/cindex.py	/^    def fromDirectory(buildDir):$/;"	kind:member	line:2950
+from_ast_file	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_ast_file(cls, filename, index=None):$/;"	kind:member	line:2541
+from_cursor_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_cursor_result(res, fn, args):$/;"	kind:member	line:1728
+from_cursor_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_cursor_result(res, fn, args):$/;"	kind:member	line:2823
+from_id	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_id(cls, id):$/;"	kind:member	line:553
+from_id	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_id(id):$/;"	kind:member	line:1768
+from_location	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_location(tu, location):$/;"	kind:member	line:1294
+from_locations	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_locations(start, end):$/;"	kind:member	line:244
+from_name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_name(translation_unit, file_name):$/;"	kind:member	line:2802
+from_offset	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_offset(tu, file, offset):$/;"	kind:member	line:188
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:1754
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:1797
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:1888
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:2152
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:2356
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:406
+from_param	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_param(self):$/;"	kind:member	line:539
+from_position	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_position(tu, file, line, column):$/;"	kind:member	line:180
+from_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_result(res, fn, args):$/;"	kind:member	line:156
+from_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_result(res, fn, args):$/;"	kind:member	line:1704
+from_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_result(res, fn, args):$/;"	kind:member	line:1982
+from_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_result(res, fn, args):$/;"	kind:member	line:2926
+from_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_result(res, fn, args):$/;"	kind:member	line:2943
+from_source	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_source(cls, filename, args=None, unsaved_files=None, options=0,$/;"	kind:member	line:2461
+from_value	../3rdparty/pybind11/tools/clang/cindex.py	/^    def from_value(value):$/;"	kind:member	line:492
+func	../3rdparty/pybind11/tests/test_pytypes.py	/^        def func(self, x, *args):$/;"	kind:member	line:132
+func1	../3rdparty/pybind11/tests/test_callbacks.py	/^    def func1():$/;"	kind:function	line:8
+func2	../3rdparty/pybind11/tests/test_callbacks.py	/^    def func2(a, b, c, d):$/;"	kind:function	line:11
+func3	../3rdparty/pybind11/tests/test_callbacks.py	/^    def func3(a):$/;"	kind:function	line:14
+functionList	../3rdparty/pybind11/tools/clang/cindex.py	/^functionList = [$/;"	kind:variable	line:3032
+function_exists	../3rdparty/pybind11/tools/clang/cindex.py	/^    def function_exists(self, name):$/;"	kind:member	line:3849
+fuse_gtest_files.py	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	1;"	kind:file	line:1
+gc_collect	../3rdparty/pybind11/tests/conftest.py	/^def gc_collect():$/;"	kind:function	line:181
+gen_gtest_pred_impl.py	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/gen_gtest_pred_impl.py	1;"	kind:file	line:1
+generate_doxygen_xml	../3rdparty/pybind11/docs/conf.py	/^def generate_doxygen_xml(app):$/;"	kind:function	line:316
+generate_dummy_code_boost	../3rdparty/pybind11/docs/benchmark.py	/^def generate_dummy_code_boost(nclasses=10):$/;"	kind:function	line:42
+generate_dummy_code_pybind11	../3rdparty/pybind11/docs/benchmark.py	/^def generate_dummy_code_pybind11(nclasses=10):$/;"	kind:function	line:10
+get	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def get(self):$/;"	kind:member	line:176
+get	../3rdparty/pybind11/tests/test_factory_constructors.py	/^        def get(self):$/;"	kind:member	line:215
+getAllCompileCommands	../3rdparty/pybind11/tools/clang/cindex.py	/^    def getAllCompileCommands(self):$/;"	kind:member	line:2969
+getCompileCommands	../3rdparty/pybind11/tools/clang/cindex.py	/^    def getCompileCommands(self, filename):$/;"	kind:member	line:2961
+get_align	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_align(self):$/;"	kind:member	line:2083
+get_all_kinds	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_all_kinds():$/;"	kind:member	line:572
+get_arguments	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_arguments(self):$/;"	kind:member	line:1616
+get_array_element_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_array_element_type(self):$/;"	kind:member	line:2060
+get_array_size	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_array_size(self):$/;"	kind:member	line:2066
+get_bitfield_width	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_bitfield_width(self):$/;"	kind:member	line:1697
+get_canonical	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_canonical(self):$/;"	kind:member	line:1996
+get_children	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_children(self):$/;"	kind:member	line:1643
+get_cindex_library	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_cindex_library(self):$/;"	kind:member	line:3838
+get_class_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_class_type(self):$/;"	kind:member	line:2072
+get_declaration	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_declaration(self):$/;"	kind:member	line:2048
+get_definition	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_definition(self):$/;"	kind:member	line:1371
+get_extent	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_extent(self, filename, locations):$/;"	kind:member	line:2626
+get_field_offsetof	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_field_offsetof(self):$/;"	kind:member	line:1679
+get_fields	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_fields(self):$/;"	kind:member	line:2108
+get_file	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_file(self, filename):$/;"	kind:member	line:2605
+get_filename	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_filename(self):$/;"	kind:member	line:3819
+get_include	../3rdparty/pybind11/pybind11/__init__.py	/^def get_include(*args, **kwargs):$/;"	kind:function	line:4
+get_includes	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_includes(self):$/;"	kind:member	line:2585
+get_location	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_location(self, filename, position):$/;"	kind:member	line:2610
+get_movable	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_movable(self, a, b):$/;"	kind:member	line:171
+get_movable	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_movable(self, a, b):$/;"	kind:member	line:182
+get_named_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_named_type(self):$/;"	kind:member	line:2078
+get_noncopyable	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_noncopyable(self, a, b):$/;"	kind:member	line:166
+get_noncopyable	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_noncopyable(self, a, b):$/;"	kind:member	line:177
+get_num_template_arguments	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_num_template_arguments(self):$/;"	kind:member	line:1622
+get_offset	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_offset(self, fieldname):$/;"	kind:member	line:2095
+get_pointee	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_pointee(self):$/;"	kind:member	line:2042
+get_ref_qualifier	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_ref_qualifier(self):$/;"	kind:member	line:2101
+get_result	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_result(self):$/;"	kind:member	line:2054
+get_size	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_size(self):$/;"	kind:member	line:2089
+get_string1	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_string1(self):$/;"	kind:member	line:21
+get_string2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def get_string2(self):$/;"	kind:member	line:31
+get_template_argument_kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_template_argument_kind(self, num):$/;"	kind:member	line:1626
+get_template_argument_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_template_argument_type(self, num):$/;"	kind:member	line:1631
+get_template_argument_unsigned_value	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_template_argument_unsigned_value(self, num):$/;"	kind:member	line:1639
+get_template_argument_value	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_template_argument_value(self, num):$/;"	kind:member	line:1635
+get_tokens	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_tokens(self):$/;"	kind:member	line:1671
+get_tokens	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_tokens(self, locations=None, extent=None):$/;"	kind:member	line:2782
+get_tokens	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_tokens(tu, extent):$/;"	kind:member	line:446
+get_usr	../3rdparty/pybind11/tools/clang/cindex.py	/^    def get_usr(self):$/;"	kind:member	line:1381
+gtest_break_on_failure_unittest.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	1;"	kind:file	line:1
+gtest_catch_exceptions_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	1;"	kind:file	line:1
+gtest_color_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	1;"	kind:file	line:1
+gtest_env_var_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	1;"	kind:file	line:1
+gtest_filter_unittest.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	1;"	kind:file	line:1
+gtest_help_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	1;"	kind:file	line:1
+gtest_list_tests_unittest.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	1;"	kind:file	line:1
+gtest_output_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	1;"	kind:file	line:1
+gtest_shuffle_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	1;"	kind:file	line:1
+gtest_test_utils.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_test_utils.py	1;"	kind:file	line:1
+gtest_throw_on_failure_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	1;"	kind:file	line:1
+gtest_uninitialized_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	1;"	kind:file	line:1
+gtest_xml_outfiles_test.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	1;"	kind:file	line:1
+gtest_xml_output_unittest.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	1;"	kind:file	line:1
+gtest_xml_test_utils.py	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	1;"	kind:file	line:1
+hash	../3rdparty/pybind11/tools/clang/cindex.py	/^    def hash(self):$/;"	kind:member	line:1565
+headers	../3rdparty/pybind11/setup.py	/^    headers = [$/;"	kind:variable	line:14
+headers	../3rdparty/pybind11/setup.py	/^    headers = []$/;"	kind:variable	line:12
+headers	../3rdparty/pybind11/setup.py	/^    headers=headers,$/;"	kind:variable	line:48
+highlight_language	../3rdparty/pybind11/docs/conf.py	/^highlight_language = 'cpp'$/;"	kind:variable	line:313
+html_context	../3rdparty/pybind11/docs/conf.py	/^    html_context = {$/;"	kind:variable	line:125
+html_context	../3rdparty/pybind11/docs/conf.py	/^    html_context = {$/;"	kind:variable	line:131
+html_static_path	../3rdparty/pybind11/docs/conf.py	/^html_static_path = ['_static']$/;"	kind:variable	line:166
+html_theme	../3rdparty/pybind11/docs/conf.py	/^    html_theme = 'sphinx_rtd_theme'$/;"	kind:variable	line:122
+html_theme_path	../3rdparty/pybind11/docs/conf.py	/^    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]$/;"	kind:variable	line:123
+htmlhelp_basename	../3rdparty/pybind11/docs/conf.py	/^htmlhelp_basename = 'pybind11doc'$/;"	kind:variable	line:229
+identifying_attribute	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_test_utils.py	/^  identifying_attribute = {$/;"	kind:variable	line:110
+image	../python/demo.py	/^image = cv2.imread('..\/examples\/data\/image_0010.png')$/;"	kind:variable	line:47
+image	../python/demo_bfm.py	/^image = cv2.imread('..\/share\/obama.jpg')$/;"	kind:variable	line:57
+image_height	../python/demo.py	/^image_height = 1024$/;"	kind:variable	line:30
+image_height	../python/demo_bfm.py	/^image_height = img.shape[0]$/;"	kind:variable	line:37
+image_width	../python/demo.py	/^image_width = 1280  # Make sure to adjust these when using your own images!$/;"	kind:variable	line:29
+image_width	../python/demo_bfm.py	/^image_width = img.shape[1]$/;"	kind:variable	line:38
+img	../python/demo_bfm.py	/^    img = cv2.circle(img, (landmark[0], landmark[1]), 20, (0,0,255), -1)$/;"	kind:variable	line:29
+img	../python/demo_bfm.py	/^img = cv2.imread(img_path)$/;"	kind:variable	line:13
+img_path	../python/demo_bfm.py	/^img_path = '..\/share\/obama.jpg'$/;"	kind:variable	line:12
+initialize_options	../setup.py	/^    def initialize_options(self):$/;"	kind:member	line:35
+input_dir	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^  input_dir = sys.argv[1]$/;"	kind:variable	line:60
+isKindInformative	../3rdparty/pybind11/tools/clang/cindex.py	/^    def isKindInformative(self):$/;"	kind:member	line:2245
+isKindOptional	../3rdparty/pybind11/tools/clang/cindex.py	/^    def isKindOptional(self):$/;"	kind:member	line:2236
+isKindPlaceHolder	../3rdparty/pybind11/tools/clang/cindex.py	/^    def isKindPlaceHolder(self):$/;"	kind:member	line:2242
+isKindResultType	../3rdparty/pybind11/tools/clang/cindex.py	/^    def isKindResultType(self):$/;"	kind:member	line:2248
+isKindTypedText	../3rdparty/pybind11/tools/clang/cindex.py	/^    def isKindTypedText(self):$/;"	kind:member	line:2239
+is_anonymous	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_anonymous(self):$/;"	kind:member	line:1683
+is_attribute	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_attribute(self):$/;"	kind:member	line:592
+is_bitfield	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_bitfield(self):$/;"	kind:member	line:1691
+is_const_method	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_const_method(self):$/;"	kind:member	line:1315
+is_const_qualified	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_const_qualified(self):$/;"	kind:member	line:2008
+is_converting_constructor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_converting_constructor(self):$/;"	kind:member	line:1321
+is_copy_constructor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_copy_constructor(self):$/;"	kind:member	line:1326
+is_declaration	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_declaration(self):$/;"	kind:member	line:576
+is_default_constructor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_default_constructor(self):$/;"	kind:member	line:1331
+is_default_method	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_default_method(self):$/;"	kind:member	line:1341
+is_definition	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_definition(self):$/;"	kind:member	line:1308
+is_expression	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_expression(self):$/;"	kind:member	line:584
+is_function_variadic	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_function_variadic(self):$/;"	kind:member	line:2032
+is_input_file	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_input_file(self):$/;"	kind:member	line:2846
+is_invalid	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_invalid(self):$/;"	kind:member	line:596
+is_move_constructor	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_move_constructor(self):$/;"	kind:member	line:1336
+is_mutable_field	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_mutable_field(self):$/;"	kind:member	line:1347
+is_pod	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_pod(self):$/;"	kind:member	line:2038
+is_preprocessing	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_preprocessing(self):$/;"	kind:member	line:604
+is_pure_virtual_method	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_pure_virtual_method(self):$/;"	kind:member	line:1353
+is_reference	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_reference(self):$/;"	kind:member	line:580
+is_restrict_qualified	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_restrict_qualified(self):$/;"	kind:member	line:2024
+is_statement	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_statement(self):$/;"	kind:member	line:588
+is_static_method	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_static_method(self):$/;"	kind:member	line:1359
+is_translation_unit	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_translation_unit(self):$/;"	kind:member	line:600
+is_unexposed	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_unexposed(self):$/;"	kind:member	line:608
+is_virtual_method	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_virtual_method(self):$/;"	kind:member	line:1365
+is_volatile_qualified	../3rdparty/pybind11/tools/clang/cindex.py	/^    def is_volatile_qualified(self):$/;"	kind:member	line:2016
+isclose	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def isclose(a, b, rel_tol=1e-05, abs_tol=0.0):$/;"	kind:function	line:6
+isomap	../python/demo_bfm.py	/^isomap = eos.render.extract_texture(mesh, pose,image, isomap_resolution=512)$/;"	kind:variable	line:58
+isomap_simple	../python/demo.py	/^isomap_simple = eos.render.extract_texture($/;"	kind:variable	line:48
+job_count	../3rdparty/pybind11/tools/mkdoc.py	/^job_count = cpu_count()$/;"	kind:variable	line:56
+job_semaphore	../3rdparty/pybind11/tools/mkdoc.py	/^job_semaphore = Semaphore(job_count)$/;"	kind:variable	line:57
+keywords	../3rdparty/pybind11/setup.py	/^    keywords='C++11, Python bindings',$/;"	kind:variable	line:64
+kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def kind(self):$/;"	kind:member	line:1393
+kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def kind(self):$/;"	kind:member	line:1905
+kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def kind(self):$/;"	kind:member	line:2223
+kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def kind(self):$/;"	kind:member	line:2331
+kind	../3rdparty/pybind11/tools/clang/cindex.py	/^    def kind(self):$/;"	kind:member	line:3000
+landmark_ids	../python/demo.py	/^landmark_ids = list(map(str, range(1, 69)))$/;"	kind:variable	line:28
+landmark_ids	../python/demo_bfm.py	/^landmark_ids = list(map(str, range(1, 69)))$/;"	kind:variable	line:36
+landmark_mapper	../python/demo.py	/^landmark_mapper = eos.core.LandmarkMapper('..\/share\/ibug_to_sfm.txt')$/;"	kind:variable	line:35
+landmark_mapper	../python/demo_bfm.py	/^landmark_mapper = eos.core.LandmarkMapper('..\/share\/ibug_bfm.txt')$/;"	kind:variable	line:43
+landmarks	../python/demo.py	/^landmarks = read_pts('..\/examples\/data\/image_0010.pts')$/;"	kind:variable	line:26
+landmarks	../python/demo_bfm.py	/^landmarks = [[[part.x, part.y] for part in shape.parts()]$/;"	kind:variable	line:25
+language	../3rdparty/pybind11/docs/conf.py	/^language = None$/;"	kind:variable	line:73
+latex_documents	../3rdparty/pybind11/docs/conf.py	/^latex_documents = [$/;"	kind:variable	line:250
+latex_elements	../3rdparty/pybind11/docs/conf.py	/^latex_elements = {$/;"	kind:variable	line:233
+lexical_parent	../3rdparty/pybind11/tools/clang/cindex.py	/^    def lexical_parent(self):$/;"	kind:member	line:1581
+lib	../3rdparty/pybind11/tools/clang/cindex.py	/^    def lib(self):$/;"	kind:member	line:3813
+lib	../3rdparty/pybind11/tools/libsize.py	/^lib = sys.argv[1]$/;"	kind:variable	line:13
+library_file	../3rdparty/pybind11/tools/clang/cindex.py	/^    library_file = None$/;"	kind:variable	line:3766
+library_path	../3rdparty/pybind11/tools/clang/cindex.py	/^    library_path = None$/;"	kind:variable	line:3765
+libsize	../3rdparty/pybind11/tools/libsize.py	/^libsize = os.path.getsize(lib)$/;"	kind:variable	line:19
+libsize.py	../3rdparty/pybind11/tools/libsize.py	1;"	kind:file	line:1
+license	../3rdparty/pybind11/setup.py	/^    license='BSD',$/;"	kind:variable	line:47
+license	../setup.py	/^    license='Apache-2.0',$/;"	kind:variable	line:97
+line	../3rdparty/pybind11/tools/clang/cindex.py	/^    def line(self):$/;"	kind:member	line:203
+loaded	../3rdparty/pybind11/tools/clang/cindex.py	/^    loaded = False$/;"	kind:variable	line:3768
+location	../3rdparty/pybind11/tools/clang/cindex.py	/^    def location(self):$/;"	kind:member	line:1428
+location	../3rdparty/pybind11/tools/clang/cindex.py	/^    def location(self):$/;"	kind:member	line:3005
+location	../3rdparty/pybind11/tools/clang/cindex.py	/^    def location(self):$/;"	kind:member	line:319
+long_description	../setup.py	/^    long_description='',$/;"	kind:variable	line:95
+lookup_function	../3rdparty/eigen/debug/gdb/printers.py	/^def lookup_function(val):$/;"	kind:function	line:192
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:277
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:296
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:306
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:319
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:341
+lucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def lucky_number(self):$/;"	kind:member	line:364
+main	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/fuse_gtest_files.py	/^def main():$/;"	kind:function	line:236
+main	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	/^def main(argv):$/;"	kind:function	line:831
+main	../3rdparty/pybind11/pybind11/__main__.py	/^def main():$/;"	kind:function	line:19
+major_version	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^major_version = version_values.group(1)$/;"	kind:variable	line:78
+man_pages	../3rdparty/pybind11/docs/conf.py	/^man_pages = [$/;"	kind:variable	line:280
+mangled_name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def mangled_name(self):$/;"	kind:member	line:1420
+master_doc	../3rdparty/pybind11/docs/conf.py	/^master_doc = 'index'$/;"	kind:variable	line:52
+minor_version	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^minor_version = version_values.group(2)$/;"	kind:variable	line:79
+mkdoc.py	../3rdparty/pybind11/tools/mkdoc.py	1;"	kind:file	line:1
+model	../python/demo.py	/^model = eos.morphablemodel.load_model("..\/share\/sfm_shape_3448.bin")$/;"	kind:variable	line:32
+model	../python/demo_bfm.py	/^model = eos.morphablemodel.load_model("..\/share\/bfm2009.bin")$/;"	kind:variable	line:40
+model_contour	../python/demo.py	/^model_contour = eos.fitting.ModelContour.load('..\/share\/model_contours.json')$/;"	kind:variable	line:40
+model_contour	../python/demo_bfm.py	/^model_contour = eos.fitting.ModelContour.load('..\/share\/model_contours_bfm.json')$/;"	kind:variable	line:48
+msg	../3rdparty/pybind11/tests/conftest.py	/^def msg():$/;"	kind:function	line:160
+n1	../3rdparty/pybind11/docs/benchmark.py	/^        n1 = dt.datetime.now()$/;"	kind:variable	line:80
+n2	../3rdparty/pybind11/docs/benchmark.py	/^        n2 = dt.datetime.now()$/;"	kind:variable	line:84
+name	../3rdparty/pybind11/setup.py	/^    name='pybind11',$/;"	kind:variable	line:39
+name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def name(self):$/;"	kind:member	line:1758
+name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def name(self):$/;"	kind:member	line:2807
+name	../3rdparty/pybind11/tools/clang/cindex.py	/^    def name(self):$/;"	kind:member	line:543
+name	../setup.py	/^    name='eos-py',$/;"	kind:variable	line:90
+name_ctr	../3rdparty/pybind11/tools/mkdoc.py	/^    name_ctr = 1$/;"	kind:variable	line:288
+name_prev	../3rdparty/pybind11/tools/mkdoc.py	/^    name_prev = None$/;"	kind:variable	line:289
+nargs	../3rdparty/pybind11/docs/benchmark.py	/^nargs = 4  # Arguments per function$/;"	kind:variable	line:7
+nclasses	../3rdparty/pybind11/docs/benchmark.py	/^        nclasses = 2 ** i$/;"	kind:variable	line:77
+next	../3rdparty/eigen/debug/gdb/printers.py	/^		def next(self):$/;"	kind:member	line:158
+next	../3rdparty/eigen/debug/gdb/printers.py	/^		def next(self):$/;"	kind:member	line:92
+nfns	../3rdparty/pybind11/docs/benchmark.py	/^nfns = 4  # Functions per class$/;"	kind:variable	line:6
+num_chunks	../3rdparty/pybind11/tools/clang/cindex.py	/^    def num_chunks(self):$/;"	kind:member	line:2289
+objc_type_encoding	../3rdparty/pybind11/tools/clang/cindex.py	/^    def objc_type_encoding(self):$/;"	kind:member	line:1556
+offset	../3rdparty/pybind11/tools/clang/cindex.py	/^    def offset(self):$/;"	kind:member	line:213
+oldsize	../3rdparty/pybind11/tools/libsize.py	/^        oldsize = int(sf.readline())$/;"	kind:variable	line:25
+on_rtd	../3rdparty/pybind11/docs/conf.py	/^on_rtd = os.environ.get('READTHEDOCS', None) == 'True'$/;"	kind:variable	line:118
+opening_string	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^opening_string = config_file.read(buffer_size)$/;"	kind:variable	line:66
+option	../3rdparty/pybind11/tools/clang/cindex.py	/^    def option(self):$/;"	kind:member	line:390
+output	../3rdparty/pybind11/tools/mkdoc.py	/^output = []$/;"	kind:variable	line:59
+output_dir	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^  output_dir = sys.argv[2]$/;"	kind:variable	line:61
+packages	../3rdparty/pybind11/setup.py	/^    packages=['pybind11'],$/;"	kind:variable	line:46
+packed_dtype	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def packed_dtype():$/;"	kind:function	line:20
+packed_dtype_fmt	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def packed_dtype_fmt():$/;"	kind:function	line:38
+param_tests_present	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^param_tests_present = None$/;"	kind:variable	line:162
+parse	../3rdparty/pybind11/tools/clang/cindex.py	/^    def parse(self, path, args=None, unsaved_files=None, options = 0):$/;"	kind:member	line:2405
+partial_dtype_fmt	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def partial_dtype_fmt():$/;"	kind:function	line:49
+partial_ld_offset	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def partial_ld_offset():$/;"	kind:function	line:44
+partial_nested_fmt	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def partial_nested_fmt():$/;"	kind:function	line:55
+predictor	../python/demo_bfm.py	/^predictor = dlib.shape_predictor('..\/share\/shape_predictor_68_face_landmarks.dat')$/;"	kind:variable	line:16
+pretty_printers_dict	../3rdparty/eigen/debug/gdb/printers.py	/^pretty_printers_dict = {}$/;"	kind:variable	line:212
+primary_domain	../3rdparty/pybind11/docs/conf.py	/^primary_domain = 'cpp'$/;"	kind:variable	line:312
+print_includes	../3rdparty/pybind11/pybind11/__main__.py	/^def print_includes():$/;"	kind:function	line:10
+printers.py	../3rdparty/eigen/debug/gdb/printers.py	1;"	kind:file	line:1
+priority	../3rdparty/pybind11/tools/clang/cindex.py	/^    def priority(self):$/;"	kind:member	line:2298
+process_comment	../3rdparty/pybind11/tools/mkdoc.py	/^def process_comment(comment):$/;"	kind:function	line:75
+project	../3rdparty/pybind11/docs/conf.py	/^project = 'pybind11'$/;"	kind:variable	line:55
+pump.py	../3rdparty/nanoflann/tests/gtest-1.7.0/scripts/pump.py	1;"	kind:file	line:1
+pure_virtual	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def pure_virtual(self):$/;"	kind:member	line:24
+pycatch	../3rdparty/pybind11/tests/test_exceptions.py	/^    def pycatch(exctype, f, *args):$/;"	kind:function	line:124
+pytest_assertrepr_compare	../3rdparty/pybind11/tests/conftest.py	/^def pytest_assertrepr_compare(op, left, right):$/;"	kind:function	line:166
+pytest_namespace	../3rdparty/pybind11/tests/conftest.py	/^def pytest_namespace():$/;"	kind:function	line:188
+pytestmark	../3rdparty/pybind11/tests/test_buffers.py	/^pytestmark = pytest.requires_numpy$/;"	kind:variable	line:6
+pytestmark	../3rdparty/pybind11/tests/test_eigen.py	/^pytestmark = pytest.requires_eigen_and_numpy$/;"	kind:variable	line:4
+pytestmark	../3rdparty/pybind11/tests/test_numpy_array.py	/^pytestmark = pytest.requires_numpy$/;"	kind:variable	line:4
+pytestmark	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^pytestmark = pytest.requires_numpy$/;"	kind:variable	line:5
+pytestmark	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^pytestmark = pytest.requires_numpy$/;"	kind:variable	line:4
+ranges	../3rdparty/pybind11/tools/clang/cindex.py	/^    def ranges(self):$/;"	kind:member	line:327
+raw_comment	../3rdparty/pybind11/tools/clang/cindex.py	/^    def raw_comment(self):$/;"	kind:member	line:1612
+read	../3rdparty/pybind11/tools/clang/cindex.py	/^    def read(self, path):$/;"	kind:member	line:2401
+read_pts	../python/demo.py	/^def read_pts(filename):$/;"	kind:function	line:10
+ref	../3rdparty/pybind11/tests/test_eigen.py	/^    ref = np.array([[ 0.,  3,  0,  0,  0, 11],$/;"	kind:variable	line:10
+referenced	../3rdparty/pybind11/tools/clang/cindex.py	/^    def referenced(self):$/;"	kind:member	line:1596
+register	../3rdparty/pybind11/tools/clang/cindex.py	/^    def register(item):$/;"	kind:function	line:3758
+register	../3rdparty/pybind11/tools/clang/cindex.py	/^    def register(value, name):$/;"	kind:member	line:502
+register_eigen_printers	../3rdparty/eigen/debug/gdb/printers.py	/^def register_eigen_printers(obj):$/;"	kind:function	line:185
+register_enumerations	../3rdparty/pybind11/tools/clang/cindex.py	/^def register_enumerations():$/;"	kind:function	line:3857
+register_function	../3rdparty/pybind11/tools/clang/cindex.py	/^def register_function(lib, item, ignore_errors):$/;"	kind:function	line:3730
+register_functions	../3rdparty/pybind11/tools/clang/cindex.py	/^def register_functions(lib, ignore_errors):$/;"	kind:function	line:3751
+release	../3rdparty/pybind11/docs/conf.py	/^release = '2.2.dev0'$/;"	kind:variable	line:66
+relicense.py	../3rdparty/eigen/scripts/relicense.py	1;"	kind:file	line:1
+reparse	../3rdparty/pybind11/tools/clang/cindex.py	/^    def reparse(self, unsaved_files=None, options=0):$/;"	kind:member	line:2686
+require_implicit	../3rdparty/pybind11/tests/test_builtin_casters.py	/^    def require_implicit(v):$/;"	kind:function	line:274
+result_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def result_type(self):$/;"	kind:member	line:1496
+results	../3rdparty/pybind11/tools/clang/cindex.py	/^    def results(self):$/;"	kind:member	line:2363
+rootdir	../3rdparty/eigen/scripts/relicense.py	/^rootdir = sys.argv[1]$/;"	kind:variable	line:51
+run	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def run(self, value):$/;"	kind:member	line:13
+run	../3rdparty/pybind11/tools/mkdoc.py	/^    def run(self):$/;"	kind:member	line:216
+run	../setup.py	/^    def run(self):$/;"	kind:member	line:41
+run_bool	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def run_bool(self):$/;"	kind:member	line:17
+sanitize_name	../3rdparty/pybind11/tools/mkdoc.py	/^def sanitize_name(name):$/;"	kind:function	line:65
+save	../3rdparty/pybind11/tools/clang/cindex.py	/^    def save(self, filename):$/;"	kind:member	line:2715
+save	../3rdparty/pybind11/tools/libsize.py	/^save = sys.argv[2]$/;"	kind:variable	line:14
+say_something	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def say_something(self, times):$/;"	kind:member	line:335
+say_something	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def say_something(self, times):$/;"	kind:member	line:351
+say_something	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def say_something(self, times):$/;"	kind:member	line:358
+semantic_parent	../3rdparty/pybind11/tools/clang/cindex.py	/^    def semantic_parent(self):$/;"	kind:member	line:1573
+setUp	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def setUp(self):$/;"	kind:member	line:346
+setUp	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def setUp(self):$/;"	kind:member	line:172
+setUp	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def setUp(self):$/;"	kind:member	line:67
+set_compatibility_check	../3rdparty/pybind11/tools/clang/cindex.py	/^    def set_compatibility_check(check_status):$/;"	kind:member	line:3789
+set_library_file	../3rdparty/pybind11/tools/clang/cindex.py	/^    def set_library_file(filename):$/;"	kind:member	line:3780
+set_library_path	../3rdparty/pybind11/tools/clang/cindex.py	/^    def set_library_path(path):$/;"	kind:member	line:3771
+setup	../3rdparty/pybind11/docs/conf.py	/^def setup(app):$/;"	kind:function	line:330
+setup.py	../3rdparty/pybind11/setup.py	1;"	kind:file	line:1
+setup.py	../setup.py	1;"	kind:file	line:1
+severity	../3rdparty/pybind11/tools/clang/cindex.py	/^    def severity(self):$/;"	kind:member	line:315
+shapes	../python/demo_bfm.py	/^shapes = [predictor(img, box) for box in boxes]$/;"	kind:variable	line:24
+simple_dtype	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def simple_dtype():$/;"	kind:function	line:12
+simple_dtype_fmt	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def simple_dtype_fmt():$/;"	kind:function	line:32
+size	../3rdparty/pybind11/docs/benchmark.py	/^        size = os.stat('test.so').st_size$/;"	kind:variable	line:86
+source_suffix	../3rdparty/pybind11/docs/conf.py	/^source_suffix = '.rst'$/;"	kind:variable	line:46
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:1398
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:1821
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:2124
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:2207
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:2581
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:2992
+spelling	../3rdparty/pybind11/tools/clang/cindex.py	/^    def spelling(self):$/;"	kind:member	line:323
+start	../3rdparty/pybind11/tools/clang/cindex.py	/^    def start(self):$/;"	kind:member	line:248
+stderr	../3rdparty/pybind11/tests/conftest.py	/^    def stderr(self):$/;"	kind:member	line:101
+storage_class	../3rdparty/pybind11/tools/clang/cindex.py	/^    def storage_class(self):$/;"	kind:member	line:1450
+string	../3rdparty/pybind11/tools/clang/cindex.py	/^    def string(self):$/;"	kind:member	line:2227
+string	../3rdparty/pybind11/tools/clang/cindex.py	/^    def string(self):$/;"	kind:member	line:2335
+strip_comments	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def strip_comments(s):$/;"	kind:function	line:330
+sub	../3rdparty/pybind11/tests/test_pytypes.py	/^        sub = SubTestObject()$/;"	kind:variable	line:130
+suppress	../3rdparty/pybind11/tests/conftest.py	/^def suppress(exception):$/;"	kind:function	line:173
+tearDown	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def tearDown(self):$/;"	kind:member	line:75
+templates_path	../3rdparty/pybind11/docs/conf.py	/^templates_path = ['.templates']$/;"	kind:variable	line:41
+test.py	../3rdparty/pybind11/tests/test_cmake_build/test.py	1;"	kind:file	line:1
+testAliasesOfYesAndNo	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^  def testAliasesOfYesAndNo(self):$/;"	kind:member	line:115
+testBadFilter	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testBadFilter(self):$/;"	kind:member	line:379
+testBreakOnFailureOverridesThrowOnFailure	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def testBreakOnFailureOverridesThrowOnFailure(self):$/;"	kind:member	line:187
+testCatchExceptionsDoesNotInterfere	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^    def testCatchExceptionsDoesNotInterfere(self):$/;"	kind:function	line:199
+testCatchesCxxExceptionsInFixtureConstructor	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInFixtureConstructor(self):$/;"	kind:member	line:123
+testCatchesCxxExceptionsInFixtureDestructor	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^    def testCatchesCxxExceptionsInFixtureDestructor(self):$/;"	kind:function	line:136
+testCatchesCxxExceptionsInSetUp	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInSetUp(self):$/;"	kind:member	line:173
+testCatchesCxxExceptionsInSetUpTestCase	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInSetUpTestCase(self):$/;"	kind:member	line:145
+testCatchesCxxExceptionsInTearDown	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInTearDown(self):$/;"	kind:member	line:191
+testCatchesCxxExceptionsInTearDownTestCase	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInTearDownTestCase(self):$/;"	kind:member	line:168
+testCatchesCxxExceptionsInTestBody	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesCxxExceptionsInTestBody(self):$/;"	kind:member	line:202
+testCatchesNonStdCxxExceptions	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testCatchesNonStdCxxExceptions(self):$/;"	kind:member	line:216
+testCatchesSehExceptionsWithCxxExceptionsDisabled	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^    def testCatchesSehExceptionsWithCxxExceptionsDisabled(self):$/;"	kind:member	line:110
+testCatchesSehExceptionsWithCxxExceptionsEnabled	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^    def testCatchesSehExceptionsWithCxxExceptionsEnabled(self):$/;"	kind:member	line:107
+testDefaultBehavior	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def testDefaultBehavior(self):$/;"	kind:member	line:144
+testDefaultBehavior	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testDefaultBehavior(self):$/;"	kind:member	line:358
+testDefaultBehavior	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^  def testDefaultBehavior(self):$/;"	kind:member	line:173
+testDefaultBehavior	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^  def testDefaultBehavior(self):$/;"	kind:member	line:128
+testDefaultBehaviorWithShards	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testDefaultBehaviorWithShards(self):$/;"	kind:member	line:363
+testDefaultOutputFile	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def testDefaultOutputFile(self):$/;"	kind:member	line:201
+testEmptyFilter	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testEmptyFilter(self):$/;"	kind:member	line:372
+testEmptyXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def testEmptyXmlOutput(self):$/;"	kind:member	line:167
+testEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def testEnvVar(self):$/;"	kind:member	line:151
+testEnvVarAffectsFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_env_var_test.py	/^  def testEnvVarAffectsFlag(self):$/;"	kind:member	line:84
+testEnvVarAndFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^  def testEnvVarAndFlag(self):$/;"	kind:member	line:108
+testEnvVarOnly	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^  def testEnvVarOnly(self):$/;"	kind:member	line:97
+testExitCodeAndOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_uninitialized_test.py	/^  def testExitCodeAndOutput(self):$/;"	kind:member	line:65
+testFilterByTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFilterByTest(self):$/;"	kind:member	line:411
+testFilterByTestCase	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFilterByTestCase(self):$/;"	kind:member	line:401
+testFilterDisabledTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFilterDisabledTests(self):$/;"	kind:member	line:416
+testFilterWithoutDot	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFilterWithoutDot(self):$/;"	kind:member	line:458
+testFilteredTestXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def testFilteredTestXmlOutput(self):$/;"	kind:member	line:252
+testFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def testFlag(self):$/;"	kind:member	line:161
+testFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^  def testFlag(self):$/;"	kind:member	line:180
+testFlagOnly	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^  def testFlagOnly(self):$/;"	kind:member	line:86
+testFlagOverridesEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_break_on_failure_unittest.py	/^  def testFlagOverridesEnvVar(self):$/;"	kind:member	line:171
+testFlagOverridesEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFlagOverridesEnvVar(self):$/;"	kind:member	line:563
+testFullName	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testFullName(self):$/;"	kind:member	line:385
+testNegativeFilters	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testNegativeFilters(self):$/;"	kind:member	line:511
+testNoEnvVarNoFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_color_test.py	/^  def testNoEnvVarNoFlag(self):$/;"	kind:member	line:71
+testNonEmptyXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^    def testNonEmptyXmlOutput(self):$/;"	kind:member	line:160
+testOutfile1	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def testOutfile1(self):$/;"	kind:member	line:92
+testOutfile2	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_outfiles_test.py	/^  def testOutfile2(self):$/;"	kind:member	line:95
+testOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^  def testOutput(self):$/;"	kind:member	line:278
+testOverrideNonFilterFlags	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^  def testOverrideNonFilterFlags(self):$/;"	kind:member	line:190
+testPrintsHelpWithFullFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithFullFlag(self):$/;"	kind:member	line:139
+testPrintsHelpWithIncorrectFlagStyle	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithIncorrectFlagStyle(self):$/;"	kind:member	line:154
+testPrintsHelpWithQuestionFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithQuestionFlag(self):$/;"	kind:member	line:145
+testPrintsHelpWithShortFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithShortFlag(self):$/;"	kind:member	line:142
+testPrintsHelpWithUnrecognizedGoogleTestFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithUnrecognizedGoogleTestFlag(self):$/;"	kind:member	line:151
+testPrintsHelpWithWindowsStyleQuestionFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testPrintsHelpWithWindowsStyleQuestionFlag(self):$/;"	kind:member	line:148
+testRunsTestsWithGtestInternalFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testRunsTestsWithGtestInternalFlag(self):$/;"	kind:member	line:164
+testRunsTestsWithoutHelpFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_help_test.py	/^  def testRunsTestsWithoutHelpFlag(self):$/;"	kind:member	line:158
+testShardStatusFileIsCreated	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testShardStatusFileIsCreated(self):$/;"	kind:member	line:573
+testShardStatusFileIsCreatedWithListTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testShardStatusFileIsCreatedWithListTests(self):$/;"	kind:member	line:587
+testShardingWorksWithDeathTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^    def testShardingWorksWithDeathTests(self):$/;"	kind:function	line:611
+testShuffleChangesTestCaseOrder	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleChangesTestCaseOrder(self):$/;"	kind:member	line:189
+testShuffleChangesTestOrder	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleChangesTestOrder(self):$/;"	kind:member	line:181
+testShuffleDoesNotCreateNewTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleDoesNotCreateNewTest(self):$/;"	kind:member	line:216
+testShuffleDoesNotInterleaveTestCases	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleDoesNotInterleaveTestCases(self):$/;"	kind:member	line:255
+testShuffleDoesNotRepeatTest	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleDoesNotRepeatTest(self):$/;"	kind:member	line:202
+testShuffleGeneratesNewOrderInEachIteration	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleGeneratesNewOrderInEachIteration(self):$/;"	kind:member	line:293
+testShuffleIncludesAllTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleIncludesAllTests(self):$/;"	kind:member	line:226
+testShuffleLeavesDeathTestsAtFront	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleLeavesDeathTestsAtFront(self):$/;"	kind:member	line:236
+testShufflePreservesNumberOfTests	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShufflePreservesNumberOfTests(self):$/;"	kind:member	line:175
+testShuffleRestoresOrderAfterEachIteration	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleRestoresOrderAfterEachIteration(self):$/;"	kind:member	line:261
+testShuffleShardedTestsPreservesPartition	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_shuffle_test.py	/^  def testShuffleShardedTestsPreservesPartition(self):$/;"	kind:member	line:305
+testSuppressedXmlOutput	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def testSuppressedXmlOutput(self):$/;"	kind:member	line:223
+testThreePatterns	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testThreePatterns(self):$/;"	kind:member	line:482
+testThrowOnFailureEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^  def testThrowOnFailureEnvVar(self):$/;"	kind:member	line:133
+testThrowOnFailureFlag	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^  def testThrowOnFailureFlag(self):$/;"	kind:member	line:143
+testThrowOnFailureFlagOverridesEnvVar	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_throw_on_failure_test.py	/^  def testThrowOnFailureFlagOverridesEnvVar(self):$/;"	kind:member	line:153
+testTimestampValue	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_xml_output_unittest.py	/^  def testTimestampValue(self):$/;"	kind:member	line:176
+testTwoPatterns	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testTwoPatterns(self):$/;"	kind:member	line:469
+testUnhandledCxxExceptionsAbortTheProgram	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_catch_exceptions_test.py	/^  def testUnhandledCxxExceptionsAbortTheProgram(self):$/;"	kind:member	line:220
+testUniversalFilters	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testUniversalFilters(self):$/;"	kind:member	line:392
+testWildcardInTestCaseName	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testWildcardInTestCaseName(self):$/;"	kind:member	line:441
+testWildcardInTestName	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_filter_unittest.py	/^  def testWildcardInTestName(self):$/;"	kind:member	line:453
+testWithFilterFlags	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_list_tests_unittest.py	/^  def testWithFilterFlags(self):$/;"	kind:member	line:197
+test_accepts_none	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_accepts_none(msg):$/;"	kind:function	line:375
+test_accessors	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_accessors():$/;"	kind:function	line:121
+test_alias_delay_initialization1	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_alias_delay_initialization1(capture):$/;"	kind:function	line:76
+test_alias_delay_initialization2	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_alias_delay_initialization2(capture):$/;"	kind:function	line:111
+test_alive_gc	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_alive_gc(capture):$/;"	kind:function	line:74
+test_alive_gc_derived	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_alive_gc_derived(capture):$/;"	kind:function	line:90
+test_alive_gc_multi_derived	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_alive_gc_multi_derived(capture):$/;"	kind:function	line:109
+test_arg_and_kwargs	../3rdparty/pybind11/tests/test_kwargs_and_defaults.py	/^def test_arg_and_kwargs():$/;"	kind:function	line:48
+test_array	../3rdparty/pybind11/tests/test_stl.py	/^def test_array(doc):$/;"	kind:function	line:22
+test_array_array	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_array_array():$/;"	kind:function	line:211
+test_array_attributes	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_attributes():$/;"	kind:function	line:15
+test_array_collapse	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_array_collapse():$/;"	kind:function	line:188
+test_array_constructors	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_array_constructors():$/;"	kind:function	line:185
+test_array_create_and_resize	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_create_and_resize(msg):$/;"	kind:function	line:399
+test_array_failure	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_failure():$/;"	kind:function	line:352
+test_array_resize	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_resize(msg):$/;"	kind:function	line:373
+test_array_unchecked_dyn_dims	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_unchecked_dyn_dims(msg):$/;"	kind:function	line:340
+test_array_unchecked_fixed_dims	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_array_unchecked_fixed_dims(msg):$/;"	kind:function	line:319
+test_at	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_at(arr):$/;"	kind:function	line:90
+test_at_fail	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_at_fail(arr, dim):$/;"	kind:function	line:83
+test_automatic_upcasting	../3rdparty/pybind11/tests/test_class.py	/^def test_automatic_upcasting():$/;"	kind:function	line:79
+test_bad_arg_default	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_bad_arg_default(msg):$/;"	kind:function	line:351
+test_binary_operators	../3rdparty/pybind11/tests/test_enum.py	/^def test_binary_operators():$/;"	kind:function	line:94
+test_bool_caster	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_bool_caster():$/;"	kind:function	line:270
+test_both_ref_mutators	../3rdparty/pybind11/tests/test_eigen.py	/^def test_both_ref_mutators():$/;"	kind:function	line:491
+test_bound_method_callback	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_bound_method_callback():$/;"	kind:function	line:29
+test_bounds_check	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_bounds_check(arr):$/;"	kind:function	line:120
+test_buffers.py	../3rdparty/pybind11/tests/test_buffers.py	1;"	kind:file	line:1
+test_builtin_casters.py	../3rdparty/pybind11/tests/test_builtin_casters.py	1;"	kind:file	line:1
+test_builtins_cast_return_none	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_builtins_cast_return_none():$/;"	kind:function	line:212
+test_bytes	../3rdparty/pybind11/tests/test_constants_and_functions.py	/^def test_bytes():$/;"	kind:function	line:21
+test_bytes	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_bytes(doc):$/;"	kind:function	line:82
+test_bytes_to_string	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_bytes_to_string():$/;"	kind:function	line:93
+test_call_guard	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_call_guard():$/;"	kind:function	line:159
+test_call_policies.py	../3rdparty/pybind11/tests/test_call_policies.py	1;"	kind:file	line:1
+test_callbacks	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_callbacks():$/;"	kind:function	line:5
+test_callbacks.py	../3rdparty/pybind11/tests/test_callbacks.py	1;"	kind:file	line:1
+test_capsule	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_capsule(capture):$/;"	kind:function	line:91
+test_cast_numpy_int64_to_uint64	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_cast_numpy_int64_to_uint64():$/;"	kind:function	line:218
+test_chrono.py	../3rdparty/pybind11/tests/test_chrono.py	1;"	kind:file	line:1
+test_chrono_duration_roundtrip	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_duration_roundtrip():$/;"	kind:function	line:43
+test_chrono_duration_subtraction_equivalence	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_duration_subtraction_equivalence():$/;"	kind:function	line:60
+test_chrono_steady_clock	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_steady_clock():$/;"	kind:function	line:73
+test_chrono_steady_clock_roundtrip	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_steady_clock_roundtrip():$/;"	kind:function	line:78
+test_chrono_system_clock	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_system_clock():$/;"	kind:function	line:5
+test_chrono_system_clock_roundtrip	../3rdparty/pybind11/tests/test_chrono.py	/^def test_chrono_system_clock_roundtrip():$/;"	kind:function	line:27
+test_class.py	../3rdparty/pybind11/tests/test_class.py	1;"	kind:file	line:1
+test_compare_buffer_info	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_compare_buffer_info():$/;"	kind:function	line:297
+test_complex_array	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_complex_array():$/;"	kind:function	line:252
+test_complex_cast	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_complex_cast():$/;"	kind:function	line:264
+test_constants	../3rdparty/pybind11/tests/test_constants_and_functions.py	/^def test_constants():$/;"	kind:function	line:4
+test_constants_and_functions.py	../3rdparty/pybind11/tests/test_constants_and_functions.py	1;"	kind:file	line:1
+test_constructors	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_constructors():$/;"	kind:function	line:228
+test_constructors	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_constructors():$/;"	kind:function	line:158
+test_copy_method	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_copy_method():$/;"	kind:function	line:67
+test_copy_move.py	../3rdparty/pybind11/tests/test_copy_move.py	1;"	kind:file	line:1
+test_cpp_casting	../3rdparty/pybind11/tests/test_eigen.py	/^def test_cpp_casting():$/;"	kind:function	line:99
+test_cpp_function_roundtrip	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_cpp_function_roundtrip():$/;"	kind:function	line:81
+test_cross_module_exceptions	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_cross_module_exceptions():$/;"	kind:function	line:23
+test_custom	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_custom(msg):$/;"	kind:function	line:54
+test_custom_caster_destruction	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_custom_caster_destruction():$/;"	kind:function	line:455
+test_custom_operator_new	../3rdparty/pybind11/tests/test_eigen.py	/^def test_custom_operator_new():$/;"	kind:function	line:675
+test_cyclic_gc	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_cyclic_gc():$/;"	kind:function	line:267
+test_data	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_data(arr, args, ret):$/;"	kind:function	line:75
+test_dense	../3rdparty/pybind11/tests/test_eigen.py	/^def test_dense():$/;"	kind:function	line:34
+test_dense_signature	../3rdparty/pybind11/tests/test_eigen.py	/^def test_dense_signature(doc):$/;"	kind:function	line:610
+test_diamond_inheritance	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_diamond_inheritance():$/;"	kind:function	line:337
+test_dict	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_dict(capture, doc):$/;"	kind:function	line:43
+test_dim_check_fail	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_dim_check_fail(arr):$/;"	kind:function	line:62
+test_dispatch_issue	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_dispatch_issue(msg):$/;"	kind:function	line:210
+test_docs	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_docs(doc):$/;"	kind:function	line:110
+test_docstring_options	../3rdparty/pybind11/tests/test_docstring_options.py	/^def test_docstring_options():$/;"	kind:function	line:4
+test_docstring_options.py	../3rdparty/pybind11/tests/test_docstring_options.py	1;"	kind:file	line:1
+test_docstrings	../3rdparty/pybind11/tests/test_class.py	/^def test_docstrings(doc):$/;"	kind:function	line:26
+test_dtype	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_dtype(simple_dtype):$/;"	kind:function	line:94
+test_duplicate_local	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_duplicate_local():$/;"	kind:function	line:44
+test_duplicate_registration	../3rdparty/pybind11/tests/test_modules.py	/^def test_duplicate_registration():$/;"	kind:function	line:69
+test_dynamic_attributes	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_dynamic_attributes():$/;"	kind:function	line:225
+test_eigen.py	../3rdparty/pybind11/tests/test_eigen.py	1;"	kind:file	line:1
+test_eigen_keepalive	../3rdparty/pybind11/tests/test_eigen.py	/^def test_eigen_keepalive():$/;"	kind:function	line:354
+test_eigen_ref_life_support	../3rdparty/pybind11/tests/test_eigen.py	/^def test_eigen_ref_life_support():$/;"	kind:function	line:578
+test_eigen_ref_mutators	../3rdparty/pybind11/tests/test_eigen.py	/^def test_eigen_ref_mutators():$/;"	kind:function	line:375
+test_eigen_ref_to_python	../3rdparty/pybind11/tests/test_eigen.py	/^def test_eigen_ref_to_python():$/;"	kind:function	line:208
+test_eigen_return_references	../3rdparty/pybind11/tests/test_eigen.py	/^def test_eigen_return_references():$/;"	kind:function	line:226
+test_enum.py	../3rdparty/pybind11/tests/test_enum.py	1;"	kind:file	line:1
+test_enum_array	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_enum_array():$/;"	kind:function	line:235
+test_enum_to_int	../3rdparty/pybind11/tests/test_enum.py	/^def test_enum_to_int():$/;"	kind:function	line:115
+test_error_already_set	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_error_already_set(msg):$/;"	kind:function	line:13
+test_eval.py	../3rdparty/pybind11/tests/test_eval.py	1;"	kind:file	line:1
+test_eval_call.py	../3rdparty/pybind11/tests/test_eval_call.py	1;"	kind:file	line:1
+test_evals	../3rdparty/pybind11/tests/test_eval.py	/^def test_evals(capture):$/;"	kind:function	line:5
+test_exception_matches	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_exception_matches():$/;"	kind:function	line:50
+test_exception_specifiers	../3rdparty/pybind11/tests/test_constants_and_functions.py	/^def test_exception_specifiers():$/;"	kind:function	line:25
+test_exceptions.py	../3rdparty/pybind11/tests/test_exceptions.py	1;"	kind:file	line:1
+test_exp_optional	../3rdparty/pybind11/tests/test_stl.py	/^def test_exp_optional():$/;"	kind:function	line:117
+test_factory_constructors.py	../3rdparty/pybind11/tests/test_factory_constructors.py	1;"	kind:file	line:1
+test_fixed	../3rdparty/pybind11/tests/test_eigen.py	/^def test_fixed():$/;"	kind:function	line:25
+test_floating_point_duration	../3rdparty/pybind11/tests/test_chrono.py	/^def test_floating_point_duration():$/;"	kind:function	line:90
+test_format_descriptors	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_format_descriptors():$/;"	kind:function	line:68
+test_from_python	../3rdparty/pybind11/tests/test_buffers.py	/^def test_from_python():$/;"	kind:function	line:12
+test_function_overloading	../3rdparty/pybind11/tests/test_constants_and_functions.py	/^def test_function_overloading():$/;"	kind:function	line:8
+test_function_signatures	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_function_signatures(doc):$/;"	kind:function	line:101
+test_function_signatures	../3rdparty/pybind11/tests/test_kwargs_and_defaults.py	/^def test_function_signatures(doc):$/;"	kind:function	line:5
+test_generalized_iterators	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_generalized_iterators():$/;"	kind:function	line:15
+test_greedy_string_overload	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_greedy_string_overload():$/;"	kind:function	line:311
+test_implicit_casting	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_implicit_casting():$/;"	kind:function	line:192
+test_implicit_conversion	../3rdparty/pybind11/tests/test_enum.py	/^def test_implicit_conversion():$/;"	kind:function	line:64
+test_implicit_conversion_life_support	../3rdparty/pybind11/tests/test_class.py	/^def test_implicit_conversion_life_support():$/;"	kind:function	line:124
+test_importing	../3rdparty/pybind11/tests/test_modules.py	/^def test_importing():$/;"	kind:function	line:51
+test_index_offset	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_index_offset(arr, args, ret):$/;"	kind:function	line:55
+test_inheritance	../3rdparty/pybind11/tests/test_class.py	/^def test_inheritance(msg):$/;"	kind:function	line:47
+test_inherited_protocol	../3rdparty/pybind11/tests/test_buffers.py	/^def test_inherited_protocol():$/;"	kind:function	line:69
+test_inherited_virtuals	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_inherited_virtuals():$/;"	kind:function	line:245
+test_init_factory_alias	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_init_factory_alias():$/;"	kind:function	line:136
+test_init_factory_basic	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_init_factory_basic():$/;"	kind:function	line:9
+test_init_factory_casting	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_init_factory_casting():$/;"	kind:function	line:91
+test_init_factory_dual	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_init_factory_dual():$/;"	kind:function	line:206
+test_init_factory_signature	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_init_factory_signature(msg):$/;"	kind:function	line:64
+test_initializer_list	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_initializer_list():$/;"	kind:function	line:366
+test_instance	../3rdparty/pybind11/tests/test_class.py	/^def test_instance(msg):$/;"	kind:function	line:13
+test_integer_casting	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_integer_casting():$/;"	kind:function	line:146
+test_internal_locals_differ	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_internal_locals_differ():$/;"	kind:function	line:136
+test_interpreter.py	../3rdparty/pybind11/tests/test_embed/test_interpreter.py	1;"	kind:file	line:1
+test_invalid_self	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_invalid_self():$/;"	kind:function	line:420
+test_isinstance	../3rdparty/pybind11/tests/test_class.py	/^def test_isinstance():$/;"	kind:function	line:93
+test_isinstance	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_isinstance():$/;"	kind:function	line:223
+test_issue738	../3rdparty/pybind11/tests/test_eigen.py	/^def test_issue738():$/;"	kind:function	line:666
+test_iterator_passthrough	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_iterator_passthrough():$/;"	kind:function	line:145
+test_iterator_rvp	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_iterator_rvp():$/;"	kind:function	line:152
+test_keep_alive_argument	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_keep_alive_argument(capture):$/;"	kind:function	line:6
+test_keep_alive_return_value	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_keep_alive_return_value(capture):$/;"	kind:function	line:39
+test_keyword_args_and_generalized_unpacking	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_keyword_args_and_generalized_unpacking():$/;"	kind:function	line:42
+test_kwargs_and_defaults.py	../3rdparty/pybind11/tests/test_kwargs_and_defaults.py	1;"	kind:file	line:1
+test_lacking_copy_ctor	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_lacking_copy_ctor():$/;"	kind:function	line:5
+test_lacking_move_ctor	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_lacking_move_ctor():$/;"	kind:function	line:11
+test_lambda_closure_cleanup	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_lambda_closure_cleanup():$/;"	kind:function	line:73
+test_large_holder	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_large_holder():$/;"	kind:function	line:118
+test_list	../3rdparty/nanoflann/tests/gtest-1.7.0/test/gtest_output_test.py	/^test_list = GetShellCommandOutput(COMMAND_LIST_TESTS)$/;"	kind:variable	line:247
+test_list	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_list(capture, doc):$/;"	kind:function	line:8
+test_local_bindings	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_local_bindings():$/;"	kind:function	line:6
+test_local_bindings.py	../3rdparty/pybind11/tests/test_local_bindings.py	1;"	kind:file	line:1
+test_make_c_f_array	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_make_c_f_array():$/;"	kind:function	line:131
+test_map	../3rdparty/pybind11/tests/test_stl.py	/^def test_map(doc):$/;"	kind:function	line:42
+test_map_iterator	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_map_iterator():$/;"	kind:function	line:90
+test_map_string_double	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_map_string_double():$/;"	kind:function	line:109
+test_map_string_double_const	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_map_string_double_const():$/;"	kind:function	line:127
+test_metaclass_override	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_metaclass_override():$/;"	kind:function	line:149
+test_method_vectorization	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_method_vectorization():$/;"	kind:function	line:181
+test_methods_and_attributes	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_methods_and_attributes():$/;"	kind:function	line:6
+test_methods_and_attributes.py	../3rdparty/pybind11/tests/test_methods_and_attributes.py	1;"	kind:file	line:1
+test_mi_base_return	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_mi_base_return():$/;"	kind:function	line:290
+test_mi_dynamic_attributes	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_mi_dynamic_attributes():$/;"	kind:function	line:257
+test_mi_static_properties	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_mi_static_properties():$/;"	kind:function	line:232
+test_mi_unaligned_base	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_mi_unaligned_base():$/;"	kind:function	line:265
+test_mismatched_holder	../3rdparty/pybind11/tests/test_class.py	/^def test_mismatched_holder():$/;"	kind:function	line:99
+test_mixed_args_and_kwargs	../3rdparty/pybind11/tests/test_kwargs_and_defaults.py	/^def test_mixed_args_and_kwargs(msg):$/;"	kind:function	line:57
+test_mixed_local_global	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_mixed_local_global():$/;"	kind:function	line:105
+test_modules.py	../3rdparty/pybind11/tests/test_modules.py	1;"	kind:file	line:1
+test_movable_object	../3rdparty/pybind11/tests/test_callbacks.py	/^def test_movable_object():$/;"	kind:function	line:106
+test_move_and_copy_casts	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_move_and_copy_casts():$/;"	kind:function	line:17
+test_move_and_copy_load_optional	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_move_and_copy_load_optional():$/;"	kind:function	line:69
+test_move_and_copy_loads	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_move_and_copy_loads():$/;"	kind:function	line:40
+test_move_fallback	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_move_fallback():$/;"	kind:function	line:106
+test_move_only_holder	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_move_only_holder():$/;"	kind:function	line:198
+test_move_out_container	../3rdparty/pybind11/tests/test_stl.py	/^def test_move_out_container():$/;"	kind:function	line:83
+test_move_support	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_move_support():$/;"	kind:function	line:164
+test_multiple_inheritance	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_multiple_inheritance():$/;"	kind:function	line:312
+test_multiple_inheritance.py	../3rdparty/pybind11/tests/test_multiple_inheritance.py	1;"	kind:file	line:1
+test_multiple_inheritance_cpp	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_cpp():$/;"	kind:function	line:6
+test_multiple_inheritance_mix1	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_mix1():$/;"	kind:function	line:13
+test_multiple_inheritance_mix2	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_mix2():$/;"	kind:function	line:32
+test_multiple_inheritance_python	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_python():$/;"	kind:function	line:52
+test_multiple_inheritance_python_many_bases	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_python_many_bases():$/;"	kind:function	line:158
+test_multiple_inheritance_virtbase	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^def test_multiple_inheritance_virtbase():$/;"	kind:function	line:220
+test_mutate_data	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_mutate_data(arr):$/;"	kind:function	line:106
+test_mutate_readonly	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_mutate_readonly(arr):$/;"	kind:function	line:98
+test_mutator_descriptors	../3rdparty/pybind11/tests/test_eigen.py	/^def test_mutator_descriptors():$/;"	kind:function	line:72
+test_named_arguments	../3rdparty/pybind11/tests/test_eigen.py	/^def test_named_arguments():$/;"	kind:function	line:625
+test_named_arguments	../3rdparty/pybind11/tests/test_kwargs_and_defaults.py	/^def test_named_arguments(msg):$/;"	kind:function	line:21
+test_negative_stride_from_python	../3rdparty/pybind11/tests/test_eigen.py	/^def test_negative_stride_from_python(msg):$/;"	kind:function	line:154
+test_nested	../3rdparty/pybind11/tests/test_operator_overloading.py	/^def test_nested():$/;"	kind:function	line:69
+test_nested_modules	../3rdparty/pybind11/tests/test_modules.py	/^def test_nested_modules():$/;"	kind:function	line:6
+test_nested_throws	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_nested_throws(capture):$/;"	kind:function	line:103
+test_no_mixed_overloads	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_no_mixed_overloads():$/;"	kind:function	line:164
+test_no_placement_new	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_no_placement_new(capture):$/;"	kind:function	line:286
+test_noconvert_args	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_noconvert_args(msg):$/;"	kind:function	line:288
+test_nocopy_wrapper	../3rdparty/pybind11/tests/test_eigen.py	/^def test_nocopy_wrapper():$/;"	kind:function	line:533
+test_noncopyable_containers	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_noncopyable_containers():$/;"	kind:function	line:140
+test_none_deferred	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_none_deferred():$/;"	kind:function	line:221
+test_nonlocal_failure	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_nonlocal_failure():$/;"	kind:function	line:35
+test_nonunit_stride_from_python	../3rdparty/pybind11/tests/test_eigen.py	/^def test_nonunit_stride_from_python():$/;"	kind:function	line:131
+test_nonunit_stride_to_python	../3rdparty/pybind11/tests/test_eigen.py	/^def test_nonunit_stride_to_python():$/;"	kind:function	line:197
+test_numpy_array.py	../3rdparty/pybind11/tests/test_numpy_array.py	1;"	kind:file	line:1
+test_numpy_bool	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_numpy_bool():$/;"	kind:function	line:314
+test_numpy_dtypes.py	../3rdparty/pybind11/tests/test_numpy_dtypes.py	1;"	kind:file	line:1
+test_numpy_ref_mutators	../3rdparty/pybind11/tests/test_eigen.py	/^def test_numpy_ref_mutators():$/;"	kind:function	line:444
+test_numpy_vectorize.py	../3rdparty/pybind11/tests/test_numpy_vectorize.py	1;"	kind:file	line:1
+test_numpy_view	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_numpy_view(capture):$/;"	kind:function	line:190
+test_opaque_types.py	../3rdparty/pybind11/tests/test_opaque_types.py	1;"	kind:file	line:1
+test_operator_new_delete	../3rdparty/pybind11/tests/test_class.py	/^def test_operator_new_delete(capture):$/;"	kind:function	line:132
+test_operator_overloading	../3rdparty/pybind11/tests/test_operator_overloading.py	/^def test_operator_overloading():$/;"	kind:function	line:6
+test_operator_overloading.py	../3rdparty/pybind11/tests/test_operator_overloading.py	1;"	kind:file	line:1
+test_operators_notimplemented	../3rdparty/pybind11/tests/test_operator_overloading.py	/^def test_operators_notimplemented():$/;"	kind:function	line:59
+test_optional	../3rdparty/pybind11/tests/test_stl.py	/^def test_optional():$/;"	kind:function	line:94
+test_overload_resolution	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_overload_resolution(msg):$/;"	kind:function	line:244
+test_override	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_override(capture, msg):$/;"	kind:function	line:7
+test_override_ref	../3rdparty/pybind11/tests/test_virtual_functions.py	/^def test_override_ref():$/;"	kind:function	line:229
+test_override_static	../3rdparty/pybind11/tests/test_class.py	/^def test_override_static():$/;"	kind:function	line:113
+test_partially_fixed	../3rdparty/pybind11/tests/test_eigen.py	/^def test_partially_fixed():$/;"	kind:function	line:43
+test_pass_readonly_array	../3rdparty/pybind11/tests/test_eigen.py	/^def test_pass_readonly_array():$/;"	kind:function	line:122
+test_passthrough_arguments	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_passthrough_arguments(doc):$/;"	kind:function	line:159
+test_pickling.py	../3rdparty/pybind11/tests/test_pickling.py	1;"	kind:file	line:1
+test_pointer_to_member_fn	../3rdparty/pybind11/tests/test_buffers.py	/^def test_pointer_to_member_fn():$/;"	kind:function	line:78
+test_pointers	../3rdparty/pybind11/tests/test_opaque_types.py	/^def test_pointers(msg):$/;"	kind:function	line:26
+test_print	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_print(capture):$/;"	kind:function	line:203
+test_private_op_new	../3rdparty/pybind11/tests/test_copy_move.py	/^def test_private_op_new():$/;"	kind:function	line:96
+test_properties	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_properties():$/;"	kind:function	line:84
+test_property_return_value_policies	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_property_return_value_policies(access):$/;"	kind:function	line:188
+test_property_rvalue_policy	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_property_rvalue_policy():$/;"	kind:function	line:211
+test_pydoc	../3rdparty/pybind11/tests/test_modules.py	/^def test_pydoc():$/;"	kind:function	line:59
+test_python_call_in_catch	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_python_call_in_catch():$/;"	kind:function	line:44
+test_python_iterator_in_cpp	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_python_iterator_in_cpp():$/;"	kind:function	line:113
+test_pytypes.py	../3rdparty/pybind11/tests/test_pytypes.py	1;"	kind:file	line:1
+test_reallocations	../3rdparty/pybind11/tests/test_factory_constructors.py	/^def test_reallocations(capture, msg):$/;"	kind:function	line:334
+test_recarray	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_recarray(simple_dtype, packed_dtype):$/;"	kind:function	line:125
+test_recursive_casting	../3rdparty/pybind11/tests/test_stl.py	/^def test_recursive_casting():$/;"	kind:function	line:64
+test_reference_internal	../3rdparty/pybind11/tests/test_modules.py	/^def test_reference_internal():$/;"	kind:function	line:17
+test_reference_wrapper	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_reference_wrapper():$/;"	kind:function	line:235
+test_register_dtype	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_register_dtype():$/;"	kind:function	line:290
+test_repr	../3rdparty/pybind11/tests/test_class.py	/^def test_repr():$/;"	kind:function	line:7
+test_return_none	../3rdparty/pybind11/tests/test_call_policies.py	/^def test_return_none(capture):$/;"	kind:function	line:132
+test_roundtrip	../3rdparty/pybind11/tests/test_pickling.py	/^def test_roundtrip():$/;"	kind:function	line:10
+test_roundtrip_with_dict	../3rdparty/pybind11/tests/test_pickling.py	/^def test_roundtrip_with_dict():$/;"	kind:function	line:23
+test_scalar_conversion	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_scalar_conversion():$/;"	kind:function	line:274
+test_scoped_enum	../3rdparty/pybind11/tests/test_enum.py	/^def test_scoped_enum():$/;"	kind:function	line:44
+test_sequence	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	/^def test_sequence():$/;"	kind:function	line:36
+test_sequences_and_iterators.py	../3rdparty/pybind11/tests/test_sequences_and_iterators.py	1;"	kind:file	line:1
+test_set	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_set(capture, doc):$/;"	kind:function	line:25
+test_set	../3rdparty/pybind11/tests/test_stl.py	/^def test_set(doc):$/;"	kind:function	line:53
+test_shared_ptr_and_references	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_shared_ptr_and_references():$/;"	kind:function	line:127
+test_shared_ptr_from_this_and_references	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_shared_ptr_from_this_and_references():$/;"	kind:function	line:158
+test_shared_ptr_gc	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_shared_ptr_gc():$/;"	kind:function	line:213
+test_signature	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_signature(doc):$/;"	kind:function	line:269
+test_simple_string	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_simple_string():$/;"	kind:function	line:8
+test_single_char_arguments	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_single_char_arguments():$/;"	kind:function	line:40
+test_smart_ptr	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_smart_ptr(capture):$/;"	kind:function	line:6
+test_smart_ptr.py	../3rdparty/pybind11/tests/test_smart_ptr.py	1;"	kind:file	line:1
+test_smart_ptr_from_default	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_smart_ptr_from_default():$/;"	kind:function	line:206
+test_smart_ptr_refcounting	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_smart_ptr_refcounting():$/;"	kind:function	line:105
+test_sparse	../3rdparty/pybind11/tests/test_eigen.py	/^def test_sparse():$/;"	kind:function	line:647
+test_sparse_signature	../3rdparty/pybind11/tests/test_eigen.py	/^def test_sparse_signature(doc):$/;"	kind:function	line:657
+test_special_matrix_objects	../3rdparty/pybind11/tests/test_eigen.py	/^def test_special_matrix_objects():$/;"	kind:function	line:592
+test_static_cls	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_static_cls():$/;"	kind:function	line:135
+test_static_properties	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_static_properties():$/;"	kind:function	line:102
+test_std_exception	../3rdparty/pybind11/tests/test_exceptions.py	/^def test_std_exception(msg):$/;"	kind:function	line:7
+test_stl.py	../3rdparty/pybind11/tests/test_stl.py	1;"	kind:file	line:1
+test_stl_bind_global	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_stl_bind_global():$/;"	kind:function	line:89
+test_stl_bind_local	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_stl_bind_local():$/;"	kind:function	line:54
+test_stl_binders.py	../3rdparty/pybind11/tests/test_stl_binders.py	1;"	kind:file	line:1
+test_stl_caster_vs_stl_bind	../3rdparty/pybind11/tests/test_local_bindings.py	/^def test_stl_caster_vs_stl_bind(msg):$/;"	kind:function	line:142
+test_stl_pass_by_pointer	../3rdparty/pybind11/tests/test_stl.py	/^def test_stl_pass_by_pointer(msg):$/;"	kind:function	line:158
+test_str	../3rdparty/pybind11/tests/test_pytypes.py	/^def test_str(doc):$/;"	kind:function	line:61
+test_str_issue	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_str_issue(msg):$/;"	kind:function	line:421
+test_string_array	../3rdparty/pybind11/tests/test_numpy_dtypes.py	/^def test_string_array():$/;"	kind:function	line:195
+test_string_list	../3rdparty/pybind11/tests/test_opaque_types.py	/^def test_string_list():$/;"	kind:function	line:6
+test_string_view	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_string_view(capture):$/;"	kind:function	line:110
+test_to_python	../3rdparty/pybind11/tests/test_buffers.py	/^def test_to_python():$/;"	kind:function	line:38
+test_trivial_broadcasting	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_trivial_broadcasting():$/;"	kind:function	line:116
+test_tuple	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_tuple(doc):$/;"	kind:function	line:184
+test_type_selection	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_type_selection():$/;"	kind:function	line:104
+test_unicode_conversion	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_unicode_conversion():$/;"	kind:function	line:12
+test_unique_nodelete	../3rdparty/pybind11/tests/test_smart_ptr.py	/^def test_unique_nodelete():$/;"	kind:function	line:109
+test_unregistered_base_implementations	../3rdparty/pybind11/tests/test_methods_and_attributes.py	/^def test_unregistered_base_implementations():$/;"	kind:function	line:437
+test_unscoped_enum	../3rdparty/pybind11/tests/test_enum.py	/^def test_unscoped_enum():$/;"	kind:function	line:5
+test_valarray	../3rdparty/pybind11/tests/test_stl.py	/^def test_valarray(doc):$/;"	kind:function	line:32
+test_variant	../3rdparty/pybind11/tests/test_stl.py	/^def test_variant(doc):$/;"	kind:function	line:138
+test_vec_of_reference_wrapper	../3rdparty/pybind11/tests/test_stl.py	/^def test_vec_of_reference_wrapper():$/;"	kind:function	line:152
+test_vector	../3rdparty/pybind11/tests/test_stl.py	/^def test_vector(doc):$/;"	kind:function	line:7
+test_vector_bool	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_vector_bool():$/;"	kind:function	line:88
+test_vector_buffer	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_vector_buffer():$/;"	kind:function	line:39
+test_vector_buffer_numpy	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_vector_buffer_numpy():$/;"	kind:function	line:60
+test_vector_custom	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_vector_custom():$/;"	kind:function	line:97
+test_vector_int	../3rdparty/pybind11/tests/test_stl_binders.py	/^def test_vector_int():$/;"	kind:function	line:9
+test_vectorize	../3rdparty/pybind11/tests/test_numpy_vectorize.py	/^def test_vectorize(capture):$/;"	kind:function	line:10
+test_virtual_functions.py	../3rdparty/pybind11/tests/test_virtual_functions.py	1;"	kind:file	line:1
+test_void_caster	../3rdparty/pybind11/tests/test_builtin_casters.py	/^def test_void_caster():$/;"	kind:function	line:230
+test_wrap	../3rdparty/pybind11/tests/test_numpy_array.py	/^def test_wrap():$/;"	kind:function	line:138
+texinfo_documents	../3rdparty/pybind11/docs/conf.py	/^texinfo_documents = [$/;"	kind:variable	line:294
+the_answer	../3rdparty/pybind11/tests/test_embed/test_interpreter.py	/^    def the_answer(self):$/;"	kind:member	line:8
+throw_myex	../3rdparty/pybind11/tests/test_exceptions.py	/^    def throw_myex():$/;"	kind:function	line:106
+throw_myex5	../3rdparty/pybind11/tests/test_exceptions.py	/^    def throw_myex5():$/;"	kind:function	line:109
+time	../3rdparty/pybind11/tools/clang/cindex.py	/^    def time(self):$/;"	kind:member	line:2812
+to_string	../3rdparty/eigen/debug/gdb/printers.py	/^	def to_string(self):$/;"	kind:member	line:129
+to_string	../3rdparty/eigen/debug/gdb/printers.py	/^	def to_string(self):$/;"	kind:member	line:177
+todo_include_todos	../3rdparty/pybind11/docs/conf.py	/^todo_include_todos = False$/;"	kind:variable	line:110
+toobig_message	../3rdparty/pybind11/tests/test_builtin_casters.py	/^    def toobig_message(r):$/;"	kind:function	line:42
+translation_unit	../3rdparty/pybind11/tools/clang/cindex.py	/^    def translation_unit(self):$/;"	kind:member	line:1589
+translation_unit	../3rdparty/pybind11/tools/clang/cindex.py	/^    def translation_unit(self):$/;"	kind:member	line:1975
+type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def type(self):$/;"	kind:member	line:1472
+underlying_typedef_type	../3rdparty/pybind11/tools/clang/cindex.py	/^    def underlying_typedef_type(self):$/;"	kind:member	line:1504
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:247
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:251
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:316
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:338
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:354
+unlucky_number	../3rdparty/pybind11/tests/test_virtual_functions.py	/^        def unlucky_number(self):$/;"	kind:member	line:361
+unordered	../3rdparty/pybind11/tests/conftest.py	/^    def unordered(self):$/;"	kind:member	line:97
+update	../3rdparty/eigen/scripts/relicense.py	/^def update(text):$/;"	kind:function	line:46
+url	../3rdparty/pybind11/setup.py	/^    url='https:\/\/github.com\/wjakob\/pybind11',$/;"	kind:variable	line:44
+url	../setup.py	/^    url='https:\/\/github.com\/patrikhuber\/eos',$/;"	kind:variable	line:96
+user_options	../setup.py	/^    user_options = build_ext.user_options + [$/;"	kind:variable	line:29
+v	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def v(self):$/;"	kind:member	line:60
+v	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def v(self):$/;"	kind:member	line:91
+v	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def v(self):$/;"	kind:member	line:95
+v	../3rdparty/pybind11/tests/test_multiple_inheritance.py	/^        def v(self):$/;"	kind:member	line:99
+version	../3rdparty/pybind11/docs/conf.py	/^version = '2.2'$/;"	kind:variable	line:64
+version	../3rdparty/pybind11/setup.py	/^    version=__version__,$/;"	kind:variable	line:40
+version	../setup.py	/^    version='0.12.1',$/;"	kind:variable	line:91
+version_expression	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^version_expression = re.compile(r"AC_INIT\\(.*?\\[(\\d+)\\.(\\d+)\\.(\\d+)\\].*?\\)",$/;"	kind:variable	line:75
+version_file	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^version_file = open("%s\/Version.h" % output_dir, 'w')$/;"	kind:variable	line:98
+version_info	../3rdparty/pybind11/pybind11/_version.py	/^version_info = (2, 2, 'dev0')$/;"	kind:variable	line:1
+version_values	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	/^version_values = version_expression.search(opening_string)$/;"	kind:variable	line:77
+versiongenerate.py	../3rdparty/nanoflann/tests/gtest-1.7.0/xcode/Scripts/versiongenerate.py	1;"	kind:file	line:1
+visitor	../3rdparty/pybind11/tools/clang/cindex.py	/^        def visitor(child, parent, children):$/;"	kind:function	line:1647
+visitor	../3rdparty/pybind11/tools/clang/cindex.py	/^        def visitor(field, children):$/;"	kind:function	line:2111
+visitor	../3rdparty/pybind11/tools/clang/cindex.py	/^        def visitor(fobj, lptr, depth, includes):$/;"	kind:function	line:2593
+walk_preorder	../3rdparty/pybind11/tools/clang/cindex.py	/^    def walk_preorder(self):$/;"	kind:member	line:1661
+zip_safe	../setup.py	/^    zip_safe=False,$/;"	kind:variable	line:100
