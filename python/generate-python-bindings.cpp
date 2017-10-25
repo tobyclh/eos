@@ -273,7 +273,19 @@ PYBIND11_MODULE(eos, eos_module) {
 
 	// },"fit expression to existing model", py::arg("model"), py::arg("blendshapes"), py::arg("landmarks"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"), py::arg("blendshape_coefficients") );
 
-	fitting_module.def("fit_pose_and_expression",  &fitting::fit_pose_and_expression ,"fit expression to existing model", py::arg("model"), py::arg("blendshapesMatrix"), py::arg("blendshape_coefficients"), py::arg("image_points"), py::arg("vertex_indices"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"));
+	fitting_module.def("fit_pose_and_expression",  [](const morphablemodel::MorphableModel& model, const Eigen::MatrixXf& blendshapes_as_basis, std::vector<float>& blendshape_coefficients, const std::vector<glm::vec2>& landmarks, const std::vector<std::string>& landmark_ids, const core::LandmarkMapper& landmark_mapper, int image_width, int image_height, std::vector<float>& pca_shape_coefficients){
+		assert(landmarks.size() == landmark_ids.size());
+		core::LandmarkCollection<cv::Vec2f> landmark_collection;
+		for (int i = 0; i < landmarks.size(); ++i)
+		{
+			landmark_collection.push_back(core::Landmark<cv::Vec2f>{ landmark_ids[i], cv::Vec2f(landmarks[i].x, landmarks[i].y) });
+		}
+		eos::core::Mesh faceMesh;
+		fitting::RenderingParameters new_pose;
+		std::vector<float> new_bs;
+		std::tie(new_pose, new_bs) = eos::fitting::fit_pose_and_expression(model, blendshapes_as_basis, blendshape_coefficients, landmark_collection, landmark_mapper,image_width, image_height, pca_shape_coefficients);
+		return std::make_tuple(new_pose, new_bs);
+	} ,"fit expression to existing model", py::arg("model"), py::arg("blendshapesMatrix"), py::arg("blendshape_coefficients"), py::arg("landmark"), py::arg("landmark_ids"), py::arg("landmark_mapper"), py::arg("image_width"), py::arg("image_height"), py::arg("pca_shape_coefficients"));
 
 
 	/**
@@ -283,7 +295,7 @@ PYBIND11_MODULE(eos, eos_module) {
 	py::module render_module = eos_module.def_submodule("render", "3D mesh and texture extraction functionality.");
 
 	render_module.def("extract_texture", [](const core::Mesh& mesh, const fitting::RenderingParameters& rendering_params, cv::Mat image, bool compute_view_angle, int isomap_resolution) {
-		cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image.rows, image.cols);
+		cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image.cols, image.rows);
 		return render::extract_texture(mesh, affine_from_ortho, image, compute_view_angle, render::TextureInterpolation::NearestNeighbour, isomap_resolution);
 	}, "Extracts the texture of the face from the given image and stores it as isomap (a rectangular texture map).", py::arg("mesh"), py::arg("rendering_params"), py::arg("image"), py::arg("compute_view_angle") = false, py::arg("isomap_resolution") = 512);
 

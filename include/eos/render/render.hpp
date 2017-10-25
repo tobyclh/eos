@@ -338,7 +338,7 @@ inline cv::Mat render_gl(const core::Mesh& mesh, const fitting::RenderingParamet
 	// std::cout << "isomap type " << isomap.type() << std::endl;
 	glm::tmat4x4<float> model_view_matrix = rendering_params.get_modelview();
 	glm::tmat4x4<float> projection_matrix = rendering_params.get_projection();
-	projection_matrix[2][2] = projection_matrix[2][2]/viewport_height/viewport_width;
+	projection_matrix[2][2] = projection_matrix[2][2];
 
 	// std::cout << "projection_matrix[2][2]" << projection_matrix[2][2]  << std::endl;
 	if( !glfwInit() )

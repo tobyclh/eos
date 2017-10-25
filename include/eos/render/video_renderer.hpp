@@ -58,8 +58,9 @@ public:
     GLuint uvbuffer;
     GLuint elementbuffer;
     GLuint FramebufferID;
-    GLuint renderedTexture;
     GLuint depthrenderbuffer;
+    GLuint renderedTexture;
+    GLuint depthTexture;
 
     Viewer(){};
 
@@ -77,8 +78,8 @@ public:
                 indices.push_back(vertexIndex);
             }
         }
-        viewport_width = _view.rows;
-        viewport_height = _view.cols;
+        viewport_width = _view.cols;
+        viewport_height = _view.rows;
 
         if (!glfwInit())
         {
@@ -117,8 +118,12 @@ public:
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
+
         // // Enable depth test
         glEnable(GL_DEPTH_TEST);
+        // glEnable(GL_DEPTH_CLAMP);
+
+        // glDepthRange(-100, 10);
         // Accept fragment if it closer to the camera than the former one
         glDepthFunc(GL_LESS);
         glShadeModel(GL_SMOOTH);
@@ -130,24 +135,29 @@ public:
         glGenFramebuffers(1, &FramebufferID);
         glGenTextures(1, &renderedTexture);
         glGenRenderbuffers(1, &depthrenderbuffer);
+        glGenTextures(1, &depthTexture);
         return;
     }
 
-    cv::Mat render()
+    std::pair<cv::Mat, cv::Mat> render()
     {
         if (isomap.type() == CV_8UC4)
         {
             cvtColor(isomap, isomap, CV_BGRA2BGR);
         }
         cv::Mat img(viewport_height, viewport_width, CV_8UC3);
+        cv::Mat depth(viewport_height, viewport_width, CV_8U);
+        
+        // Clear the screen
         GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-
+        
         glm::tmat4x4<float> projection_matrix = pose.get_projection();
-        projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
+        projection_matrix[2][2] = projection_matrix[2][2]/viewport_height/viewport_width;
+        glm::tmat4x4<float> viewport_matrix = get_viewport();
         glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
-
         GLuint TextureID = glGetUniformLocation(programID, "myTextureSampler");
         GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);
+
         glBindTexture(GL_TEXTURE_2D, tex);
 
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -160,14 +170,11 @@ public:
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0],
                      GL_STATIC_DRAW);
 
-        //render target
+        // render target
         glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
-
         glBindTexture(GL_TEXTURE_2D, renderedTexture);
-
         // Give an empty image to OpenGL ( the last "0" )
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, viewport_width, viewport_height, 0, GL_RGB,
-        GL_UNSIGNED_BYTE,
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, viewport_width, viewport_height, 0, GL_RGB, GL_UNSIGNED_BYTE,
                      0);
 
         // Poor filtering. Needed !
@@ -181,16 +188,14 @@ public:
 
         // Set "renderedTexture" as our colour attachement #0
         glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
+        glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
 
         // Set the list of draw buffers.
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-        // Always check that our framebuffer is ok
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
-        // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         // Use our shader
         glUseProgram(programID);
         // std::cout << "glUseProgram(programID);"<< std::endl;
@@ -238,27 +243,25 @@ public:
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
-        // std::cout << "glDisableVertexAttribArray(1);"<< std::endl;
-        // Render to our framebuffer
+
         glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
         glViewport(0, 0, viewport_width, viewport_height); // Render on the whole framebuffer, complete
-        // from
-        //                                                    // the lower left corner to the upper right
-
         // // //use fast 4-byte alignment (default anyway) if possible
         glPixelStorei(GL_PACK_ALIGNMENT, (img.step & 3) ? 1 : 4);
         // // //set length of one complete row in destination data (doesn't need to equal img.cols)
         glPixelStorei(GL_PACK_ROW_LENGTH, img.step / img.elemSize());
-
+        glReadPixels(0, 0, depth.cols, depth.rows, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, depth.data);
         glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
-
+        
         cv::flip(img, img, 0);
+        cv::flip(depth, depth, 0);
+
 
         // Swap buffers
         glfwSwapBuffers(window);
         glfwPollEvents();
 
-        return img;
+        return std::make_pair(img, depth);
     }
 
     void terminate()
@@ -272,6 +275,19 @@ public:
         glfwTerminate();
     }
 
+private:
+    glm::tmat4x4<float> get_viewport()
+    {
+        glm::vec4 viewport = fitting::get_opencv_viewport(viewport_width, viewport_height);
+        glm::mat4x4 viewport_matrix; // Identity matrix
+        viewport_matrix[0][0] = 0.5f * viewport[2];
+        viewport_matrix[3][0] = 0.5f * viewport[2] + viewport[0];
+        viewport_matrix[1][1] = 0.5f * viewport[3];
+        viewport_matrix[3][1] = 0.5f * viewport[3] + viewport[1];
+        viewport_matrix[2][2] = 0.5f;
+        viewport_matrix[3][2] = 0.5f;
+        return viewport_matrix;
+    }
 } renderer;
 
 } /* namespace render */

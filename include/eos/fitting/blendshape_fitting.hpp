@@ -141,7 +141,8 @@ inline std::vector<float> fit_blendshapes_to_landmarks_nnls(const std::vector<eo
 
 	// Copy all blendshapes into a "basis" matrix with each blendshape being a column:
 	MatrixXf blendshapes_as_basis = morphablemodel::to_matrix(blendshapes);
-
+	// std::cout << "blendshapes_as_basis @  fit_blendshapes_to_landmarks_nnls SLOW" << blendshapes_as_basis.rows() << " " << blendshapes_as_basis.cols() << std::endl;
+	std::cout << "num_landmarks slow" << num_landmarks << std::endl;
 	// $\hat{V} \in R^{3N\times m-1}$, subselect the rows of the eigenvector matrix $V$ associated with the $N$ feature points
 	// And we insert a row of zeros after every third row, resulting in matrix $\hat{V}_h \in R^{4N\times m-1}$:
 	MatrixXf V_hat_h = MatrixXf::Zero(4 * num_landmarks, num_blendshapes);
@@ -189,21 +190,27 @@ inline std::vector<float> fit_blendshapes_to_landmarks_nnls_fast(const Eigen::Ma
 	using Eigen::MatrixXf;
 	const int num_blendshapes = blendshapes_as_basis.cols();
 	const int num_landmarks = static_cast<int>(landmarks.size());
-
+	// std::cout << "blendshapes_as_basis @  fit_blendshapes_to_landmarks_nnls FAST" << blendshapes_as_basis.rows() << " " << blendshapes_as_basis.cols()  << " " << num_blendshapes<< std::endl;
+	// std::cout << "num_landmarks fast" << num_landmarks << std::endl;
 	// $\hat{V} \in R^{3N\times m-1}$, subselect the rows of the eigenvector matrix $V$ associated with the $N$ feature points
 	// And we insert a row of zeros after every third row, resulting in matrix $\hat{V}_h \in R^{4N\times m-1}$:
 	MatrixXf V_hat_h = MatrixXf::Zero(4 * num_landmarks, num_blendshapes);
+	// std::cout << "a" << std::endl;
 	int row_index = 0;
 	for (int i = 0; i < num_landmarks; ++i) {
-		V_hat_h.block(row_index, 0, 3, V_hat_h.cols()) = blendshapes_as_basis.block(vertex_ids[i] * 3, 0, 3, blendshapes_as_basis.cols());
+		V_hat_h.block(row_index, 0, 3, V_hat_h.cols()) = blendshapes_as_basis.block(vertex_ids[i] * 3, 0, 3, num_blendshapes);
 		row_index += 4; // replace 3 rows and skip the 4th one, it has all zeros
 	}
+	// std::cout << "b" << std::endl;
+	
 	// Form a block diagonal matrix $P \in R^{3N\times 4N}$ in which the camera matrix C (P_Affine, affine_camera_matrix) is placed on the diagonal:
 	MatrixXf P = MatrixXf::Zero(3 * num_landmarks, 4 * num_landmarks);
 	for (int i = 0; i < num_landmarks; ++i) {
 		using RowMajorMatrixXf = Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
 		P.block(3 * i, 4 * i, 3, 4) = Eigen::Map<RowMajorMatrixXf>(affine_camera_matrix.ptr<float>(), affine_camera_matrix.rows, affine_camera_matrix.cols);
 	}
+	// std::cout << "c" << std::endl;
+	
 	// The landmarks in matrix notation (in homogeneous coordinates), $3N\times 1$
 	VectorXf y = VectorXf::Ones(3 * num_landmarks);
 	for (int i = 0; i < num_landmarks; ++i) {
@@ -211,6 +218,8 @@ inline std::vector<float> fit_blendshapes_to_landmarks_nnls_fast(const Eigen::Ma
 		y((3 * i) + 1) = landmarks[i][1];
 		//y_((3 * i) + 2) = 1; // already 1, stays (homogeneous coordinate)
 	}
+	// std::cout << "d" << std::endl;
+	
 	// The mean, with an added homogeneous coordinate (x_1, y_1, z_1, 1, x_2, ...)^t
 	VectorXf v_bar = VectorXf::Ones(4 * num_landmarks);
 	for (int i = 0; i < num_landmarks; ++i) {

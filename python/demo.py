@@ -20,7 +20,7 @@ def read_pts(filename):
     return landmarks
 
 
-os.chdir('/home/toby/Documents/eos/python')
+# os.chdir('/home/toby/Documents/eos/python')
 #%%
 """Demo for running the eos fitting from Python."""
 landmarks = read_pts('../examples/data/image_0010.pts')

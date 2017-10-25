@@ -368,17 +368,32 @@ using cv::Vec2f;
 using cv::Vec4f;
 using Eigen::VectorXf;
 using Eigen::MatrixXf;
-inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_expression(const morphablemodel::MorphableModel& model, const MatrixXf& blendshapes_as_basis, std::vector<float>& blendshape_coefficients, const std::vector<Vec2f> image_points, const std::vector<int> vertex_indices, int image_width, int image_height, std::vector<float>& pca_shape_coefficients)
+inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_expression(const morphablemodel::MorphableModel& model, const MatrixXf& blendshapes_as_basis, std::vector<float>& blendshape_coefficients, const core::LandmarkCollection<cv::Vec2f>& landmarks, const core::LandmarkMapper& landmark_mapper, int image_width, int image_height, std::vector<float>& pca_shape_coefficients)
 {
 	VectorXf current_pca_shape = model.get_shape_model().draw_sample(pca_shape_coefficients);
-	// MatrixXf blendshapes_as_basis = morphablemodel::to_matrix(blendshapes);
-	VectorXf current_combined_shape = current_pca_shape + blendshapes_as_basis * Eigen::Map<const Eigen::VectorXf>(blendshape_coefficients.data(), blendshape_coefficients.size());
+	// std::cout << "pca shape " << current_pca_shape.rows()<< " " << current_pca_shape.cols()  << std::endl;
+	// std::cout << "blendshapes_as_basis " << blendshapes_as_basis.rows() << " " << blendshapes_as_basis.cols() << std::endl;
+	Eigen::VectorXf blendshape_coe_vec = Eigen::Map<const Eigen::VectorXf>(blendshape_coefficients.data(), blendshape_coefficients.size());
+	// std::cout << "blendshape_coe_vec " << blendshape_coe_vec.rows() << " " << blendshape_coe_vec.cols() << std::endl;
+	VectorXf current_combined_shape = current_pca_shape + blendshapes_as_basis * blendshape_coe_vec;
 	auto current_mesh = morphablemodel::sample_to_mesh(current_combined_shape, model.get_color_model().get_mean(), model.get_shape_model().get_triangle_list(), model.get_color_model().get_triangle_list(), model.get_texture_coordinates());
-	std::vector<Vec4f> model_points; // the points in the 3D shape model
-	for(const auto &idx : vertex_indices)
-	{
-		Vec4f vertex(current_mesh.vertices[idx].x, current_mesh.vertices[idx].y,current_mesh.vertices[idx].z, current_mesh.vertices[idx].w);
+
+	vector<Vec4f> model_points; // the points in the 3D shape model
+	vector<int> vertex_indices; // their vertex indices
+	vector<Vec2f> image_points; // the corresponding 2D landmark points
+
+	// Sub-select all the landmarks which we have a mapping for (i.e. that are defined in the 3DMM),
+	// and get the corresponding model points (mean if given no initial coeffs, from the computed shape otherwise):
+	for (int i = 0; i < landmarks.size(); ++i) {
+		auto converted_name = landmark_mapper.convert(landmarks[i].name);
+		if (!converted_name) { // no mapping defined for the current landmark
+			continue;
+		}
+		int vertex_idx = std::stoi(converted_name.get());
+		Vec4f vertex(current_mesh.vertices[vertex_idx].x, current_mesh.vertices[vertex_idx].y, current_mesh.vertices[vertex_idx].z, current_mesh.vertices[vertex_idx].w);
 		model_points.emplace_back(vertex);
+		vertex_indices.emplace_back(vertex_idx);
+		image_points.emplace_back(landmarks[i].coordinates);
 	}
 	// std::vector<Vec2f> image_points; // the corresponding 2D landmark points
 	// // Sub-select all the landmarks which we have a mapping for (i.e. that are defined in the 3DMM),
@@ -394,8 +409,11 @@ inline std::pair<fitting::RenderingParameters, std::vector<float>> fit_pose_and_
 	// }
 	fitting::ScaledOrthoProjectionParameters current_pose = fitting::estimate_orthographic_projection_linear(image_points, model_points, true, image_height);
 	fitting::RenderingParameters rendering_params = fitting::RenderingParameters(current_pose, image_width, image_height);
+	// std::cout << "got pose" << std::endl;
 	cv::Mat affine_from_ortho = fitting::get_3x4_affine_camera_matrix(rendering_params, image_width, image_height);
+	// std::cout << "affine" << std::endl;
 	blendshape_coefficients = fitting::fit_blendshapes_to_landmarks_nnls_fast(blendshapes_as_basis, current_pca_shape, affine_from_ortho, image_points, vertex_indices);	
+	// std::cout << "bs coe" << std::endl;
 	return {rendering_params, blendshape_coefficients};
 }
 
