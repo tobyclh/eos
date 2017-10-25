@@ -43,25 +43,24 @@ public:
     int viewport_height;
 
     cv::Mat canvas; // the canvas we will be rendering on, constant for video -> photo
-    cv::Mat isomap; // UV map
 
     std::thread rendering;
 
     // OpenGL handlers
     GLFWwindow* window;
-    GLuint programID;
-    GLuint VertexArrayID;
-    GLuint TextureID;
-    GLuint tex;
     GLuint MatrixID;
+    GLuint programID;
+    GLuint TextureID;
+    GLuint VertexArrayID;
+    GLuint FramebufferID;
     GLuint vertexbuffer;
     GLuint uvbuffer;
     GLuint elementbuffer;
-    GLuint FramebufferID;
     GLuint depthrenderbuffer;
+    GLuint isomapTexture;
     GLuint renderedTexture;
     GLuint depthTexture;
-
+    GLuint backgroundTexture;
     Viewer(){};
 
     Viewer(std::vector<glm::vec4> _vertices, std::vector<glm::vec2> _texcoords,
@@ -136,6 +135,8 @@ public:
         glGenTextures(1, &renderedTexture);
         glGenRenderbuffers(1, &depthrenderbuffer);
         glGenTextures(1, &depthTexture);
+        glGenTextures(1, &backgroundTexture);
+        glUseProgram(programID);
         return;
     }
 
@@ -196,8 +197,9 @@ public:
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
         // Use our shader
-        glUseProgram(programID);
+
         // std::cout << "glUseProgram(programID);"<< std::endl;
 
         // Send our transformation to the currently bound shader,
@@ -205,7 +207,7 @@ public:
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, tex);
+        glBindTexture(GL_TEXTURE_2D, isomapTexture);
         // Set our "myTextureSampler" sampler to use Texture Unit 0
         glUniform1i(TextureID, 0);
 
@@ -264,11 +266,21 @@ public:
         return std::make_pair(img, depth);
     }
 
+    void Update_isomap(cv::Mat new_isomap)
+    {
+        assert(isomap.cols == new_isomap.cols);
+        assert(isomap.rows == new_isomap.rows);
+        assert(isomap.type == new_isomap.type);
+        glDeleteTextures(1, &isomapTexture);
+        isomap = new_isomap; 
+        isomapTexture = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);
+    }
+
     void terminate()
     {
         glDeleteBuffers(1, &vertexbuffer);
         glDeleteBuffers(1, &uvbuffer);
-        glDeleteTextures(1, &tex);
+        glDeleteTextures(1, &isomapTexture);
         glDeleteProgram(programID);
         glDeleteVertexArrays(1, &VertexArrayID);
         // Close OpenGL window and terminate GLFW
@@ -276,6 +288,7 @@ public:
     }
 
 private:
+    cv::Mat isomap;
     glm::tmat4x4<float> get_viewport()
     {
         glm::vec4 viewport = fitting::get_opencv_viewport(viewport_width, viewport_height);
