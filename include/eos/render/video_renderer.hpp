@@ -77,6 +77,11 @@ public:
                 indices.push_back(vertexIndex);
             }
         }
+        if (isomap.type() == CV_8UC4)
+        {
+            cvtColor(isomap, isomap, CV_BGRA2BGR);
+        }
+
         viewport_width = _view.cols;
         viewport_height = _view.rows;
 
@@ -87,11 +92,8 @@ public:
             return;
         }
         glfwWindowHint(GLFW_SAMPLES, 4);
-        // glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        // glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         window = glfwCreateWindow(viewport_width, viewport_height, "Viewer", NULL, NULL);
-        // window = glfwCreateWindow(viewport_width, viewport_height, "EOS Testing", NULL, NULL);
         if (window == NULL)
         {
             fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 "
@@ -117,7 +119,6 @@ public:
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-
         // // Enable depth test
         glEnable(GL_DEPTH_TEST);
         // glEnable(GL_DEPTH_CLAMP);
@@ -132,37 +133,14 @@ public:
         glGenBuffers(1, &uvbuffer);
         glGenBuffers(1, &elementbuffer);
         glGenFramebuffers(1, &FramebufferID);
-        glGenTextures(1, &renderedTexture);
         glGenRenderbuffers(1, &depthrenderbuffer);
+        glGenTextures(1, &renderedTexture);
         glGenTextures(1, &depthTexture);
         glGenTextures(1, &backgroundTexture);
+        glGenTextures(1, &isomapTexture);
         glUseProgram(programID);
-        return;
-    }
-
-    std::pair<cv::Mat, cv::Mat> render()
-    {
-        if (isomap.type() == CV_8UC4)
-        {
-            cvtColor(isomap, isomap, CV_BGRA2BGR);
-        }
-        cv::Mat img(viewport_height, viewport_width, CV_8UC3);
-        cv::Mat depth(viewport_height, viewport_width, CV_8U);
-        
-        // Clear the screen
-        GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-        
-        glm::tmat4x4<float> projection_matrix = pose.get_projection();
-        projection_matrix[2][2] = projection_matrix[2][2]/viewport_height/viewport_width;
-        glm::tmat4x4<float> viewport_matrix = get_viewport();
-        glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
-        GLuint TextureID = glGetUniformLocation(programID, "myTextureSampler");
-        GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);
-
-        glBindTexture(GL_TEXTURE_2D, tex);
-
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
+        matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
+        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
 
         glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * texcoords.size(), &texcoords[0], GL_STATIC_DRAW);
@@ -174,11 +152,8 @@ public:
         // render target
         glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
         glBindTexture(GL_TEXTURE_2D, renderedTexture);
-        // Give an empty image to OpenGL ( the last "0" )
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, viewport_width, viewport_height, 0, GL_RGB, GL_UNSIGNED_BYTE,
                      0);
-
-        // Poor filtering. Needed !
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
@@ -190,6 +165,25 @@ public:
         // Set "renderedTexture" as our colour attachement #0
         glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, renderedTexture, 0);
         glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
+        TextureID = glGetUniformLocation(programID, "myTextureSampler");
+
+        return;
+    }
+
+    std::pair<cv::Mat, cv::Mat> render()
+    {
+        cv::Mat img(viewport_height, viewport_width, CV_8UC3);
+        cv::Mat depth(viewport_height, viewport_width, CV_8U);
+
+        GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+
+        glm::tmat4x4<float> projection_matrix = pose.get_projection();
+        projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
+        glm::tmat4x4<float> viewport_matrix = get_viewport();
+        glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
         // Set the list of draw buffers.
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
@@ -197,13 +191,7 @@ public:
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-        // Use our shader
 
-        // std::cout << "glUseProgram(programID);"<< std::endl;
-
-        // Send our transformation to the currently bound shader,
-        // in the "MVP" uniform
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
         glActiveTexture(GL_TEXTURE0);
@@ -243,9 +231,6 @@ public:
                        (void*)0         // element array buffer offset
                        );
 
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
-
         glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
         glViewport(0, 0, viewport_width, viewport_height); // Render on the whole framebuffer, complete
         // // //use fast 4-byte alignment (default anyway) if possible
@@ -254,10 +239,9 @@ public:
         glPixelStorei(GL_PACK_ROW_LENGTH, img.step / img.elemSize());
         glReadPixels(0, 0, depth.cols, depth.rows, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, depth.data);
         glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
-        
+
         cv::flip(img, img, 0);
         cv::flip(depth, depth, 0);
-
 
         // Swap buffers
         glfwSwapBuffers(window);
@@ -271,9 +255,17 @@ public:
         assert(isomap.cols == new_isomap.cols);
         assert(isomap.rows == new_isomap.rows);
         assert(isomap.type == new_isomap.type);
-        glDeleteTextures(1, &isomapTexture);
-        isomap = new_isomap; 
-        isomapTexture = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);
+        isomap = new_isomap;
+        if (isomap.type() == CV_8UC4)
+        {
+            cvtColor(isomap, isomap, CV_BGRA2BGR);
+        }
+        matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
+    }
+
+    void Update_background(cv::Mat new_background)
+    {
+        // todo
     }
 
     void terminate()

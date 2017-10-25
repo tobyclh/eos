@@ -245,7 +245,7 @@ inline std::pair<cv::Mat, cv::Mat> render(const core::Mesh& mesh, glm::tmat4x4<f
 };
 
 // Function turn a cv::Mat into a texture, and return the texture ID as a GLuint for use
-inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLenum wrapFilter)
+inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLenum wrapFilter, GLuint& textureID)
 {
 	if(!mat.isContinuous())
 	{
@@ -255,8 +255,6 @@ inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLe
 	glPixelStorei(GL_UNPACK_ALIGNMENT,1);	
 	
 	// Generate a number for our textureID's unique handle
-	GLuint textureID;
-	glGenTextures(1, &textureID);
  
 	// Bind to our texture handle
 	glBindTexture(GL_TEXTURE_2D, textureID);
@@ -400,7 +398,9 @@ inline cv::Mat render_gl(const core::Mesh& mesh, const fitting::RenderingParamet
 	//bind the isomap with opengl 
 
 	GLuint TextureID  = glGetUniformLocation(programID, "myTextureSampler");
-	GLuint tex = matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP);	
+	GLuint tex;
+	glGenTextures(1, &tex);        
+	matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, tex);	
 	glBindTexture(GL_TEXTURE_2D, tex);
 	
 	std::vector<unsigned int> indices;

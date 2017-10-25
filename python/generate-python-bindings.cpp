@@ -319,7 +319,7 @@ PYBIND11_MODULE(eos, eos_module) {
 	.def_readwrite("pose", &render::Viewer::pose, "pose of the head")
 	.def_readwrite("vertices", &render::Viewer::vertices, "vertice position")
 	.def_readwrite("frame", &render::Viewer::canvas, "background to render on")
-	.def_readwrite("isomap", &render::Viewer::isomap, "isomap extracted")
+	// .def_readwrite("isomap", &render::Viewer::isomap, "isomap extracted")
 	.def("render",  &render::Viewer::render, "render image")
 	.def("terminate", &render::Viewer::terminate, "terminate opengl resources")
 	;
