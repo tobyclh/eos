@@ -60,7 +60,14 @@ public:
     GLuint isomapTexture;
     GLuint renderedTexture;
     GLuint depthTexture;
+
+    //background handlers
+    GLuint backgroundProgramID;
+    GLuint backgroundID;
     GLuint backgroundTexture;
+    GLuint backgroundVertex;
+    GLuint backgroundUV;    
+
     Viewer(){};
 
     Viewer(std::vector<glm::vec4> _vertices, std::vector<glm::vec2> _texcoords,
@@ -129,6 +136,8 @@ public:
         glShadeModel(GL_SMOOTH);
 
         programID = LoadShaders("eos_vertex.vert", "eos_fragment.frag");
+
+        
         glGenBuffers(1, &vertexbuffer);
         glGenBuffers(1, &uvbuffer);
         glGenBuffers(1, &elementbuffer);
@@ -138,9 +147,9 @@ public:
         glGenTextures(1, &depthTexture);
         glGenTextures(1, &backgroundTexture);
         glGenTextures(1, &isomapTexture);
+
         glUseProgram(programID);
         matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
-        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
 
         glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * texcoords.size(), &texcoords[0], GL_STATIC_DRAW);
@@ -167,6 +176,40 @@ public:
         glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
         TextureID = glGetUniformLocation(programID, "myTextureSampler");
 
+        // set up background texture
+        cv::flip(canvas, canvas, 0);        
+        backgroundProgramID = LoadShaders("background_vertex.vert", "background_fragment.frag");
+        glUseProgram(backgroundProgramID);
+        glGenTextures(1, &backgroundTexture);
+        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
+        backgroundID = glGetUniformLocation(backgroundProgramID, "myBackground");
+        GLfloat depth = -0.99f;
+        static const GLfloat g_vertex_buffer_data[] = { 
+            -1.0f,-1.0f, depth,
+            -1.0f, 1.0f, depth,
+            1.0f, -1.0f, depth,
+            1.0f, 1.0f, depth,
+            1.0f,-1.0f, depth,
+            -1.0f, 1.0f, depth
+        };
+        static const GLfloat g_uv_data[] = { 
+            0.0f,0.0f,
+            0.0f,1.0f,
+            1.0f, 0.0f,
+            1.0f, 1.0f,
+            1.0f,0.0f,
+            0.0f, 1.0f
+        };
+        glGenTextures(1, &backgroundVertex);
+        glGenTextures(1, &backgroundUV);
+
+        glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), &g_vertex_buffer_data[0], GL_STATIC_DRAW);
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, backgroundUV);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_uv_data), &g_uv_data[0],
+                     GL_STATIC_DRAW);
+
         return;
     }
 
@@ -175,22 +218,53 @@ public:
         cv::Mat img(viewport_height, viewport_width, CV_8UC3);
         cv::Mat depth(viewport_height, viewport_width, CV_8U);
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        //draw background
+        glUseProgram(backgroundProgramID);        
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, backgroundTexture);
+        glUniform1i(backgroundID, 0);
+        glEnableVertexAttribArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
+        glVertexAttribPointer(
+            0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+            3,        // size
+            GL_FLOAT, // type
+            GL_FALSE, // normalized?
+            0,        // stride
+            (void*)0  // array buffer offset
+            );
+
+        glEnableVertexAttribArray(1);
+        glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
+        glVertexAttribPointer(
+            1,        // attribute. No particular reason for 1, but must match the layout in the shader.
+            2,        // size
+            GL_FLOAT, // type
+            GL_FALSE, // normalized?
+            0,        // stride
+            (void*)0  // array buffer offset
+            );
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+
+        glUseProgram(programID);
+        
         GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
         glm::tmat4x4<float> projection_matrix = pose.get_projection();
         projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
-        glm::tmat4x4<float> viewport_matrix = get_viewport();
         glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
 
         glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices.size(), &vertices[0], GL_STREAM_DRAW);
 
         // Set the list of draw buffers.
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
@@ -267,6 +341,13 @@ public:
     {
         // todo
     }
+
+    // cv::Mat extract_vertex_colours(){
+    //     cv::Mat colour, depth;
+    //     colour, depth = render();
+    //     return colour;
+
+    // };
 
     void terminate()
     {
