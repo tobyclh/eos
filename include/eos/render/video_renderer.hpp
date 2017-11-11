@@ -18,10 +18,14 @@ OpenGL renderer optimized for video rendering
 
 #include "opencv2/core/core.hpp"
 
+
+
 #include <array>
 #include <memory>
 #include <thread>
 #include <vector>
+
+#include <Eigen/Core>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -34,46 +38,43 @@ namespace render {
 class Viewer
 {
 public:
-    std::vector<glm::vec4> vertices;   ///< 3D vertex positions.
+    std::vector<glm::vec4> frame_vertices;
+    std::vector<glm::vec4> reenacted_vertices;
     std::vector<unsigned int> indices; /// vertex index
-    std::vector<glm::vec2> texcoords;  ///< Texture coordinates for each vertex.
+    std::vector<glm::vec3> colours;  ///< Texture coordinates for each vertex.
 
     fitting::RenderingParameters pose; // in the scenario of video stream to photo this is constant
     int viewport_width;
     int viewport_height;
 
-    cv::Mat canvas; // the canvas we will be rendering on, constant for video -> photo
+    cv::Mat frame; // the canvas we will be rendering on, constant for video -> photo
 
-    std::thread rendering;
-
-    // OpenGL handlers
+   // OpenGL handlers
     GLFWwindow* window;
     GLuint MatrixID;
     GLuint programID;
     GLuint TextureID;
-    GLuint VertexArrayID;
-    GLuint FramebufferID;
-    GLuint vertexbuffer;
-    GLuint uvbuffer;
+    GLuint RenderbufferID;
+    GLuint imgvertexbuffer;
+    GLuint reenactedvertexbuffer;
     GLuint elementbuffer;
     GLuint depthrenderbuffer;
-    GLuint isomapTexture;
+    GLuint frameTexture;
     GLuint renderedTexture;
     GLuint depthTexture;
 
     //background handlers
     GLuint backgroundProgramID;
     GLuint backgroundID;
-    GLuint backgroundTexture;
     GLuint backgroundVertex;
     GLuint backgroundUV;    
 
     Viewer(){};
 
-    Viewer(std::vector<glm::vec4> _vertices, std::vector<glm::vec2> _texcoords,
+    Viewer(std::vector<glm::vec4> _vertices, std::vector<glm::vec3> _colours,
            std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view,
            cv::Mat _isomap)
-        : vertices(_vertices), texcoords(_texcoords), canvas(_view), pose(_pose), isomap(_isomap)
+        : vertices(_vertices), colours(_colours), frame(_view), pose(_pose), isomap(_isomap)
     {
         assert(vertices.size() == texcoords.size());
         for (int i = 0; i < tvi.size(); i++)
@@ -98,7 +99,7 @@ public:
             getchar();
             return;
         }
-        glfwWindowHint(GLFW_SAMPLES, 4);
+        glfwWindowHint(GLFW_SAMPLES, 8);
         glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         window = glfwCreateWindow(viewport_width, viewport_height, "Viewer", NULL, NULL);
         if (window == NULL)
@@ -121,9 +122,7 @@ public:
             return;
         }
         // Ensure we can capture the escape key being pressed below
-
         glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // // Enable depth test
@@ -136,30 +135,23 @@ public:
         glShadeModel(GL_SMOOTH);
 
         programID = LoadShaders("eos_vertex.vert", "eos_fragment.frag");
-
         
-        glGenBuffers(1, &vertexbuffer);
-        glGenBuffers(1, &uvbuffer);
+        glGenBuffers(1, &imgvertexbuffer);
+        glGenBuffers(1, &reenactedvertexbuffer);
         glGenBuffers(1, &elementbuffer);
-        glGenFramebuffers(1, &FramebufferID);
+        glGenFramebuffers(1, &RenderbufferID);
         glGenRenderbuffers(1, &depthrenderbuffer);
         glGenTextures(1, &renderedTexture);
         glGenTextures(1, &depthTexture);
-        glGenTextures(1, &backgroundTexture);
-        glGenTextures(1, &isomapTexture);
 
         glUseProgram(programID);
-        matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
-
-        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * texcoords.size(), &texcoords[0], GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0],
                      GL_STATIC_DRAW);
 
         // render target
-        glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
+        glBindFramebuffer(GL_FRAMEBUFFER, RenderbufferID);
         glBindTexture(GL_TEXTURE_2D, renderedTexture);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, viewport_width, viewport_height, 0, GL_RGB, GL_UNSIGNED_BYTE,
                      0);
@@ -181,16 +173,15 @@ public:
         backgroundProgramID = LoadShaders("background_vertex.vert", "background_fragment.frag");
         glUseProgram(backgroundProgramID);
         glGenTextures(1, &backgroundTexture);
-        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
+        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, frameTexture);
         backgroundID = glGetUniformLocation(backgroundProgramID, "myBackground");
-        GLfloat depth = -0.99f;
         static const GLfloat g_vertex_buffer_data[] = { 
-            -1.0f,-1.0f, depth,
-            -1.0f, 1.0f, depth,
-            1.0f, -1.0f, depth,
-            1.0f, 1.0f, depth,
-            1.0f,-1.0f, depth,
-            -1.0f, 1.0f, depth
+            -1.0f,-1.0f,
+            -1.0f, 1.0f,
+            1.0f, -1.0f,
+            1.0f, 1.0f,
+            1.0f,-1.0f,
+            -1.0f, 1.0f
         };
         static const GLfloat g_uv_data[] = { 
             0.0f,0.0f,
@@ -202,14 +193,13 @@ public:
         };
         glGenTextures(1, &backgroundVertex);
         glGenTextures(1, &backgroundUV);
-
         glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
         glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), &g_vertex_buffer_data[0], GL_STATIC_DRAW);
-
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, backgroundUV);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_uv_data), &g_uv_data[0],
                      GL_STATIC_DRAW);
 
+        
         return;
     }
 
@@ -221,89 +211,92 @@ public:
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         //draw background
-        glUseProgram(backgroundProgramID);        
+        {
+            glUseProgram(backgroundProgramID);        
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, frameTexture);
+            glUniform1i(backgroundID, 0);
+            glEnableVertexAttribArray(0);
+            glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
+            glVertexAttribPointer(
+                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+                3,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                0,        // stride
+                (void*)0  // array buffer offset
+                );
+            glEnableVertexAttribArray(1);
+            glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
+            glVertexAttribPointer(
+                1,        // attribute. No particular reason for 1, but must match the layout in the shader.
+                2,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                0,        // stride
+                (void*)0  // array buffer offset
+                );
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+        }
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, backgroundTexture);
-        glUniform1i(backgroundID, 0);
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
-        glVertexAttribPointer(
-            0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-            3,        // size
-            GL_FLOAT, // type
-            GL_FALSE, // normalized?
-            0,        // stride
-            (void*)0  // array buffer offset
-            );
+        //draw foreground
+        {
+            glUseProgram(programID);
+            
+            GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
-        glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
-        glVertexAttribPointer(
-            1,        // attribute. No particular reason for 1, but must match the layout in the shader.
-            2,        // size
-            GL_FLOAT, // type
-            GL_FALSE, // normalized?
-            0,        // stride
-            (void*)0  // array buffer offset
-            );
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+            glm::tmat4x4<float> projection_matrix = pose.get_projection();
+            projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
+            glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
 
 
-        glUseProgram(programID);
-        
-        GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
-        glm::tmat4x4<float> projection_matrix = pose.get_projection();
-        projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
-        glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
+            // Set the list of draw buffers.
+            GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+            glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
+            assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * vertices.size(), &vertices[0], GL_STREAM_DRAW);
+            glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-        // Set the list of draw buffers.
-        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-        glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-        assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, frameTexture);
+            // Set our "myTextureSampler" sampler to use Texture Unit 0
+            glUniform1i(TextureID, 0);
 
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+            // 1rst attribute buffer : vertices
+            glEnableVertexAttribArray(0);
+            glBindBuffer(GL_ARRAY_BUFFER, imgvertexbuffer);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * frame_vertices.size(), &frame_vertices[0], GL_STREAM_DRAW);
+            glVertexAttribPointer(
+                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+                3,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                4,        // stride
+                (void*)0  // array buffer offset
+                );
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, isomapTexture);
-        // Set our "myTextureSampler" sampler to use Texture Unit 0
-        glUniform1i(TextureID, 0);
+            glEnableVertexAttribArray(1);
+            glBindBuffer(GL_ARRAY_BUFFER, reenactedvertexbuffer);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
+            glVertexAttribPointer(
+                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+                3,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                4,        // stride
+                (void*)0  // array buffer offset
+                );
+                
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 
-        // 1rst attribute buffer : vertices
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-        glVertexAttribPointer(
-            0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-            4,        // size
-            GL_FLOAT, // type
-            GL_FALSE, // normalized?
-            0,        // stride
-            (void*)0  // array buffer offset
-            );
-
-        glEnableVertexAttribArray(1);
-        glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glVertexAttribPointer(
-            1,        // attribute. No particular reason for 1, but must match the layout in the shader.
-            2,        // size
-            GL_FLOAT, // type
-            GL_FALSE, // normalized?
-            0,        // stride
-            (void*)0  // array buffer offset
-            );
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-
-        // Draw the triangles !
-        glDrawElements(GL_TRIANGLES,    // mode
-                       indices.size(),  // count
-                       GL_UNSIGNED_INT, // type
-                       (void*)0         // element array buffer offset
-                       );
+            // Draw the triangles !
+            glDrawElements(GL_TRIANGLES,    // mode
+                        indices.size(),  // count
+                        GL_UNSIGNED_INT, // type
+                        (void*)0         // element array buffer offset
+                        );
+        }
 
         glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
         glViewport(0, 0, viewport_width, viewport_height); // Render on the whole framebuffer, complete
@@ -324,12 +317,9 @@ public:
         return std::make_pair(img, depth);
     }
 
-    void Update_isomap(cv::Mat new_isomap)
+    void Update_frame(cv::Mat _frame)
     {
-        assert(isomap.cols == new_isomap.cols);
-        assert(isomap.rows == new_isomap.rows);
-        assert(isomap.type == new_isomap.type);
-        isomap = new_isomap;
+        frame = _frame;
         if (isomap.type() == CV_8UC4)
         {
             cvtColor(isomap, isomap, CV_BGRA2BGR);
@@ -337,25 +327,11 @@ public:
         matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
     }
 
-    void Update_background(cv::Mat new_background)
-    {
-        // todo
-    }
-
-    // cv::Mat extract_vertex_colours(){
-    //     cv::Mat colour, depth;
-    //     colour, depth = render();
-    //     return colour;
-
-    // };
-
     void terminate()
     {
         glDeleteBuffers(1, &vertexbuffer);
         glDeleteBuffers(1, &uvbuffer);
-        glDeleteTextures(1, &isomapTexture);
         glDeleteProgram(programID);
-        glDeleteVertexArrays(1, &VertexArrayID);
         // Close OpenGL window and terminate GLFW
         glfwTerminate();
     }
