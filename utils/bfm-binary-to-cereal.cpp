@@ -230,6 +230,7 @@ int main(int argc, char *argv[])
 	if (shape_model.get_data_dimension() / 3 != texture_coordinates.size())
 	{
 		std::cout << "Warning: PCA shape model's data dimension is different from the number of texture coordinates given. The converted model is still saved, but does most likely not work correctly for texturing." << std::endl;
+		std::cout << "Vertex count : " << shape_model.get_data_dimension() / 3 << ", Texture Coordinates : " << texture_coordinates.size() << std::endl;
 	}
 
 	morphablemodel::MorphableModel morphable_model(shape_model, color_model, texture_coordinates);

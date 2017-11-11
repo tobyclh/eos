@@ -259,6 +259,7 @@ inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLe
 	// Bind to our texture handle
 	glBindTexture(GL_TEXTURE_2D, textureID);
  
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 	// Catch silly-mistake texture interpolation method for magnification
 	if (magFilter == GL_LINEAR_MIPMAP_LINEAR  ||
 	    magFilter == GL_LINEAR_MIPMAP_NEAREST ||
@@ -269,15 +270,17 @@ inline GLuint matToTexture(cv::Mat &mat, GLenum minFilter, GLenum magFilter, GLe
 		magFilter = GL_LINEAR;
 	}
  
-	// Set texture interpolation methods for minification and magnification
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
- 
-	// Set texture clamping method
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapFilter);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapFilter);
- 
 	
+	// Set texture interpolation methods for minification and magnification
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// Set texture clamping method
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapFilter);
+	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapFilter);
+ 
 	// Set incoming texture format to:
 	// GL_BGR       for CV_CAP_OPENNI_BGR_IMAGE,
 	// GL_LUMINANCE for CV_CAP_OPENNI_DISPARITY_MAP,

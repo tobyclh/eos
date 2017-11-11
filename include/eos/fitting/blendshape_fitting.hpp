@@ -142,7 +142,7 @@ inline std::vector<float> fit_blendshapes_to_landmarks_nnls(const std::vector<eo
 	// Copy all blendshapes into a "basis" matrix with each blendshape being a column:
 	MatrixXf blendshapes_as_basis = morphablemodel::to_matrix(blendshapes);
 	// std::cout << "blendshapes_as_basis @  fit_blendshapes_to_landmarks_nnls SLOW" << blendshapes_as_basis.rows() << " " << blendshapes_as_basis.cols() << std::endl;
-	std::cout << "num_landmarks slow" << num_landmarks << std::endl;
+	// std::cout << "num_landmarks slow" << num_landmarks << std::endl;
 	// $\hat{V} \in R^{3N\times m-1}$, subselect the rows of the eigenvector matrix $V$ associated with the $N$ feature points
 	// And we insert a row of zeros after every third row, resulting in matrix $\hat{V}_h \in R^{4N\times m-1}$:
 	MatrixXf V_hat_h = MatrixXf::Zero(4 * num_landmarks, num_blendshapes);
