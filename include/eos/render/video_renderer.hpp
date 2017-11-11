@@ -1,7 +1,5 @@
 /*
 OpenGL renderer optimized for video rendering
-
-
 */
 #pragma once
 
@@ -67,16 +65,14 @@ public:
     GLuint backgroundProgramID;
     GLuint backgroundID;
     GLuint backgroundVertex;
-    GLuint backgroundUV;    
+    GLuint backgroundUV;
+    GLuint backgroundTexture;    
 
     Viewer(){};
 
-    Viewer(std::vector<glm::vec4> _vertices, std::vector<glm::vec3> _colours,
-           std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view,
-           cv::Mat _isomap)
-        : vertices(_vertices), colours(_colours), frame(_view), pose(_pose), isomap(_isomap)
+    Viewer(std::vector<glm::vec4> _vertices, std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view)
+        : frame_vertices(_vertices), frame(_view), pose(_pose)
     {
-        assert(vertices.size() == texcoords.size());
         for (int i = 0; i < tvi.size(); i++)
         {
             for (int j = 0; j < 3; j++)
@@ -85,10 +81,7 @@ public:
                 indices.push_back(vertexIndex);
             }
         }
-        if (isomap.type() == CV_8UC4)
-        {
-            cvtColor(isomap, isomap, CV_BGRA2BGR);
-        }
+        reenacted_vertices = _vertices;
 
         viewport_width = _view.cols;
         viewport_height = _view.rows;
@@ -99,6 +92,7 @@ public:
             getchar();
             return;
         }
+        std::cout << "Apple" << std::endl;
         glfwWindowHint(GLFW_SAMPLES, 8);
         glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         window = glfwCreateWindow(viewport_width, viewport_height, "Viewer", NULL, NULL);
@@ -112,6 +106,7 @@ public:
         }
         glfwMakeContextCurrent(window);
         glShadeModel(GL_SMOOTH);
+        std::cout << "Banana" << std::endl;
         // Initialize GLEW
         glewExperimental = true; // Needed for core profile
         if (glewInit() != GLEW_OK)
@@ -122,7 +117,7 @@ public:
             return;
         }
         // Ensure we can capture the escape key being pressed below
-        glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+        // glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // // Enable depth test
@@ -134,8 +129,16 @@ public:
         glDepthFunc(GL_LESS);
         glShadeModel(GL_SMOOTH);
 
+        // std::cout << "Pencil" << std::endl;
         programID = LoadShaders("eos_vertex.vert", "eos_fragment.frag");
+        std::cout << "Loaded eos_vertex.vert" << std::endl;
+        // int i = 0;
+        // for(i = 0; i <= 100; i++)
+        // {
+        // }
         
+
+
         glGenBuffers(1, &imgvertexbuffer);
         glGenBuffers(1, &reenactedvertexbuffer);
         glGenBuffers(1, &elementbuffer);
@@ -143,9 +146,10 @@ public:
         glGenRenderbuffers(1, &depthrenderbuffer);
         glGenTextures(1, &renderedTexture);
         glGenTextures(1, &depthTexture);
+        glGenTextures(1, &frameTexture);
+        glGenTextures(1, &backgroundTexture);
 
         glUseProgram(programID);
-
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0],
                      GL_STATIC_DRAW);
@@ -169,11 +173,11 @@ public:
         TextureID = glGetUniformLocation(programID, "myTextureSampler");
 
         // set up background texture
-        cv::flip(canvas, canvas, 0);        
+        cv::flip(frame, frame, 0);        
         backgroundProgramID = LoadShaders("background_vertex.vert", "background_fragment.frag");
+        std::cout << "Loaded background_vertex.vert" << std::endl;
         glUseProgram(backgroundProgramID);
-        glGenTextures(1, &backgroundTexture);
-        matToTexture(canvas, GL_NEAREST, GL_NEAREST, GL_CLAMP, frameTexture);
+        matToTexture(frame, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
         backgroundID = glGetUniformLocation(backgroundProgramID, "myBackground");
         static const GLfloat g_vertex_buffer_data[] = { 
             -1.0f,-1.0f,
@@ -196,8 +200,7 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
         glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), &g_vertex_buffer_data[0], GL_STATIC_DRAW);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, backgroundUV);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_uv_data), &g_uv_data[0],
-                     GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(g_uv_data), &g_uv_data[0],GL_STATIC_DRAW);
 
         
         return;
@@ -207,89 +210,79 @@ public:
     {
         cv::Mat img(viewport_height, viewport_width, CV_8UC3);
         cv::Mat depth(viewport_height, viewport_width, CV_8U);
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        //draw background
-        {
-            glUseProgram(backgroundProgramID);        
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, frameTexture);
-            glUniform1i(backgroundID, 0);
-            glEnableVertexAttribArray(0);
-            glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
-            glVertexAttribPointer(
-                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                3,        // size
-                GL_FLOAT, // type
-                GL_FALSE, // normalized?
-                0,        // stride
-                (void*)0  // array buffer offset
-                );
-            glEnableVertexAttribArray(1);
-            glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
-            glVertexAttribPointer(
-                1,        // attribute. No particular reason for 1, but must match the layout in the shader.
-                2,        // size
-                GL_FLOAT, // type
-                GL_FALSE, // normalized?
-                0,        // stride
-                (void*)0  // array buffer offset
-                );
-            glDrawArrays(GL_TRIANGLES, 0, 6);
-        }
+        // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        // {
+        //     glUseProgram(backgroundProgramID);        
+        //     glActiveTexture(GL_TEXTURE0);
+        //     glBindTexture(GL_TEXTURE_2D, backgroundTexture);
+        //     glUniform1i(backgroundID, 0);
+        //     glEnableVertexAttribArray(0);
+        //     glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
+        //     glVertexAttribPointer(
+        //         0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+        //         2,        // size
+        //         GL_FLOAT, // type
+        //         GL_FALSE, // normalized?
+        //         0,        // stride
+        //         (void*)0  // array buffer offset
+        //         );
+        //     glEnableVertexAttribArray(1);
+        //     glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
+        //     glVertexAttribPointer(
+        //         1,        // attribute. No particular reason for 1, but must match the layout in the shader.
+        //         2,        // size
+        //         GL_FLOAT, // type
+        //         GL_FALSE, // normalized?
+        //         0,        // stride
+        //         (void*)0  // array buffer offset
+        //         );
+        //     glDrawArrays(GL_TRIANGLES, 0, 6);
+        // }
 
         //draw foreground
         {
             glUseProgram(programID);
-            
             GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-
             glm::tmat4x4<float> projection_matrix = pose.get_projection();
             projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
             glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
-
-
-
             // Set the list of draw buffers.
+            std::cout << "a" << std::endl;
             GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
             glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
             assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
-
             glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, frameTexture);
+            std::cout << "a" << std::endl;
             // Set our "myTextureSampler" sampler to use Texture Unit 0
             glUniform1i(TextureID, 0);
-
             // 1rst attribute buffer : vertices
             glEnableVertexAttribArray(0);
             glBindBuffer(GL_ARRAY_BUFFER, imgvertexbuffer);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * frame_vertices.size(), &frame_vertices[0], GL_STREAM_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * frame_vertices.size(), &frame_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                3,        // size
+                4,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
-                4,        // stride
+                0,        // stride
                 (void*)0  // array buffer offset
                 );
-
+            std::cout << "a" << std::endl;
             glEnableVertexAttribArray(1);
             glBindBuffer(GL_ARRAY_BUFFER, reenactedvertexbuffer);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec3) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                3,        // size
+                4,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
-                4,        // stride
+                0,        // stride
                 (void*)0  // array buffer offset
                 );
-                
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
             // Draw the triangles !
             glDrawElements(GL_TRIANGLES,    // mode
                         indices.size(),  // count
@@ -297,8 +290,9 @@ public:
                         (void*)0         // element array buffer offset
                         );
         }
+        std::cout << "a" << std::endl;
 
-        glBindFramebuffer(GL_FRAMEBUFFER, FramebufferID);
+        glBindFramebuffer(GL_FRAMEBUFFER, RenderbufferID);
         glViewport(0, 0, viewport_width, viewport_height); // Render on the whole framebuffer, complete
         // // //use fast 4-byte alignment (default anyway) if possible
         glPixelStorei(GL_PACK_ALIGNMENT, (img.step & 3) ? 1 : 4);
@@ -306,38 +300,45 @@ public:
         glPixelStorei(GL_PACK_ROW_LENGTH, img.step / img.elemSize());
         glReadPixels(0, 0, depth.cols, depth.rows, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, depth.data);
         glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
-
+        std::cout << "c" << std::endl;
         cv::flip(img, img, 0);
         cv::flip(depth, depth, 0);
 
         // Swap buffers
         glfwSwapBuffers(window);
         glfwPollEvents();
+        std::cout << "b" << std::endl;
 
         return std::make_pair(img, depth);
     }
 
     void Update_frame(cv::Mat _frame)
     {
-        frame = _frame;
-        if (isomap.type() == CV_8UC4)
-        {
-            cvtColor(isomap, isomap, CV_BGRA2BGR);
-        }
-        matToTexture(isomap, GL_NEAREST, GL_NEAREST, GL_CLAMP, isomapTexture);
+        matToTexture(frame, GL_NEAREST, GL_NEAREST, GL_CLAMP, frameTexture);
+        matToTexture(frame, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
     }
 
     void terminate()
     {
-        glDeleteBuffers(1, &vertexbuffer);
-        glDeleteBuffers(1, &uvbuffer);
+        glDeleteBuffers(1, &imgvertexbuffer);
         glDeleteProgram(programID);
-        // Close OpenGL window and terminate GLFW
         glfwTerminate();
     }
 
+    void SetDebug(int debug)
+    {
+        if(debug == 0)
+        {
+            debugMode = 0;
+        }
+        else
+        {
+            debugMode = 1;
+        }
+    }
+
 private:
-    cv::Mat isomap;
+    int debugMode = 1;
     glm::tmat4x4<float> get_viewport()
     {
         glm::vec4 viewport = fitting::get_opencv_viewport(viewport_width, viewport_height);
