@@ -24,6 +24,13 @@ find_package(GLEW REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GLFW REQUIRED glfw3)
 
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
+
+
 # All the options for building the library. Can be changed on the command-line or in initial_cache.cmake.
 message(STATUS "Options:")
 option(EOS_BUILD_EXAMPLES "Build the example applications." OFF)
