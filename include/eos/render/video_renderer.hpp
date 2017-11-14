@@ -210,34 +210,34 @@ public:
     {
         cv::Mat img(viewport_height, viewport_width, CV_8UC3);
         cv::Mat depth(viewport_height, viewport_width, CV_8U);
-        // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // {
-        //     glUseProgram(backgroundProgramID);        
-        //     glActiveTexture(GL_TEXTURE0);
-        //     glBindTexture(GL_TEXTURE_2D, backgroundTexture);
-        //     glUniform1i(backgroundID, 0);
-        //     glEnableVertexAttribArray(0);
-        //     glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
-        //     glVertexAttribPointer(
-        //         0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-        //         2,        // size
-        //         GL_FLOAT, // type
-        //         GL_FALSE, // normalized?
-        //         0,        // stride
-        //         (void*)0  // array buffer offset
-        //         );
-        //     glEnableVertexAttribArray(1);
-        //     glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
-        //     glVertexAttribPointer(
-        //         1,        // attribute. No particular reason for 1, but must match the layout in the shader.
-        //         2,        // size
-        //         GL_FLOAT, // type
-        //         GL_FALSE, // normalized?
-        //         0,        // stride
-        //         (void*)0  // array buffer offset
-        //         );
-        //     glDrawArrays(GL_TRIANGLES, 0, 6);
-        // }
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        {
+            glUseProgram(backgroundProgramID);        
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, backgroundTexture);
+            glUniform1i(backgroundID, 0);
+            glEnableVertexAttribArray(0);
+            glBindBuffer(GL_ARRAY_BUFFER, backgroundVertex);
+            glVertexAttribPointer(
+                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+                2,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                0,        // stride
+                (void*)0  // array buffer offset
+                );
+            glEnableVertexAttribArray(1);
+            glBindBuffer(GL_ARRAY_BUFFER, backgroundUV);
+            glVertexAttribPointer(
+                1,        // attribute. No particular reason for 1, but must match the layout in the shader.
+                2,        // size
+                GL_FLOAT, // type
+                GL_FALSE, // normalized?
+                0,        // stride
+                (void*)0  // array buffer offset
+                );
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+        }
 
         //draw foreground
         {
@@ -274,7 +274,7 @@ public:
             glBindBuffer(GL_ARRAY_BUFFER, reenactedvertexbuffer);
             glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
-                0,        // attribute. No particular reason for 0, but must match the layout in the shader.
+                1,        // attribute. No particular reason for 0, but must match the layout in the shader.
                 4,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
