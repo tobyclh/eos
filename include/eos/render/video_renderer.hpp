@@ -247,14 +247,14 @@ public:
             projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
             glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
             // Set the list of draw buffers.
-            std::cout << "a" << std::endl;
+            // std::cout << "a" << std::endl;
             GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
             glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
             assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
             glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, frameTexture);
-            std::cout << "a" << std::endl;
+            // std::cout << "a" << std::endl;
             // Set our "myTextureSampler" sampler to use Texture Unit 0
             glUniform1i(TextureID, 0);
             // 1rst attribute buffer : vertices
@@ -269,7 +269,7 @@ public:
                 0,        // stride
                 (void*)0  // array buffer offset
                 );
-            std::cout << "a" << std::endl;
+            // std::cout << "a" << std::endl;
             glEnableVertexAttribArray(1);
             glBindBuffer(GL_ARRAY_BUFFER, reenactedvertexbuffer);
             glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
@@ -290,7 +290,7 @@ public:
                         (void*)0         // element array buffer offset
                         );
         }
-        std::cout << "a" << std::endl;
+        // std::cout << "a" << std::endl;
 
         glBindFramebuffer(GL_FRAMEBUFFER, RenderbufferID);
         glViewport(0, 0, viewport_width, viewport_height); // Render on the whole framebuffer, complete
@@ -300,14 +300,14 @@ public:
         glPixelStorei(GL_PACK_ROW_LENGTH, img.step / img.elemSize());
         glReadPixels(0, 0, depth.cols, depth.rows, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, depth.data);
         glReadPixels(0, 0, img.cols, img.rows, GL_RGB, GL_UNSIGNED_BYTE, img.data);
-        std::cout << "c" << std::endl;
+        // std::cout << "c" << std::endl;
         cv::flip(img, img, 0);
         cv::flip(depth, depth, 0);
 
         // Swap buffers
         glfwSwapBuffers(window);
         glfwPollEvents();
-        std::cout << "b" << std::endl;
+        // std::cout << "b" << std::endl;
 
         return std::make_pair(img, depth);
     }
