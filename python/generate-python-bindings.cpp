@@ -339,6 +339,7 @@ PYBIND11_MODULE(eos, eos_module) {
 	.def("render",  &render::Viewer::render, "render image")
 	.def("terminate", &render::Viewer::terminate, "terminate opengl resources")
 	.def("UpdateFrame", &render::Viewer::Update_frame,"update the frame", py::arg("frame"))
+	.def("SetPose", &render::Viewer::Set_pose,"set pose", py::arg("pose"))
 	;
 
 
