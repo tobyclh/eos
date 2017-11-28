@@ -36,15 +36,16 @@ namespace render {
 class Viewer
 {
 public:
-    std::vector<glm::vec4> frame_vertices;
-    std::vector<glm::vec4> reenacted_vertices;
+    std::vector<glm::vec3> frame_vertices;
+    std::vector<glm::vec3> reenacted_vertices;
     std::vector<unsigned int> indices; /// vertex index
-    std::vector<glm::vec3> colours;  ///< Texture coordinates for each vertex.
-
-    fitting::RenderingParameters pose; // in the scenario of video stream to photo this is constant
+    GLfloat scale;
+    glm::vec2 normalized_offsets;
+    glm::vec2 translation;
+    cv::Mat mvp;
+    
     int viewport_width;
     int viewport_height;
-
     cv::Mat frame; // the canvas we will be rendering on, constant for video -> photo
 
    // OpenGL handlers
@@ -70,7 +71,7 @@ public:
 
     Viewer(){};
 
-    Viewer(std::vector<glm::vec4> _vertices, std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view)
+    Viewer(std::vector<glm::vec3> _vertices, std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view)
         : frame_vertices(_vertices), frame(_view), pose(_pose)
     {
         for (int i = 0; i < tvi.size(); i++)
@@ -106,7 +107,7 @@ public:
         }
         glfwMakeContextCurrent(window);
         glShadeModel(GL_SMOOTH);
-        std::cout << "Banana" << std::endl;
+        // std::cout << "Banana" << std::endl;
         // Initialize GLEW
         glewExperimental = true; // Needed for core profile
         if (glewInit() != GLEW_OK)
@@ -132,16 +133,9 @@ public:
         // std::cout << "Pencil" << std::endl;
         programID = LoadShaders("eos_vertex.vert", "eos_fragment.frag");
         std::cout << "Loaded eos_vertex.vert" << std::endl;
-        // int i = 0;
-        // for(i = 0; i <= 100; i++)
-        // {
-        // }
-        
-
 
         glGenBuffers(1, &imgvertexbuffer);
         glGenBuffers(1, &reenactedvertexbuffer);
-        glGenBuffers(1, &elementbuffer);
         glGenFramebuffers(1, &RenderbufferID);
         glGenRenderbuffers(1, &depthrenderbuffer);
         glGenTextures(1, &renderedTexture);
@@ -242,16 +236,10 @@ public:
         //draw foreground
         {
             glUseProgram(programID);
-            GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-            glm::tmat4x4<float> projection_matrix = pose.get_projection();
-            projection_matrix[2][2] = projection_matrix[2][2] / viewport_height / viewport_width;
-            glm::tmat4x4<float> MVP = projection_matrix * pose.get_modelview();
-            // Set the list of draw buffers.
-            // std::cout << "a" << std::endl;
             GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
             glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
             assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
-            glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+                      
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, frameTexture);
             // std::cout << "a" << std::endl;
@@ -263,7 +251,7 @@ public:
             glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * frame_vertices.size(), &frame_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                4,        // size
+                3,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
                 0,        // stride
@@ -275,7 +263,7 @@ public:
             glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 1,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                4,        // size
+                3,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
                 0,        // stride
@@ -308,14 +296,20 @@ public:
         glfwSwapBuffers(window);
         glfwPollEvents();
         // std::cout << "b" << std::endl;
-
         return std::make_pair(img, depth);
     }
 
     void Update_frame(cv::Mat _frame)
     {
-        matToTexture(frame, GL_NEAREST, GL_NEAREST, GL_CLAMP, frameTexture);
-        matToTexture(frame, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
+        cv::Mat cFrame;
+        cv::flip(_frame, cFrame, 0);
+        matToTexture(cFrame, GL_NEAREST, GL_NEAREST, GL_CLAMP, frameTexture);
+        matToTexture(cFrame, GL_NEAREST, GL_NEAREST, GL_CLAMP, backgroundTexture);
+    }
+
+    void Set_pose(eos::fitting::RenderingParameters _pose)
+    {
+        // pose = _pose;
     }
 
     void terminate()
@@ -323,18 +317,6 @@ public:
         glDeleteBuffers(1, &imgvertexbuffer);
         glDeleteProgram(programID);
         glfwTerminate();
-    }
-
-    void SetDebug(int debug)
-    {
-        if(debug == 0)
-        {
-            debugMode = 0;
-        }
-        else
-        {
-            debugMode = 1;
-        }
     }
 
 private:
