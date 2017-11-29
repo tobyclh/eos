@@ -36,8 +36,8 @@ namespace render {
 class Viewer
 {
 public:
-    std::vector<glm::vec3> frame_vertices;
-    std::vector<glm::vec3> reenacted_vertices;
+    std::vector<glm::vec2> frame_vertices;
+    std::vector<glm::vec2> reenacted_vertices;
     std::vector<unsigned int> indices; /// vertex index
     GLfloat scale;
     glm::vec2 normalized_offsets;
@@ -136,6 +136,7 @@ public:
 
         glGenBuffers(1, &imgvertexbuffer);
         glGenBuffers(1, &reenactedvertexbuffer);
+        glGenBuffers(1, &elementbuffer);
         glGenFramebuffers(1, &RenderbufferID);
         glGenRenderbuffers(1, &depthrenderbuffer);
         glGenTextures(1, &renderedTexture);
@@ -248,35 +249,37 @@ public:
             // 1rst attribute buffer : vertices
             glEnableVertexAttribArray(0);
             glBindBuffer(GL_ARRAY_BUFFER, imgvertexbuffer);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * frame_vertices.size(), &frame_vertices[0], GL_STREAM_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * frame_vertices.size(),
+                        &frame_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 0,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                3,        // size
+                2,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
                 0,        // stride
                 (void*)0  // array buffer offset
-                );
+            );
             // std::cout << "a" << std::endl;
             glEnableVertexAttribArray(1);
             glBindBuffer(GL_ARRAY_BUFFER, reenactedvertexbuffer);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec4) * reenacted_vertices.size(), &reenacted_vertices[0], GL_STREAM_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * reenacted_vertices.size(),
+                         &reenacted_vertices[0], GL_STREAM_DRAW);
             glVertexAttribPointer(
                 1,        // attribute. No particular reason for 0, but must match the layout in the shader.
-                3,        // size
+                2,        // size
                 GL_FLOAT, // type
                 GL_FALSE, // normalized?
                 0,        // stride
                 (void*)0  // array buffer offset
-                );
+            );
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
             // Draw the triangles !
             glDrawElements(GL_TRIANGLES,    // mode
-                        indices.size(),  // count
-                        GL_UNSIGNED_INT, // type
-                        (void*)0         // element array buffer offset
-                        );
+                           indices.size(),  // count
+                           GL_UNSIGNED_INT, // type
+                           (void*)0         // element array buffer offset
+            );
         }
         // std::cout << "a" << std::endl;
 

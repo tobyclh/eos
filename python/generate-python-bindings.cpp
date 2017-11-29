@@ -336,6 +336,7 @@ PYBIND11_MODULE(eos, eos_module) {
 	.def_readwrite("img_vertices", &render::Viewer::frame_vertices, "vertices of frame")
 	.def_readwrite("reenacted_vertices", &render::Viewer::reenacted_vertices, "expression fit vertices")
 	.def_readwrite("frame", &render::Viewer::frame, "background to render on")
+	.def_readwrite("indices", &render::Viewer::indices, "index")
 	.def("render",  &render::Viewer::render, "render image")
 	.def("terminate", &render::Viewer::terminate, "terminate opengl resources")
 	.def("UpdateFrame", &render::Viewer::Update_frame,"update the frame", py::arg("frame"))
