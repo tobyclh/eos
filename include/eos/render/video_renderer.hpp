@@ -71,8 +71,8 @@ public:
 
     Viewer(){};
 
-    Viewer(std::vector<glm::vec3> _vertices, std::vector<std::array<int, 3>> tvi, fitting::RenderingParameters _pose, cv::Mat _view)
-        : frame_vertices(_vertices), frame(_view), pose(_pose)
+    Viewer(std::vector<glm::vec2> _vertices, std::vector<std::array<int, 3>> tvi, cv::Mat _view)
+        : frame_vertices(_vertices), frame(_view), reenacted_vertices(_vertices)
     {
         for (int i = 0; i < tvi.size(); i++)
         {
@@ -82,7 +82,6 @@ public:
                 indices.push_back(vertexIndex);
             }
         }
-        reenacted_vertices = _vertices;
 
         viewport_width = _view.cols;
         viewport_height = _view.rows;
@@ -93,7 +92,7 @@ public:
             getchar();
             return;
         }
-        std::cout << "Apple" << std::endl;
+        // std::cout << "Apple" << std::endl;
         glfwWindowHint(GLFW_SAMPLES, 8);
         glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         window = glfwCreateWindow(viewport_width, viewport_height, "Viewer", NULL, NULL);
